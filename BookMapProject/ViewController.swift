@@ -35,7 +35,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-        setRegion(center: center)
         
         // Location3. 프로토콜 연결
         locationManager.delegate = self
@@ -47,8 +46,10 @@ class ViewController: UIViewController {
         
         bookData.decode()
         configureUI()
+        setRegion(center: center)
         
     }
+    
     
     @objc func uploadLocation() {
         
@@ -93,11 +94,19 @@ class ViewController: UIViewController {
     }
     
     func setRegion(center: CLLocationCoordinate2D) {
-    
+        
         // 지도 중심 기반으로 보여질 범위 설정
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
         
+        for num in 0...bookData.decode().count - 1 {
+            let center = CLLocationCoordinate2D(latitude: bookData.decode()[num].latitude, longitude: bookData.decode()[num].longitude)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = center
+            annotation.title = bookData.decode()[num].location
+            mapView.addAnnotation(annotation)
+        }
+        print(bookData.decode())
         
     }
     

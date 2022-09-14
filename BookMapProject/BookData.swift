@@ -10,7 +10,16 @@ import Foundation
 
 class dummyData {
     
-    func decode() {
+    struct BookStore: Codable {
+//                let type: String
+        let location: String
+        let latitude: Double
+        let longitude: Double
+    }
+    
+    
+    func decode() -> [BookStore] {
+        var BookStoreList: [BookStore] = []
         let jsonData = """
         [
             {
@@ -70,15 +79,25 @@ class dummyData {
             fatalError()
         }
         
+        
         do {
             let value = try JSONDecoder().decode([BookData].self, from: data)
+            
+            for num in 0...value.count - 1 {
+    
+            BookStoreList.append(BookStore(location: value[num].storeName, latitude: value[num].mapX, longitude: value[num].mapY))
+            }
+            
             dump(value)
+            
         } catch {
             print(error)
         }
+        return BookStoreList
     }
     
 }
+
 
 
 
