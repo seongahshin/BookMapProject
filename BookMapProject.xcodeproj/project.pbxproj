@@ -18,6 +18,7 @@
 		8C9BDE6028D04FA500A0FB00 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */; };
 		8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6228D059E300A0FB00 /* Alamofire */; };
 		8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6828D061A300A0FB00 /* SwiftyJSON */; };
+		8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6B28D1A41C00A0FB00 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */,
 				8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */,
 				8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */,
 			);
@@ -99,6 +101,7 @@
 			packageProductDependencies = (
 				8C9BDE6228D059E300A0FB00 /* Alamofire */,
 				8C9BDE6828D061A300A0FB00 /* SwiftyJSON */,
+				8C9BDE6B28D1A41C00A0FB00 /* SnapKit */,
 			);
 			productName = BookMapProject;
 			productReference = 8C6604BE28D01DD20092D79D /* BookMapProject.app */;
@@ -131,6 +134,7 @@
 			packageReferences = (
 				8C9BDE6128D059E300A0FB00 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8C9BDE6728D061A300A0FB00 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				8C9BDE6A28D1A41C00A0FB00 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 8C6604BF28D01DD20092D79D /* Products */;
 			projectDirPath = "";
@@ -400,6 +404,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		8C9BDE6A28D1A41C00A0FB00 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -412,6 +424,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8C9BDE6728D061A300A0FB00 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
+		};
+		8C9BDE6B28D1A41C00A0FB00 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C9BDE6A28D1A41C00A0FB00 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
