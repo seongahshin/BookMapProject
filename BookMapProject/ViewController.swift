@@ -30,6 +30,25 @@ class ViewController: UIViewController {
         view.backgroundColor = .brown
         return view
     }()
+    
+    var infoButton: UIButton = {
+        let view = UIButton()
+        view.backgroundColor = .yellow
+        view.setTitleColor(.black, for: .normal)
+        return view
+    }()
+    
+    var nameLabel: UILabel = {
+        let view = UILabel()
+        view.backgroundColor = .orange
+        return view
+    }()
+    
+    var addressLabel: UILabel = {
+        let view = UILabel()
+        view.backgroundColor = .brown
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,8 +72,11 @@ class ViewController: UIViewController {
         [mapView].forEach {
             view.addSubview($0)
         }
-        
+
         mapView.addSubview(locationButton)
+        mapView.addSubview(infoButton)
+        infoButton.addSubview(nameLabel)
+        infoButton.addSubview(addressLabel)
         
         mapView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
@@ -62,8 +84,29 @@ class ViewController: UIViewController {
         
         locationButton.snp.makeConstraints { make in
             make.width.height.equalTo(50)
-            make.bottom.equalTo(-20)
-            make.trailing.equalTo(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.trailing.equalTo(-10)
+        }
+        
+        infoButton.snp.makeConstraints { make in
+            make.height.equalTo(50)
+            make.leftMargin.equalTo(20)
+            make.trailing.equalTo(locationButton.snp.leadingMargin).offset(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.leadingMargin.equalTo(10)
+            make.trailingMargin.equalTo(-10)
+            make.height.equalTo(20)
+            make.top.equalTo(5)
+        }
+        
+        addressLabel.snp.makeConstraints { make in
+            make.leadingMargin.equalTo(10)
+            make.trailingMargin.equalTo(-10)
+            make.height.equalTo(20)
+            make.bottom.equalTo(-5)
         }
     }
     
@@ -229,8 +272,11 @@ extension ViewController: MKMapViewDelegate {
         for num in 0...bookData.decode().count - 1 {
             if ann.title == bookData.decode()[num].location {
                 print(bookData.decode()[num].address)
+                nameLabel.text = ann.title!
+                addressLabel.text = bookData.decode()[num].address
             }
         }
+        
     }
 }
 
