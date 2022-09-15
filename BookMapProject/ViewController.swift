@@ -38,20 +38,14 @@ class ViewController: UIViewController {
         
         // Location3. 프로토콜 연결
         locationManager.delegate = self
+        mapView.delegate = self
         
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
         
         locationManager.requestWhenInUseAuthorization()
-        
-        bookData.decode()
         configureUI()
         setRegion(center: center)
-        
-    }
-    
-    
-    @objc func uploadLocation() {
         
     }
     
@@ -224,8 +218,19 @@ extension ViewController: MKMapViewDelegate {
 //        <#code#>
 //    }
     
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        locationManager.startUpdatingLocation()
+//    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//        locationManager.startUpdatingLocation()
+//    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let ann = view.annotation as! MKPointAnnotation
+        print(ann.title!)
+        
+        for num in 0...bookData.decode().count - 1 {
+            if ann.title == bookData.decode()[num].location {
+                print(bookData.decode()[num].address)
+            }
+        }
     }
 }
 

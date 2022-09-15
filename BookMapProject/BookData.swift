@@ -15,6 +15,7 @@ class dummyData {
         let location: String
         let latitude: Double
         let longitude: Double
+        let address: String
     }
     
     
@@ -85,10 +86,10 @@ class dummyData {
             
             for num in 0...value.count - 1 {
     
-            BookStoreList.append(BookStore(location: value[num].storeName, latitude: value[num].mapX, longitude: value[num].mapY))
+                BookStoreList.append(BookStore(location: value[num].storeName, latitude: value[num].mapX, longitude: value[num].mapY, address: value[num].address))
             }
             
-            dump(value)
+//            dump(value)
             
         } catch {
             print(error)
