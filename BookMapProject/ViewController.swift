@@ -16,6 +16,7 @@ import SnapKit
 class ViewController: UIViewController {
 
     let bookData: dummyData = dummyData()
+    var infoList: [String] = []
     
     // Location2. 위치에 대한 대부분을 담당
     let locationManager = CLLocationManager()
@@ -27,29 +28,24 @@ class ViewController: UIViewController {
     
     var locationButton: UIButton = {
         let view = UIButton()
-        view.backgroundColor = .brown
         return view
     }()
     
-    var infoButton: UIButton = {
-        let view = UIButton()
-        view.backgroundColor = .yellow
-        view.setTitleColor(.black, for: .normal)
+    var infoButton: UILabel = {
+        let view = UILabel()
         return view
     }()
     
     var nameLabel: UILabel = {
         let view = UILabel()
-        view.backgroundColor = .orange
         return view
     }()
     
     var addressLabel: UILabel = {
         let view = UILabel()
-        view.backgroundColor = .brown
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,8 +61,17 @@ class ViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         configureUI()
         setRegion(center: center)
+        locationButton.addTarget(self, action: #selector(transitionButton), for: .touchUpInside)
+        
         
     }
+    
+    @objc func transitionButton() {
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        vc.storeInfoList = infoList
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     
     func configureUI() {
         [mapView].forEach {
@@ -108,6 +113,7 @@ class ViewController: UIViewController {
             make.height.equalTo(20)
             make.bottom.equalTo(-5)
         }
+        
     }
     
     func setRegionAndAnnotation(center: CLLocationCoordinate2D) {
@@ -270,10 +276,15 @@ extension ViewController: MKMapViewDelegate {
         print(ann.title!)
         
         for num in 0...bookData.decode().count - 1 {
-            if ann.title == bookData.decode()[num].location {
-                print(bookData.decode()[num].address)
+            let data = bookData.decode()[num]
+            if ann.title == data.location {
+                print(data.address)
                 nameLabel.text = ann.title!
-                addressLabel.text = bookData.decode()[num].address
+                addressLabel.text = data.address
+                infoList = [ann.title!, data.address, data.time, data.link]
+                infoButton.backgroundColor = .brown
+                locationButton.backgroundColor = .brown
+                print(infoList)
             }
         }
         
