@@ -314,6 +314,7 @@ extension ViewController: MKMapViewDelegate {
             }
         }
         imageList.removeAll()
+        
     }
 }
 
