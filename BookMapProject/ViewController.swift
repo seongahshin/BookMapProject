@@ -17,6 +17,7 @@ class ViewController: UIViewController {
 
     let bookData: dummyData = dummyData()
     var infoList: [String] = []
+    var imageList: [String] = []
     
     // Location2. 위치에 대한 대부분을 담당
     let locationManager = CLLocationManager()
@@ -69,6 +70,7 @@ class ViewController: UIViewController {
     @objc func transitionButton() {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         vc.storeInfoList = infoList
+        vc.storImageList = imageList
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -151,6 +153,30 @@ class ViewController: UIViewController {
         }
         print(bookData.decode())
         
+    }
+    
+    func searchImage(query: String) {
+        let urlString = "\(EndPoint.imageSearchURL)\(query)&display=6&start=1&sort=sim"
+        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.clientID, "X-Naver-Client-Secret": APIKey.clientSecret]
+        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: encodedString)!
+        
+        AF.request(url, method: .get, headers: headers).validate().responseData { response in
+                switch response.result {
+                        case .success(let value):
+                            let json = JSON(value)
+                            print("JSON: \(json)")
+                            let data = json["items"]
+                            for num in 0...data.count-1 {
+                                self.imageList.append(data[num]["link"].stringValue)
+                            }
+                            print(self.imageList)
+                            print(self.imageList.count)
+
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
     }
     
 
@@ -282,12 +308,12 @@ extension ViewController: MKMapViewDelegate {
                 nameLabel.text = ann.title!
                 addressLabel.text = data.address
                 infoList = [ann.title!, data.address, data.time, data.link]
+                searchImage(query: infoList[0])
                 infoButton.backgroundColor = .brown
                 locationButton.backgroundColor = .brown
-                print(infoList)
             }
         }
-        
+        imageList.removeAll()
     }
 }
 

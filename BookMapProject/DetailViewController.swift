@@ -8,10 +8,14 @@
 import UIKit
 
 import SnapKit
+import Alamofire
+import SwiftyJSON
+import Kingfisher
 
 class DetailViewController: UIViewController {
     
     var storeInfoList: [String] = []
+    var storImageList: [String] = []
     
     var storeName: UILabel = {
         let view = UILabel()
@@ -49,6 +53,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         configureUI()
         print("데이터 전달 완료 \(storeInfoList)")
+        print("데이터 전달 완료 \(storImageList)")
         let labelList: [UILabel] = [storeName, storeAddress, storeTime, storeLink]
         
         for num in 0...labelList.count - 1 {
@@ -118,6 +123,12 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
         cell.backgroundColor = .yellow
+        
+        print(storImageList.count)
+        if let imageURL = URL(string: storImageList[indexPath.item]) {
+            cell.imageView.kf.setImage(with: imageURL)
+        }
+        
         return cell
     }
     
