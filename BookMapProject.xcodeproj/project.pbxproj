@@ -20,6 +20,7 @@
 		8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6828D061A300A0FB00 /* SwiftyJSON */; };
 		8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6B28D1A41C00A0FB00 /* SnapKit */; };
 		8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBB28D317050005035C /* DetailViewController.swift */; };
+		8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		8C9BDE5D28D04F8900A0FB00 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		8CC4BCBB28D317050005035C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				8C9BDE5D28D04F8900A0FB00 /* .gitignore */,
 				8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */,
 				8CC4BCBB28D317050005035C /* DetailViewController.swift */,
+				8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */,
 			);
 			path = BookMapProject;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				8C6604C628D01DD20092D79D /* ViewController.swift in Sources */,
 				8C6604C228D01DD20092D79D /* AppDelegate.swift in Sources */,
 				8C9BDE5728D0497000A0FB00 /* BookData.swift in Sources */,
+				8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */,
 				8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */,
 				8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */,
 				8C9BDE6028D04FA500A0FB00 /* APIKey.swift in Sources */,
