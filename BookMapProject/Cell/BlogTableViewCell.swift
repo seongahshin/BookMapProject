@@ -13,20 +13,18 @@ class BlogTableViewCell: UITableViewCell {
     
     var titleLabel: UILabel = {
         let view = UILabel()
-        view.backgroundColor = .brown
         return view
     }()
     
     var contentLabel: UILabel = {
         let view = UILabel()
         view.numberOfLines = 0
-        view.backgroundColor = .gray
+        view.font = UIFont.systemFont(ofSize: 15)
         return view
     }()
     
     var blogerLabel: UILabel = {
         let view = UILabel()
-        view.backgroundColor = .brown
         return view
     }()
     
