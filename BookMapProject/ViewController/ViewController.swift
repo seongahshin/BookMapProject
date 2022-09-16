@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     let bookData: dummyData = dummyData()
     var infoList: [String] = []
     var imageList: [String] = []
+    var blogList: [String] = []
     
     // Location2. 위치에 대한 대부분을 담당
     let locationManager = CLLocationManager()
@@ -179,6 +180,26 @@ class ViewController: UIViewController {
                     }
     }
     
+    
+    func searchBlog(query: String) {
+        let urlString = "\(EndPoint.blogSearchURL)\(query)&display=6&start=1&sort=sim"
+        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.blogclientId, "X-Naver-Client-Secret": APIKey.blogclientSecret]
+        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: encodedString)!
+        
+        AF.request(url, method: .get, headers: headers).validate().responseData { response in
+                switch response.result {
+                        case .success(let value):
+                            let json = JSON(value)
+                            print(json)
+
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+        
+    }
+    
 
 }
 
@@ -309,6 +330,8 @@ extension ViewController: MKMapViewDelegate {
                 addressLabel.text = data.address
                 infoList = [ann.title!, data.address, data.time, data.link]
                 searchImage(query: infoList[0])
+                print("-----blog-----")
+                searchBlog(query: infoList[0])
                 infoButton.backgroundColor = .brown
                 locationButton.backgroundColor = .brown
             }
