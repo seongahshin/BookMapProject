@@ -273,9 +273,6 @@ extension ViewController {
 }
 
 extension ViewController: UISearchBarDelegate {
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
-    }
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         let vc = SearchViewController()

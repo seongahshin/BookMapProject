@@ -11,11 +11,10 @@ import SnapKit
 
 class SearchViewController: UIViewController {
     
-    
-    var searchBar: UISearchBar = {
-        let view = UISearchBar()
-        return view
-    }()
+    let data = dummyData().decode()
+    var searchText = ""
+    var nameSearchList: [String] = []
+    var nameSearchListFilter: [String] = []
     
     var tableView: UITableView = {
         let view = UITableView()
@@ -29,40 +28,41 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .white
         print("완료")
         configureUI()
-        searchBar.delegate = self
-        setupSearchBar()
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        for num in 0...data.count - 1 {
+            nameSearchList.append(data[num].location)
+        }
+        
+        setupSearchController()
+        
+    }
+    
+    private func setupSearchController() {
+
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "찾고 싶은 독립서점명을 입력해주세요"
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
 
     func configureUI() {
         print(#function)
-        [searchBar, tableView].forEach {
+        [tableView].forEach {
             view.addSubview($0)
         }
         
-        searchBar.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
-            make.height.equalTo(50)
-        }
-        
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(20)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
-            make.height.equalTo(200)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(10)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-10)
+            make.height.equalTo(360)
         }
-    }
-    
-    func setupSearchBar() {
-        print(#function)
-        searchBar.becomeFirstResponder()
-        searchBar.sizeToFit()
-        searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = "서점명이나 지역명을 입력해주세요:)"
-        searchBar.tintColor = UIColor.lightGray
-        searchBar.barTintColor = UIColor.lightGray
-        searchBar.isTranslucent = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -72,22 +72,46 @@ class SearchViewController: UIViewController {
     
 }
 
-extension SearchViewController: UISearchBarDelegate {
+extension SearchViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        nameSearchListFilter = nameSearchList.filter { $0.contains(text) }
+        tableView.reloadData()
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
     }
     
+    
+    var isEditMode: Bool {
+        let searchController = navigationItem.searchController
+        let isActive = searchController?.isActive ?? false
+        let isSearchBarHasText = searchController?.searchBar.text?.isEmpty == false
+        return isActive && isSearchBarHasText
+    }
+    
 }
 
-//extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//    }
-//
-//
-//}
+extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return isEditMode ? nameSearchListFilter.count : nameSearchList.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
+        cell.titleLabel.text = isEditMode ? nameSearchListFilter[indexPath.row] : nameSearchList[indexPath.row]
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(isEditing ? nameSearchListFilter[indexPath.row] : nameSearchList[indexPath.row])
+    }
+
+}

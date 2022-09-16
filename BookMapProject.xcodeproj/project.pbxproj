@@ -28,6 +28,7 @@
 		8CC4BCCD28D453360005035C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCCC28D453360005035C /* WebViewController.swift */; };
 		8CC4BCCF28D46B010005035C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCCE28D46B010005035C /* SearchViewController.swift */; };
 		8CC4BCD128D484B80005035C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCD028D484B80005035C /* SearchTableViewCell.swift */; };
+		8CC4BCD328D4989F0005035C /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCD228D4989F0005035C /* SearchModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		8CC4BCCC28D453360005035C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8CC4BCCE28D46B010005035C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		8CC4BCD028D484B80005035C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		8CC4BCD228D4989F0005035C /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				8CC4BCC928D43A090005035C /* BlogModel.swift */,
+				8CC4BCD228D4989F0005035C /* SearchModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				8CC4BCD128D484B80005035C /* SearchTableViewCell.swift in Sources */,
 				8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */,
 				8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */,
+				8CC4BCD328D4989F0005035C /* SearchModel.swift in Sources */,
 				8C9BDE6028D04FA500A0FB00 /* APIKey.swift in Sources */,
 				8CC4BCCA28D43A090005035C /* BlogModel.swift in Sources */,
 			);
