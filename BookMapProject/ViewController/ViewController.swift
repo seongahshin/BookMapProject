@@ -169,7 +169,7 @@ class ViewController: UIViewController {
                             let json = JSON(value)
                             print("JSON: \(json)")
                             let data = json["items"]
-                            for num in 0...data.count-1 {
+                            for num in 0...5 {
                                 self.imageList.append(data[num]["link"].stringValue)
                             }
                             print(self.imageList)
@@ -343,6 +343,7 @@ extension ViewController: MKMapViewDelegate {
             }
         }
         imageList.removeAll()
+        blogList.removeAll()
         
     }
 }

@@ -13,21 +13,20 @@ class BlogTableViewCell: UITableViewCell {
     
     var titleLabel: UILabel = {
         let view = UILabel()
+        view.backgroundColor = .brown
         return view
     }()
     
     var contentLabel: UILabel = {
         let view = UILabel()
+        view.numberOfLines = 0
+        view.backgroundColor = .gray
         return view
     }()
     
     var blogerLabel: UILabel = {
         let view = UILabel()
-        return view
-    }()
-    
-    var dateLabel: UILabel = {
-        let view = UILabel()
+        view.backgroundColor = .brown
         return view
     }()
     
@@ -38,11 +37,30 @@ class BlogTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        [titleLabel, contentLabel, blogerLabel, dateLabel].forEach {
+        [titleLabel, contentLabel, blogerLabel].forEach {
             contentView.addSubview($0)
         }
         
+        titleLabel.snp.makeConstraints { make in
+            make.leadingMargin.equalTo(5)
+            make.trailingMargin.equalTo(-5)
+            make.top.equalTo(5)
+            make.height.equalTo(25)
+        }
         
+        contentLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
+            make.leadingMargin.equalTo(5)
+            make.trailingMargin.equalTo(-5)
+            make.height.equalTo(40)
+        }
+        
+        blogerLabel.snp.makeConstraints { make in
+            make.top.equalTo(contentLabel.snp.bottom).offset(5)
+            make.leadingMargin.equalTo(5)
+            make.trailingMargin.equalTo(-5)
+            make.height.equalTo(15)
+        }
         
         
     }

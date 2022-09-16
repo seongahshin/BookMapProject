@@ -81,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				8C9BDE5D28D04F8900A0FB00 /* .gitignore */,
+				8CC4BCCB28D43DC00005035C /* Model */,
 				8CC4BCC628D41C610005035C /* Cell */,
 				8CC4BCC528D41C460005035C /* Data */,
 				8CC4BCC428D41C2C0005035C /* ViewController */,
@@ -101,7 +102,6 @@
 			children = (
 				8C6604C528D01DD20092D79D /* ViewController.swift */,
 				8CC4BCBB28D317050005035C /* DetailViewController.swift */,
-				8CC4BCC928D43A090005035C /* BlogModel.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -121,6 +121,14 @@
 				8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		8CC4BCCB28D43DC00005035C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CC4BCC928D43A090005035C /* BlogModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

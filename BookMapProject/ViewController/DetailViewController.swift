@@ -145,7 +145,7 @@ class DetailViewController: UIViewController {
         tableView.snp.makeConstraints { make in
             make.left.right.equalTo(contentView).inset(10)
             make.top.equalTo(collectionView.snp.bottom).offset(15)
-            make.height.equalTo(400)
+            make.height.equalTo(600)
             make.bottom.equalTo(contentView).offset(-20)
         }
         
@@ -195,18 +195,29 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 6
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BlogTableViewCell.identifier, for: indexPath) as! BlogTableViewCell
         cell.backgroundColor = .purple
+        
+        cell.titleLabel.text = getBlogList[indexPath.row].blogTitle
+        cell.contentLabel.text = getBlogList[indexPath.row].blogContent
+        cell.blogerLabel.text = "\(getBlogList[indexPath.row].blogName) | \(getBlogList[indexPath.row].blogDate)"
+        
+        print("----확인 -----")
+        dump(getBlogList)
+        
+        
+                
+                
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 100
     }
     
 }
