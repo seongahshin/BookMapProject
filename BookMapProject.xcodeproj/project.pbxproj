@@ -26,6 +26,7 @@
 		8CC4BCC828D41D410005035C /* BlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */; };
 		8CC4BCCA28D43A090005035C /* BlogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCC928D43A090005035C /* BlogModel.swift */; };
 		8CC4BCCD28D453360005035C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCCC28D453360005035C /* WebViewController.swift */; };
+		8CC4BCCF28D46B010005035C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCCE28D46B010005035C /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogTableViewCell.swift; sourceTree = "<group>"; };
 		8CC4BCC928D43A090005035C /* BlogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogModel.swift; sourceTree = "<group>"; };
 		8CC4BCCC28D453360005035C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		8CC4BCCE28D46B010005035C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				8C6604C528D01DD20092D79D /* ViewController.swift */,
 				8CC4BCBB28D317050005035C /* DetailViewController.swift */,
 				8CC4BCCC28D453360005035C /* WebViewController.swift */,
+				8CC4BCCE28D46B010005035C /* SearchViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				8C6604C228D01DD20092D79D /* AppDelegate.swift in Sources */,
 				8C9BDE5728D0497000A0FB00 /* BookData.swift in Sources */,
 				8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */,
+				8CC4BCCF28D46B010005035C /* SearchViewController.swift in Sources */,
 				8CC4BCC328D37D510005035C /* practice.swift in Sources */,
 				8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */,
 				8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */,

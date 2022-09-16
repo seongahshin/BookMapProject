@@ -23,6 +23,11 @@ class ViewController: UIViewController {
     // Location2. 위치에 대한 대부분을 담당
     let locationManager = CLLocationManager()
     
+    var searchBar: UISearchBar = {
+        let view = UISearchBar()
+        return view
+    }()
+    
     var mapView: MKMapView = {
         let view = MKMapView()
         return view
@@ -65,7 +70,8 @@ class ViewController: UIViewController {
         setRegion(center: center)
         locationButton.addTarget(self, action: #selector(transitionButton), for: .touchUpInside)
         
-        
+        navigationItem.titleView = searchBar
+        searchBar.delegate = self
     }
     
     @objc func transitionButton() {
@@ -81,7 +87,8 @@ class ViewController: UIViewController {
         [mapView].forEach {
             view.addSubview($0)
         }
-
+        
+        mapView.addSubview(searchBar)
         mapView.addSubview(locationButton)
         mapView.addSubview(infoButton)
         infoButton.addSubview(nameLabel)
@@ -90,6 +97,7 @@ class ViewController: UIViewController {
         mapView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalToSuperview()
         }
+        
         
         locationButton.snp.makeConstraints { make in
             make.width.height.equalTo(50)
@@ -119,6 +127,7 @@ class ViewController: UIViewController {
         }
         
     }
+    
     
     func setRegionAndAnnotation(center: CLLocationCoordinate2D) {
         // 지도 중심 기반으로 보여질 범위 설정
@@ -263,7 +272,18 @@ extension ViewController {
     }
 }
 
-
+extension ViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        let vc = SearchViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+        print(#function)
+        return false
+    }
+}
 
 // Location4. 프로토콜 선언
 extension ViewController: CLLocationManagerDelegate {

@@ -25,6 +25,21 @@
             </objects>
             <point key="canvasLocation" x="1980" y="-318.48341232227489"/>
         </scene>
+        <!--Search View Controller-->
+        <scene sceneID="0Ch-a3-AO3">
+            <objects>
+                <viewController id="8Vn-ZM-12t" customClass="SearchViewController" customModule="BookMapProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hoO-0a-L1D">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QOJ-JT-m7U"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="42e-V4-RDm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2734" y="-313"/>
+        </scene>
         <!--Detail View Controller-->
         <scene sceneID="Son-Dd-Kdw">
             <objects>
@@ -38,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kmf-vr-JgM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2843" y="-318"/>
+            <point key="canvasLocation" x="3558" y="-318"/>
         </scene>
         <!--Scrollable View Controller-->
         <scene sceneID="eUT-rH-bXu">
