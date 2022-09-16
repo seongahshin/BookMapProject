@@ -17,21 +17,25 @@ class SearchViewController: UIViewController {
         return view
     }()
     
+    var tableView: UITableView = {
+        let view = UITableView()
+        view.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
+        return view
+        
+    }()
+    
     override func viewDidLoad() {
+        print(#function)
         view.backgroundColor = .white
         print("완료")
         configureUI()
+        searchBar.delegate = self
         setupSearchBar()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        searchBar.becomeFirstResponder()
-    }
-    
 
     func configureUI() {
-        [searchBar].forEach {
+        print(#function)
+        [searchBar, tableView].forEach {
             view.addSubview($0)
         }
         
@@ -41,9 +45,18 @@ class SearchViewController: UIViewController {
             make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
             make.height.equalTo(50)
         }
+        
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom).offset(20)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
+            make.height.equalTo(200)
+        }
     }
     
     func setupSearchBar() {
+        print(#function)
+        searchBar.becomeFirstResponder()
         searchBar.sizeToFit()
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = "서점명이나 지역명을 입력해주세요:)"
@@ -53,15 +66,28 @@ class SearchViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print(#function)
         view.endEditing(true)
     }
     
 }
 
 extension SearchViewController: UISearchBarDelegate {
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.setShowsCancelButton(false, animated: true)
-        return false
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
     }
     
 }
+
+//extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+//
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//
+//    }
+//
+//
+//}
