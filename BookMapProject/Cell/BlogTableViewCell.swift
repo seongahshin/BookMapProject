@@ -7,16 +7,49 @@
 
 import UIKit
 
-class BlogTableViewCell: UITableViewCell {
+import SnapKit
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
+class BlogTableViewCell: UITableViewCell {
+    
+    var titleLabel: UILabel = {
+        let view = UILabel()
+        return view
+    }()
+    
+    var contentLabel: UILabel = {
+        let view = UILabel()
+        return view
+    }()
+    
+    var blogerLabel: UILabel = {
+        let view = UILabel()
+        return view
+    }()
+    
+    var dateLabel: UILabel = {
+        let view = UILabel()
+        return view
+    }()
     
     static var identifier: String {
         return "BlogTableViewCell"
     }
-
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        [titleLabel, contentLabel, blogerLabel, dateLabel].forEach {
+            contentView.addSubview($0)
+        }
+        
+        
+        
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
 }

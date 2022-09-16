@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     let bookData: dummyData = dummyData()
     var infoList: [String] = []
     var imageList: [String] = []
-    var blogList: [String] = []
+    var blogList: [Blog] = []
     
     // Location2. 위치에 대한 대부분을 담당
     let locationManager = CLLocationManager()
@@ -72,6 +72,7 @@ class ViewController: UIViewController {
         guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
         vc.storeInfoList = infoList
         vc.storImageList = imageList
+        vc.getBlogList = blogList
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -192,6 +193,11 @@ class ViewController: UIViewController {
                         case .success(let value):
                             let json = JSON(value)
                             print(json)
+                            let data = json["items"]
+                            for num in 0...data.count - 1 {
+                                self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue))
+                            }
+                            dump(self.blogList)
 
                         case .failure(let error):
                             print(error)
