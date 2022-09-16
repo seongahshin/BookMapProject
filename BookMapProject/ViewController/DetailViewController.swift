@@ -220,4 +220,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         return 100
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = WebViewController()
+        vc.blogURL = getBlogList[indexPath.row].blogLink
+        self.present(vc, animated: true)
+        
+    }
+    
 }

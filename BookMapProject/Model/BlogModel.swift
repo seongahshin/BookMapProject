@@ -12,4 +12,6 @@ struct Blog {
     let blogContent: String
     let blogName: String
     let blogDate: String
+    let blogLink: String
 }
+

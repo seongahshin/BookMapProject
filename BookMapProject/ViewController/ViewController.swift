@@ -195,7 +195,7 @@ class ViewController: UIViewController {
                             print(json)
                             let data = json["items"]
                             for num in 0...data.count - 1 {
-                                self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue))
+                                self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
                             }
                             dump(self.blogList)
 
