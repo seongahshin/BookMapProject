@@ -59,8 +59,8 @@ class SearchViewController: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(10)
-            make.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-10)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
+            make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
             make.height.equalTo(360)
         }
     }
@@ -103,6 +103,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
         cell.titleLabel.text = isEditMode ? nameSearchListFilter[indexPath.row] : nameSearchList[indexPath.row]
+        cell.titleLabel.font = UIFont(name: FontManager.GangWonLight, size: 12)
         return cell
     }
 
@@ -112,6 +113,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(isEditing ? nameSearchListFilter[indexPath.row] : nameSearchList[indexPath.row])
+        
+        let vc = DetailViewController()
+        self.present(vc, animated: true)
+        
     }
 
 }

@@ -22,7 +22,6 @@
 		8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBB28D317050005035C /* DetailViewController.swift */; };
 		8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */; };
 		8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8CC4BCC028D361E20005035C /* Kingfisher */; };
-		8CC4BCC328D37D510005035C /* practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCC228D37D510005035C /* practice.swift */; };
 		8CC4BCC828D41D410005035C /* BlogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */; };
 		8CC4BCCA28D43A090005035C /* BlogModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCC928D43A090005035C /* BlogModel.swift */; };
 		8CC4BCCD28D453360005035C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCCC28D453360005035C /* WebViewController.swift */; };
@@ -49,7 +48,6 @@
 		8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		8CC4BCBB28D317050005035C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		8CC4BCC228D37D510005035C /* practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practice.swift; sourceTree = "<group>"; };
 		8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogTableViewCell.swift; sourceTree = "<group>"; };
 		8CC4BCC928D43A090005035C /* BlogModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogModel.swift; sourceTree = "<group>"; };
 		8CC4BCCC28D453360005035C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +78,7 @@
 		8C6604B528D01DD20092D79D = {
 			isa = PBXGroup;
 			children = (
+				8C9BDE5D28D04F8900A0FB00 /* .gitignore */,
 				8C6604C028D01DD20092D79D /* BookMapProject */,
 				8C6604BF28D01DD20092D79D /* Products */,
 			);
@@ -96,8 +95,8 @@
 		8C6604C028D01DD20092D79D /* BookMapProject */ = {
 			isa = PBXGroup;
 			children = (
+				8CC4BCDE28D6F1BD0005035C /* APIKey */,
 				8CC4BCD728D4BDAB0005035C /* Font */,
-				8C9BDE5D28D04F8900A0FB00 /* .gitignore */,
 				8CC4BCCB28D43DC00005035C /* Model */,
 				8CC4BCC628D41C610005035C /* Cell */,
 				8CC4BCC528D41C460005035C /* Data */,
@@ -108,8 +107,6 @@
 				8C6604CA28D01DDA0092D79D /* Assets.xcassets */,
 				8C6604CC28D01DDA0092D79D /* LaunchScreen.storyboard */,
 				8C6604CF28D01DDA0092D79D /* Info.plist */,
-				8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */,
-				8CC4BCC228D37D510005035C /* practice.swift */,
 			);
 			path = BookMapProject;
 			sourceTree = "<group>";
@@ -169,6 +166,14 @@
 				8CC4BCD828D4BDFD0005035C /* 강원교육모두 Light.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		8CC4BCDE28D6F1BD0005035C /* APIKey */ = {
+			isa = PBXGroup;
+			children = (
+				8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */,
+			);
+			path = APIKey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +270,6 @@
 				8C9BDE5728D0497000A0FB00 /* BookData.swift in Sources */,
 				8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */,
 				8CC4BCCF28D46B010005035C /* SearchViewController.swift in Sources */,
-				8CC4BCC328D37D510005035C /* practice.swift in Sources */,
 				8CC4BCD128D484B80005035C /* SearchTableViewCell.swift in Sources */,
 				8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */,
 				8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */,

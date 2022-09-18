@@ -21,11 +21,6 @@ class WebViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
         view = webView
     }
     
-    
-    func configureUI() {
-        
-    }
-    
     override func viewDidLoad() {
         let URL = URL(string: blogURL)
         let request = URLRequest(url: URL!)

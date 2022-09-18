@@ -155,7 +155,7 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return storImageList.count
     }
     
     
@@ -196,7 +196,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return getBlogList.count
     }
     
     
@@ -204,14 +204,17 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: BlogTableViewCell.identifier, for: indexPath) as! BlogTableViewCell
         
         cell.titleLabel.text = getBlogList[indexPath.row].blogTitle.htmlEscaped
-        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        cell.titleLabel.font = UIFont(name: FontManager.GangWonBold, size: 15)
+//        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
         cell.contentLabel.text = getBlogList[indexPath.row].blogContent.htmlEscaped
-        cell.contentLabel.font = UIFont.systemFont(ofSize: 12)
+        cell.contentLabel.font = UIFont(name: FontManager.GangWonLight, size: 12)
+//        cell.contentLabel.font = UIFont.systemFont(ofSize: 12)
         cell.contentLabel.textColor = .gray
         
         cell.blogerLabel.text = "\(getBlogList[indexPath.row].blogName) | \(getBlogList[indexPath.row].blogDate)"
-        cell.blogerLabel.font = UIFont.systemFont(ofSize: 8)
+        cell.blogerLabel.font = UIFont(name: FontManager.GangWonLight, size: 8)
+//        cell.blogerLabel.font = UIFont.systemFont(ofSize: 8)
         cell.blogerLabel.textColor = .lightGray
         
         print("----확인 -----")

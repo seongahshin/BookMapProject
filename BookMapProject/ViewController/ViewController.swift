@@ -56,8 +56,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
-        
+        checkUserDeviceLocationServiceAuthorization()
         // Location3. 프로토콜 연결
         locationManager.delegate = self
         mapView.delegate = self
@@ -67,7 +66,6 @@ class ViewController: UIViewController {
         
         locationManager.requestWhenInUseAuthorization()
         configureUI()
-        setRegion(center: center)
         locationButton.addTarget(self, action: #selector(transitionButton), for: .touchUpInside)
         
         navigationItem.titleView = searchBar
@@ -79,6 +77,7 @@ class ViewController: UIViewController {
         vc.storeInfoList = infoList
         vc.storImageList = imageList
         vc.getBlogList = blogList
+        print(blogList)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -175,12 +174,23 @@ class ViewController: UIViewController {
         AF.request(url, method: .get, headers: headers).validate().responseData { response in
                 switch response.result {
                         case .success(let value):
+                    
                             let json = JSON(value)
                             print("JSON: \(json)")
                             let data = json["items"]
-                            for num in 0...5 {
-                                self.imageList.append(data[num]["link"].stringValue)
+                    
+                    
+                    
+                            if data.count >= 6 {
+                                for num in 0...5 {
+                                    self.imageList.append(data[num]["link"].stringValue)
+                                }
+                            } else {
+                                for num in 0...data.count - 1{
+                                    self.imageList.append(data[num]["link"].stringValue)
+                                }
                             }
+                            
                             print(self.imageList)
                             print(self.imageList.count)
 
@@ -203,9 +213,19 @@ class ViewController: UIViewController {
                             let json = JSON(value)
                             print(json)
                             let data = json["items"]
-                            for num in 0...data.count - 1 {
-                                self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
+                    
+                    
+                            if data.count >= 6 {
+                                for num in 0...5 {
+                                    self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
+                                }
+                            } else {
+                                for num in 0...data.count - 1 {
+                                    self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
+                                }
                             }
+                            
+                            
                             dump(self.blogList)
 
                         case .failure(let error):
@@ -310,6 +330,8 @@ extension ViewController: CLLocationManagerDelegate {
     // Location6. 사용자의 위치를 가져오지 못한 경우에 해당
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)
+        let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
+        setRegion(center: center)
     }
     
     // Location9. 사용자의 권한 상태가 바뀔 때를 알려줌
