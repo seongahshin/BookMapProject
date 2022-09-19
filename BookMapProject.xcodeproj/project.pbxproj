@@ -10,7 +10,6 @@
 		8C6604C228D01DD20092D79D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C128D01DD20092D79D /* AppDelegate.swift */; };
 		8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C328D01DD20092D79D /* SceneDelegate.swift */; };
 		8C6604C628D01DD20092D79D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C528D01DD20092D79D /* ViewController.swift */; };
-		8C6604C928D01DD20092D79D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6604C728D01DD20092D79D /* Main.storyboard */; };
 		8C6604CB28D01DDA0092D79D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C6604CA28D01DDA0092D79D /* Assets.xcassets */; };
 		8C6604CE28D01DDA0092D79D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6604CC28D01DDA0092D79D /* LaunchScreen.storyboard */; };
 		8C9BDE5728D0497000A0FB00 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5628D0497000A0FB00 /* BookData.swift */; };
@@ -35,6 +34,7 @@
 		8CEA435F28D876FC00BDEAEE /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA435E28D876FB00BDEAEE /* Realm.swift */; };
 		8CEA436328D8775400BDEAEE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8CEA436228D8775400BDEAEE /* Realm */; };
 		8CEA436528D8775400BDEAEE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8CEA436428D8775400BDEAEE /* RealmSwift */; };
+		8CEA436928D89FFC00BDEAEE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CEA436828D89FFC00BDEAEE /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +42,6 @@
 		8C6604C128D01DD20092D79D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C6604C328D01DD20092D79D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8C6604C528D01DD20092D79D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
-		8C6604C828D01DD20092D79D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C6604CA28D01DDA0092D79D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C6604CD28D01DDA0092D79D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C6604CF28D01DDA0092D79D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,6 +61,7 @@
 		8CC4BCD928D4BDFD0005035C /* 강원교육모두 Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "강원교육모두 Bold.otf"; path = "../../../../Library/Fonts/강원교육모두 Bold.otf"; sourceTree = "<group>"; };
 		8CC4BCDC28D4C0150005035C /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		8CEA435E28D876FB00BDEAEE /* Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Realm.swift; sourceTree = "<group>"; };
+		8CEA436828D89FFC00BDEAEE /* Storyboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +110,10 @@
 				8CC4BCC428D41C2C0005035C /* ViewController */,
 				8C6604C128D01DD20092D79D /* AppDelegate.swift */,
 				8C6604C328D01DD20092D79D /* SceneDelegate.swift */,
-				8C6604C728D01DD20092D79D /* Main.storyboard */,
 				8C6604CA28D01DDA0092D79D /* Assets.xcassets */,
 				8C6604CC28D01DDA0092D79D /* LaunchScreen.storyboard */,
 				8C6604CF28D01DDA0092D79D /* Info.plist */,
+				8CEA436828D89FFC00BDEAEE /* Storyboard.storyboard */,
 			);
 			path = BookMapProject;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 				8CC4BCDB28D4BE1D0005035C /* 강원교육모두 Light.otf in Resources */,
 				8CC4BCDA28D4BE1A0005035C /* 강원교육모두 Bold.otf in Resources */,
 				8C6604CB28D01DDA0092D79D /* Assets.xcassets in Resources */,
-				8C6604C928D01DD20092D79D /* Main.storyboard in Resources */,
+				8CEA436928D89FFC00BDEAEE /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,14 +302,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		8C6604C728D01DD20092D79D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8C6604C828D01DD20092D79D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		8C6604CC28D01DDA0092D79D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -70,6 +70,7 @@ class ViewController: UIViewController {
         
         navigationItem.titleView = searchBar
         searchBar.delegate = self
+        
     }
     
     @objc func transitionButton() {
