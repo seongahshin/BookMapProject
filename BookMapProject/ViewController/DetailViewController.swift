@@ -86,7 +86,6 @@ class DetailViewController: UIViewController {
         tableView.register(BlogTableViewCell.self, forCellReuseIdentifier: BlogTableViewCell.identifier)
     }
     
-    
     func configureUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
