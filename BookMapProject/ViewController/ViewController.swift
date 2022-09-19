@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     }
     
     @objc func transitionButton() {
-        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+        let vc = DetailViewController()
         vc.storeInfoList = infoList
         vc.storImageList = imageList
         vc.getBlogList = blogList
@@ -95,7 +95,8 @@ class ViewController: UIViewController {
         infoButton.addSubview(addressLabel)
         
         mapView.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         
