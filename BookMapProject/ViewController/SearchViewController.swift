@@ -36,6 +36,7 @@ class SearchViewController: UIViewController {
         configureUI()
         tableView.delegate = self
         tableView.dataSource = self
+        view.backgroundColor = .white
         
         for num in 0...data.count - 1 {
             nameSearchList.append(data[num].location)
@@ -73,7 +74,7 @@ class SearchViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(10)
             make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
             make.right.equalTo(view.safeAreaLayoutGuide.snp.right)
-            make.height.equalTo(360)
+            make.height.equalTo(50 * data.count)
         }
     }
     
@@ -203,6 +204,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as! SearchTableViewCell
         cell.titleLabel.text = isEditMode ? nameSearchListFilter[indexPath.row] : nameSearchList[indexPath.row]
         cell.titleLabel.font = UIFont(name: FontManager.GangWonLight, size: 12)
+        cell.backgroundColor = .clear
         return cell
     }
     

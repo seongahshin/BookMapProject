@@ -11,13 +11,17 @@ import SnapKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import RealmSwift
 
 class DetailViewController: UIViewController {
     
+    let localRealm = try! Realm()
+    let data = dummyData().decode()
     var storeInfoList: [String] = []
     var storImageList: [String] = []
     var getBlogList: [Blog] = []
-    
+    var BoolResult = false
+    var tasks: Results<BookStore>!
     
     var scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -32,6 +36,15 @@ class DetailViewController: UIViewController {
     var storeName: UILabel = {
         let view = UILabel()
         view.font = UIFont(name: FontManager.GangWonBold, size: 30)
+        view.backgroundColor = .brown
+        return view
+    }()
+    
+    var saveButton: UIButton = {
+        let view = UIButton()
+        view.backgroundColor = .brown
+        
+//        view.setImage(UIImage(systemName: "bookmark"), for: .normal)
         return view
     }()
     
@@ -76,6 +89,7 @@ class DetailViewController: UIViewController {
         for num in 0...labelList.count - 1 {
             labelList[num].text = storeInfoList[num]
         }
+        view.backgroundColor = .white
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -84,13 +98,25 @@ class DetailViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(BlogTableViewCell.self, forCellReuseIdentifier: BlogTableViewCell.identifier)
+        saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
+        tasks = localRealm.objects(BookStore.self).sorted(byKeyPath: "name")
+        
+        let deleteTasks = localRealm.objects(BookStore.self).filter("name == '\(storeName.text!)'").first?.saved
+        
+        if deleteTasks == true {
+            saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+        } else {
+            saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        }
+        print(tasks)
+        print("트루펄스 확인 \(deleteTasks)")
     }
     
     func configureUI() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
-        [storeName, storeAddress, storeTime, storeLink, collectionView, tableView].forEach {
+        [storeName, storeAddress, saveButton, storeTime, storeLink, collectionView, tableView].forEach {
             contentView.addSubview($0)
         }
         
@@ -105,7 +131,8 @@ class DetailViewController: UIViewController {
         
         storeName.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(20)
-            make.left.right.equalTo(contentView).inset(10)
+            make.left.equalTo(contentView).inset(10)
+            make.width.equalTo(UIScreen.main.bounds.width / 2 - 20)
             make.height.equalTo(40)
         }
         
@@ -115,6 +142,13 @@ class DetailViewController: UIViewController {
             make.leadingMargin.equalTo(10)
             make.trailingMargin.equalTo(-10)
             make.height.equalTo(40)
+        }
+        
+        saveButton.snp.makeConstraints { make in
+            make.trailingMargin.equalTo(-10)
+            make.bottom.equalTo(storeAddress.snp.top)
+            make.height.width.equalTo(40)
+            
         }
         
         storeTime.snp.makeConstraints { make in
@@ -145,6 +179,38 @@ class DetailViewController: UIViewController {
             make.bottom.equalTo(contentView).offset(-20)
         }
         
+        
+    }
+    
+    @objc func saveButtonClicked() {
+        
+        if !BoolResult {
+            // 저장
+            for num in 0...data.count - 1 {
+                if storeName.text! == data[num].location {
+                    let task = BookStore(name: storeName.text!, latitude: data[num].latitude, longitude: data[num].longitude, saved: false)
+                    
+                    try! localRealm.write {
+                        task.saved = true
+                        localRealm.add(task)
+                    }
+                }
+            }
+            saveButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal)
+            BoolResult = true
+            
+        } else {
+            // 삭제
+            
+            let deleteTasks = localRealm.objects(BookStore.self).filter("name == '\(storeName.text!)'")
+            
+            try! localRealm.write {
+                localRealm.delete(deleteTasks)
+            }
+            
+            saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
+            BoolResult = false
+        }
         
     }
     
@@ -204,16 +270,13 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.titleLabel.text = getBlogList[indexPath.row].blogTitle.htmlEscaped
         cell.titleLabel.font = UIFont(name: FontManager.GangWonBold, size: 15)
-//        cell.titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
         
         cell.contentLabel.text = getBlogList[indexPath.row].blogContent.htmlEscaped
         cell.contentLabel.font = UIFont(name: FontManager.GangWonLight, size: 12)
-//        cell.contentLabel.font = UIFont.systemFont(ofSize: 12)
         cell.contentLabel.textColor = .gray
         
         cell.blogerLabel.text = "\(getBlogList[indexPath.row].blogName) | \(getBlogList[indexPath.row].blogDate)"
         cell.blogerLabel.font = UIFont(name: FontManager.GangWonLight, size: 8)
-//        cell.blogerLabel.font = UIFont.systemFont(ofSize: 8)
         cell.blogerLabel.textColor = .lightGray
         
         print("----확인 -----")

@@ -295,6 +295,7 @@ extension ViewController {
 extension ViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
         let vc = SearchViewController()
         self.navigationController?.pushViewController(vc, animated: true)
         print(#function)
