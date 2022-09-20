@@ -36,7 +36,7 @@ class SearchViewController: UIViewController {
         configureUI()
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = .white
+        view.backgroundColor = backgroundColor
         
         for num in 0...data.count - 1 {
             nameSearchList.append(data[num].location)
@@ -118,6 +118,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         cell.titleLabel.text = isEditMode ? nameSearchListFilter[indexPath.row] : nameSearchList[indexPath.row]
         cell.titleLabel.font = UIFont(name: FontManager.GangWonLight, size: 12)
         cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         return cell
     }
     

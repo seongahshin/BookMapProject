@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
     var htmlEscaped: String {
@@ -28,3 +29,4 @@ extension String {
         }
     }
 }
+

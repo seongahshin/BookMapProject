@@ -56,6 +56,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = backgroundColor
+        
         // Location3. 프로토콜 연결
         locationManager.delegate = self
         mapView.delegate = self
@@ -70,7 +72,6 @@ class ViewController: UIViewController {
         configureUI()
         infoButton.addTarget(self, action: #selector(transitionButton), for: .touchUpInside)
         locationButton.addTarget(self, action: #selector(locationUpdatedButton), for: .touchUpInside)
-        
         navigationItem.titleView = searchBar
         searchBar.delegate = self
         

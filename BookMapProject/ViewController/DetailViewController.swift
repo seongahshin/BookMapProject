@@ -36,13 +36,11 @@ class DetailViewController: UIViewController {
     var storeName: UILabel = {
         let view = UILabel()
         view.font = UIFont(name: FontManager.GangWonBold, size: 30)
-        view.backgroundColor = .brown
         return view
     }()
     
     var saveButton: UIButton = {
         let view = UIButton()
-        view.backgroundColor = .brown
         
 //        view.setImage(UIImage(systemName: "bookmark"), for: .normal)
         return view
@@ -81,15 +79,12 @@ class DetailViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        
         configureUI()
         print("데이터 전달 완료 \(storeInfoList)")
         print("데이터 전달 완료 \(storImageList)")
-        let labelList: [UILabel] = [storeName, storeAddress, storeTime, storeLink]
-        
-        for num in 0...labelList.count - 1 {
-            labelList[num].text = storeInfoList[num]
-        }
-        view.backgroundColor = .white
+        labelDesign()
+        view.backgroundColor = backgroundColor
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -100,7 +95,11 @@ class DetailViewController: UIViewController {
         tableView.register(BlogTableViewCell.self, forCellReuseIdentifier: BlogTableViewCell.identifier)
         saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
         tasks = localRealm.objects(BookStore.self).sorted(byKeyPath: "name")
+        saveButtonDesign()
         
+    }
+    
+    func saveButtonDesign() {
         let deleteTasks = localRealm.objects(BookStore.self).filter("name == '\(storeName.text!)'").first?.saved
         
         if deleteTasks == true {
@@ -108,8 +107,14 @@ class DetailViewController: UIViewController {
         } else {
             saveButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
         }
-        print(tasks)
-        print("트루펄스 확인 \(deleteTasks)")
+    }
+    
+    func labelDesign() {
+        let labelList: [UILabel] = [storeName, storeAddress, storeTime, storeLink]
+        
+        for num in 0...labelList.count - 1 {
+            labelList[num].text = storeInfoList[num]
+        }
     }
     
     func configureUI() {
@@ -132,7 +137,7 @@ class DetailViewController: UIViewController {
         storeName.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(20)
             make.left.equalTo(contentView).inset(10)
-            make.width.equalTo(UIScreen.main.bounds.width / 2 - 20)
+            make.width.equalTo(UIScreen.main.bounds.width / 2 - 10)
             make.height.equalTo(40)
         }
         
@@ -277,6 +282,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.blogerLabel.text = "\(getBlogList[indexPath.row].blogName) | \(getBlogList[indexPath.row].blogDate)"
         cell.blogerLabel.font = UIFont(name: FontManager.GangWonLight, size: 8)
         cell.blogerLabel.textColor = .lightGray
+        
+        cell.selectionStyle = .none
         
         print("----확인 -----")
         dump(getBlogList)
