@@ -12,6 +12,7 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 import SnapKit
+import RealmSwift
 
 class ViewController: UIViewController {
 
@@ -19,6 +20,8 @@ class ViewController: UIViewController {
     var infoList: [String] = []
     var imageList: [String] = []
     var blogList: [Blog] = []
+    let localRealm = try! Realm()
+    var tasks: Results<BookStore>!
     
     // Location2. 위치에 대한 대부분을 담당
     let locationManager = CLLocationManager()
@@ -35,11 +38,13 @@ class ViewController: UIViewController {
     
     var locationButton: UIButton = {
         let view = UIButton()
+        view.backgroundColor = .brown
         return view
     }()
     
     var infoButton: UIButton = {
         let view = UIButton()
+        view.isHidden = true
         return view
     }()
     
@@ -52,6 +57,7 @@ class ViewController: UIViewController {
         let view = UILabel()
         return view
     }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +81,44 @@ class ViewController: UIViewController {
         navigationItem.titleView = searchBar
         searchBar.delegate = self
         
+        if #available(iOS 14.0, *) {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(systemName: "pencil"), primaryAction: nil, menu: menu)
+        }
+        
+    }
+    
+    var menuItems: [UIAction] {
+        return [
+            UIAction(title: "저장한 독립서점", handler: { _ in
+                self.tasks = self.localRealm.objects(BookStore.self)
+                let allAnnotations = self.mapView.annotations
+                self.mapView.removeAnnotations(allAnnotations)
+                self.myLocation()
+            })
+        ]
+    }
+    
+    func myLocation() {
+        
+        for num in 0...tasks.count - 1 {
+            let center = CLLocationCoordinate2D(latitude: tasks[num].latitude, longitude: tasks[num].longitude)
+            
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = center
+            annotation.title = tasks[num].name
+            mapView.addAnnotation(annotation)
+            
+        }
+        
+    }
+    
+    var menu: UIMenu {
+        return UIMenu(title: "", options: [], children: menuItems)
+    }
+    
+    
+    @objc func barbuttonClicked() {
+        print("clicked")
     }
     
     @objc func transitionButton() {
@@ -322,8 +366,8 @@ extension ViewController: MKMapViewDelegate {
                     self.blogList = value
                 }
                 
+                infoButton.isHidden = false
                 infoButton.backgroundColor = .brown
-                locationButton.backgroundColor = .brown
             }
         }
         imageList.removeAll()
