@@ -106,14 +106,14 @@ class ViewController: UIViewController {
     
     var menuItems: [UIAction] {
         return [
-            UIAction(title: "저장한 독립서점만 표시", handler: { _ in
+            UIAction(title: "저장한 독립서점만 표시할래요!", handler: { _ in
                 self.tasks = self.localRealm.objects(BookStore.self)
                 let allAnnotations = self.mapView.annotations
                 self.mapView.removeAnnotations(allAnnotations)
                 self.mybookstoreAnnotation()
             }),
             
-            UIAction(title: "전체 표시", handler: { _ in
+            UIAction(title: "전체 독립서점을 표시할래요!", handler: { _ in
                 self.allbookstoreAnnotation()
             })
         ]
