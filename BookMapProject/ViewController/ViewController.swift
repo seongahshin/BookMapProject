@@ -80,10 +80,12 @@ class ViewController: UIViewController {
         infoButton.addTarget(self, action: #selector(transitionButton), for: .touchUpInside)
         locationButton.addTarget(self, action: #selector(locationUpdatedButton), for: .touchUpInside)
         navigationItem.titleView = searchBar
+        navigationItem.titleView?.backgroundColor = .white
         searchBar.delegate = self
         
         if #available(iOS 14.0, *) {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(systemName: "pencil"), primaryAction: nil, menu: menu)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(systemName: "line.3.horizontal"), primaryAction: nil, menu: menu)
+            self.navigationItem.rightBarButtonItem?.tintColor = .yellow
         }
         
     }
@@ -162,7 +164,8 @@ class ViewController: UIViewController {
         infoButton.addSubview(addressLabel)
         
         mapView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
