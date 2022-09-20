@@ -17,6 +17,7 @@ import RealmSwift
 class ViewController: UIViewController {
 
     let bookData: dummyData = dummyData()
+    let data = dummyData().decode()
     var infoList: [String] = []
     var imageList: [String] = []
     var blogList: [Blog] = []
@@ -87,39 +88,53 @@ class ViewController: UIViewController {
         
     }
     
-    var menuItems: [UIAction] {
-        return [
-            UIAction(title: "저장한 독립서점", handler: { _ in
-                self.tasks = self.localRealm.objects(BookStore.self)
-                let allAnnotations = self.mapView.annotations
-                self.mapView.removeAnnotations(allAnnotations)
-                self.myLocation()
-            })
-        ]
-    }
-    
-    func myLocation() {
-        
-        for num in 0...tasks.count - 1 {
-            let center = CLLocationCoordinate2D(latitude: tasks[num].latitude, longitude: tasks[num].longitude)
-            
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = center
-            annotation.title = tasks[num].name
-            mapView.addAnnotation(annotation)
-            
-        }
-        
-    }
-    
     var menu: UIMenu {
         return UIMenu(title: "", options: [], children: menuItems)
     }
     
-    
-    @objc func barbuttonClicked() {
-        print("clicked")
+    var menuItems: [UIAction] {
+        return [
+            UIAction(title: "저장한 독립서점만 표시", handler: { _ in
+                self.tasks = self.localRealm.objects(BookStore.self)
+                let allAnnotations = self.mapView.annotations
+                self.mapView.removeAnnotations(allAnnotations)
+                self.mybookstoreAnnotation()
+            }),
+            
+            UIAction(title: "전체 표시", handler: { _ in
+                self.allbookstoreAnnotation()
+            })
+        ]
     }
+    
+    func allbookstoreAnnotation() {
+        
+        for num in 0...data.count - 1 {
+            let center = CLLocationCoordinate2D(latitude: data[num].latitude, longitude: data[num].longitude)
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = center
+            annotation.title = bookData.decode()[num].location
+            mapView.addAnnotation(annotation)
+        }
+        
+    }
+    
+    func mybookstoreAnnotation() {
+        
+        if tasks.count > 0 {
+            for num in 0...tasks.count - 1 {
+                let center = CLLocationCoordinate2D(latitude: tasks[num].latitude, longitude: tasks[num].longitude)
+                
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = center
+                annotation.title = tasks[num].name
+                mapView.addAnnotation(annotation)
+            }
+        }
+        
+        
+    }
+
     
     @objc func transitionButton() {
         let vc = DetailViewController()
@@ -348,7 +363,7 @@ extension ViewController: MKMapViewDelegate {
         let ann = view.annotation as! MKPointAnnotation
         print(ann.title!)
         
-        for num in 0...bookData.decode().count - 1 {
+        for num in 0...data.count - 1 {
             let data = bookData.decode()[num]
             if ann.title == data.location {
                 print(data.address)
