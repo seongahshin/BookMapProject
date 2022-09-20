@@ -38,8 +38,8 @@ class ViewController: UIViewController {
         return view
     }()
     
-    var infoButton: UILabel = {
-        let view = UILabel()
+    var infoButton: UIButton = {
+        let view = UIButton()
         return view
     }()
     
@@ -56,7 +56,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkUserDeviceLocationServiceAuthorization()
         // Location3. 프로토콜 연결
         locationManager.delegate = self
         mapView.delegate = self
@@ -64,9 +63,13 @@ class ViewController: UIViewController {
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
         
+        checkUserDeviceLocationServiceAuthorization()
+        
         locationManager.requestWhenInUseAuthorization()
+        
         configureUI()
-        locationButton.addTarget(self, action: #selector(transitionButton), for: .touchUpInside)
+        infoButton.addTarget(self, action: #selector(transitionButton), for: .touchUpInside)
+        locationButton.addTarget(self, action: #selector(locationUpdatedButton), for: .touchUpInside)
         
         navigationItem.titleView = searchBar
         searchBar.delegate = self
@@ -80,6 +83,10 @@ class ViewController: UIViewController {
         vc.getBlogList = blogList
         print(blogList)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc func locationUpdatedButton() {
+        locationManager.requestWhenInUseAuthorization()
     }
     
     
@@ -277,11 +284,6 @@ extension ViewController: CLLocationManagerDelegate {
         checkUserDeviceLocationServiceAuthorization()
     }
     
-    // iOS 14 미만
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        
-    }
-    
     
 }
 
@@ -308,14 +310,13 @@ extension ViewController: MKMapViewDelegate {
                 nameLabel.text = ann.title!
                 addressLabel.text = data.address
                 infoList = [ann.title!, data.address, data.time, data.link]
-//                searchImage(query: infoList[0])
                 
                 APIManager.shared.searchImage(query: infoList[0]) { value in
                     self.imageList = value
                 }
                 
                 print("-----blog-----")
-//                searchBlog(query: infoList[0])
+
                 APIManager.shared.searchBlog(query: infoList[0]) { value in
                     self.blogList = value
                 }

@@ -201,7 +201,6 @@ class DetailViewController: UIViewController {
             
         } else {
             // 삭제
-            
             let deleteTasks = localRealm.objects(BookStore.self).filter("name == '\(storeName.text!)'")
             
             try! localRealm.write {
