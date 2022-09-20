@@ -39,23 +39,33 @@ class ViewController: UIViewController {
     
     var locationButton: UIButton = {
         let view = UIButton()
-        view.backgroundColor = .brown
+        view.backgroundColor = .white
+        view.setImage(UIImage(systemName: "scope"), for: .normal)
+        view.tintColor = .yellow
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 30
         return view
     }()
     
     var infoButton: UIButton = {
         let view = UIButton()
         view.isHidden = true
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 1.2
+        view.layer.borderColor = UIColor.yellow.cgColor
         return view
     }()
     
     var nameLabel: UILabel = {
         let view = UILabel()
+        view.font = UIFont(name: FontManager.GangWonBold, size: 15)
         return view
     }()
     
     var addressLabel: UILabel = {
         let view = UILabel()
+        view.font = UIFont(name: FontManager.GangWonLight, size: 13)
         return view
     }()
     
@@ -148,7 +158,8 @@ class ViewController: UIViewController {
     }
     
     @objc func locationUpdatedButton() {
-        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     
@@ -171,16 +182,16 @@ class ViewController: UIViewController {
         
         
         locationButton.snp.makeConstraints { make in
-            make.width.height.equalTo(50)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.width.height.equalTo(60)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-25)
             make.trailing.equalTo(-10)
         }
         
         infoButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
+            make.height.equalTo(60)
             make.leftMargin.equalTo(20)
             make.trailing.equalTo(locationButton.snp.leadingMargin).offset(-20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-25)
         }
         
         nameLabel.snp.makeConstraints { make in
@@ -385,7 +396,7 @@ extension ViewController: MKMapViewDelegate {
                 }
                 
                 infoButton.isHidden = false
-                infoButton.backgroundColor = .brown
+                infoButton.backgroundColor = .white
             }
         }
         imageList.removeAll()
