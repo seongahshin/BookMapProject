@@ -167,75 +167,6 @@ class ViewController: UIViewController {
         
     }
     
-    func searchImage(query: String) {
-        let urlString = "\(EndPoint.imageSearchURL)\(query)&display=6&start=1&sort=sim"
-        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.clientID, "X-Naver-Client-Secret": APIKey.clientSecret]
-        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: encodedString)!
-        
-        AF.request(url, method: .get, headers: headers).validate().responseData { response in
-                switch response.result {
-                        case .success(let value):
-                    
-                            let json = JSON(value)
-                            print("JSON: \(json)")
-                            let data = json["items"]
-                    
-                    
-                    
-                            if data.count >= 6 {
-                                for num in 0...5 {
-                                    self.imageList.append(data[num]["link"].stringValue)
-                                }
-                            } else {
-                                for num in 0...data.count - 1{
-                                    self.imageList.append(data[num]["link"].stringValue)
-                                }
-                            }
-                            
-                            print(self.imageList)
-                            print(self.imageList.count)
-
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-    }
-    
-    
-    func searchBlog(query: String) {
-        let urlString = "\(EndPoint.blogSearchURL)\(query)&display=6&start=1&sort=sim"
-        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.blogclientId, "X-Naver-Client-Secret": APIKey.blogclientSecret]
-        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: encodedString)!
-        
-        AF.request(url, method: .get, headers: headers).validate().responseData { response in
-                switch response.result {
-                        case .success(let value):
-                            let json = JSON(value)
-                            print(json)
-                            let data = json["items"]
-                    
-                    
-                            if data.count >= 6 {
-                                for num in 0...5 {
-                                    self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
-                                }
-                            } else {
-                                for num in 0...data.count - 1 {
-                                    self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
-                                }
-                            }
-                            
-                            
-                            dump(self.blogList)
-
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-        
-    }
     
 
 }
@@ -377,9 +308,18 @@ extension ViewController: MKMapViewDelegate {
                 nameLabel.text = ann.title!
                 addressLabel.text = data.address
                 infoList = [ann.title!, data.address, data.time, data.link]
-                searchImage(query: infoList[0])
+//                searchImage(query: infoList[0])
+                
+                APIManager.shared.searchImage(query: infoList[0]) { value in
+                    self.imageList = value
+                }
+                
                 print("-----blog-----")
-                searchBlog(query: infoList[0])
+//                searchBlog(query: infoList[0])
+                APIManager.shared.searchBlog(query: infoList[0]) { value in
+                    self.blogList = value
+                }
+                
                 infoButton.backgroundColor = .brown
                 locationButton.backgroundColor = .brown
             }

@@ -83,93 +83,6 @@ class SearchViewController: UIViewController {
         view.endEditing(true)
     }
     
-    
-
-    
-    func searchImage(query: String, completionHandler: @escaping ([String]) -> ()) {
-        
-        print("그룹 엔터")
-        
-        print("이미지 다운로드 시작")
-        let urlString = "\(EndPoint.imageSearchURL)\(query)&display=6&start=1&sort=sim"
-        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.clientID, "X-Naver-Client-Secret": APIKey.clientSecret]
-        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: encodedString)!
-        
-        AF.request(url, method: .get, headers: headers).validate().responseData { response in
-                switch response.result {
-                        case .success(let value):
-                            let json = JSON(value)
-//                            print("JSON: \(json)")
-                            let data = json["items"]
-                    
-                    
-                            if data.count >= 6 {
-                                for num in 0...5 {
-                                    self.imageList.append(data[num]["link"].stringValue)
-                                }
-                            } else {
-                                for num in 0...data.count - 1{
-                                    self.imageList.append(data[num]["link"].stringValue)
-                                }
-                            }
-                            print("======== json 결과 =========")
-                            
-                            print("이미지 다운로드 완료")
-                    
-//                            print(self.imageList.count)
-                            dump(self.imageList)
-                    completionHandler(self.imageList)
-                            
-
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-        
-        
-    
-    }
-    
-    func searchBlog(query: String, completionHandler: @escaping ([Blog]) -> ()) {
-        print("리뷰 다운로드 시작")
-        blogList.removeAll()
-        imageList.removeAll()
-        let urlString = "\(EndPoint.blogSearchURL)\(query)&display=6&start=1&sort=sim"
-        let headers: HTTPHeaders = ["X-Naver-Client-Id": APIKey.blogclientId, "X-Naver-Client-Secret": APIKey.blogclientSecret]
-        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string: encodedString)!
-        
-        
-        AF.request(url, method: .get, headers: headers).validate().responseData { [self] response in
-                switch response.result {
-                        case .success(let value):
-                            let json = JSON(value)
-//                            print(json)
-                            let data = json["items"]
-                            if data.count >= 6 {
-                                for num in 0...5 {
-                                    self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
-                                }
-                            } else {
-                                for num in 0...data.count - 1 {
-                                    self.blogList.append(Blog(blogTitle: data[num]["title"].stringValue, blogContent: data[num]["description"].stringValue, blogName: data[num]["bloggername"].stringValue, blogDate: data[num]["postdate"].stringValue, blogLink: data[num]["link"].stringValue))
-                                }
-                            }
-                            
-                            print("======== json 결과 =========")
-                            
-                            print("리뷰 다운로드 완료")
-                            completionHandler(self.blogList)
-                            dump(self.blogList)
-                        
-                            
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
-    }
-    
 }
 
 extension SearchViewController: UISearchResultsUpdating {
@@ -221,18 +134,18 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
            infoList = [nameSearchList[indexPath.row], data[indexPath.row].address, data[indexPath.row].time, data[indexPath.row].link]
 
            vc.storeInfoList = infoList
-
+           
            DispatchQueue.global().sync {
-               searchImage(query: infoList[0]) { value in
-                   print("벨류 \(value)")
+               
+               APIManager.shared.searchImage(query: infoList[0]) { value in
                    self.imageList = value
                    vc.storImageList = value
-                   
                }
            }
            
            DispatchQueue.global().sync {
-               searchBlog(query: infoList[0]) { value in
+               
+               APIManager.shared.searchBlog(query: infoList[0]) { value in
                    self.blogList = value
                    vc.getBlogList = value
                    self.navigationController?.pushViewController(vc, animated: true)
@@ -242,23 +155,24 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             print("데이터 전달")
             
             tableView.deselectRow(at: indexPath, animated: true)
+
        } else {
            let vc = DetailViewController()
+           
            infoList = [nameSearchListFilter[indexPath.row], data[indexPath.row].address, data[indexPath.row].time, data[indexPath.row].link]
-
            vc.storeInfoList = infoList
-
+           
            DispatchQueue.global().sync {
-               searchImage(query: infoList[0]) { value in
-                   print("벨류 \(value)")
+               
+               APIManager.shared.searchImage(query: infoList[0]) { value in
                    self.imageList = value
                    vc.storImageList = value
-                   
                }
            }
            
            DispatchQueue.global().sync {
-               searchBlog(query: infoList[0]) { value in
+               
+               APIManager.shared.searchBlog(query: infoList[0]) { value in
                    self.blogList = value
                    vc.getBlogList = value
                    self.navigationController?.pushViewController(vc, animated: true)
@@ -268,7 +182,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             print("데이터 전달")
             
             tableView.deselectRow(at: indexPath, animated: true)
+
        }
+       
+       
         
     }
 }
