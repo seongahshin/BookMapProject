@@ -41,8 +41,7 @@ class DetailViewController: UIViewController {
     
     var saveButton: UIButton = {
         let view = UIButton()
-        
-//        view.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        view.tintColor = Color.pointColor
         return view
     }()
     

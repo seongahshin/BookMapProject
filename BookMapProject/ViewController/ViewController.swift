@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         let view = UIButton()
         view.backgroundColor = .white
         view.setImage(UIImage(systemName: "scope"), for: .normal)
-        view.tintColor = .yellow
+        view.tintColor = Color.pointColor
         view.clipsToBounds = true
         view.layer.cornerRadius = 30
         return view
@@ -52,8 +52,8 @@ class ViewController: UIViewController {
         view.isHidden = true
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
-        view.layer.borderWidth = 1.2
-        view.layer.borderColor = UIColor.yellow.cgColor
+        view.layer.borderWidth = 1.3
+        view.layer.borderColor = Color.pointColor.cgColor
         return view
     }()
     
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         
         if #available(iOS 14.0, *) {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(systemName: "line.3.horizontal"), primaryAction: nil, menu: menu)
-            self.navigationItem.rightBarButtonItem?.tintColor = .yellow
+            self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
         }
         
     }

@@ -14,3 +14,11 @@ extension UIViewController {
     }
     
 }
+
+class Color {
+    
+    static var pointColor: UIColor {
+        return .yellow
+    }
+    
+}
