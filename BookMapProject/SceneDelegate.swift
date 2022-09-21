@@ -18,7 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let firstVC = UINavigationController(rootViewController: ViewController())
-        let secondVC = UINavigationController(rootViewController: CalendarViewController())
+//        let secondVC = UINavigationController(rootViewController: CalendarViewController())
+        let secondVC = CalendarViewController()
         let thirdVC = UINavigationController(rootViewController: SettingViewController())
         
         let tabBarController = UITabBarController()

@@ -58,8 +58,11 @@ class CalendarViewController: UIViewController {
         configureUI()
         calendarDesign()
         calendar.delegate = self
+        calendar.dataSource = self
+        
         memoTitle.delegate = self
-        memoContent.delegate = self
+//        memoContent.delegate = self
+        
         saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
     }
     
@@ -100,55 +103,54 @@ class CalendarViewController: UIViewController {
         memoContent.snp.makeConstraints { make in
             make.left.right.equalTo(contentView).inset(15)
             make.top.equalTo(memoTitle.snp.bottom).offset(10)
-            make.height.equalTo(150)
+            make.height.equalTo(180)
         }
         
         saveButton.snp.makeConstraints { make in
-            make.top.equalTo(memoContent.snp.bottom).offset(5)
+            make.top.equalTo(memoContent.snp.bottom).offset(10)
             make.left.right.equalTo(contentView).inset(15)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(5)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
         }
         
     }
     
     @objc func saveButtonClicked()  {
         
-        if memoTitle.text != nil && memoContent.text != nil {
-            
-            
-            guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
-            let tasks = localRealm.objects(CalendarData.self).filter("memoregDate == '\(pickedDate)'")
-            
-            if tasks.first != nil {
-                // 이미 날짜가 존재할 때 (수정)
-                try! localRealm.write {
-                    tasks.first?.memoTitle = memoTitle.text
-                    tasks.first?.memoContent = memoContent.text
-                }
-                
-                
-            } else {
-                // 날짜 존재하지 않을 때 (새로 저장)
-                let task = CalendarData(memoregDate: pickedDate, memoTitle: memoTitle.text, memoContent: memoContent.text)
-                
-                try! localRealm.write {
-                    localRealm.add(task)
-                }
-                
+        guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
+        let tasks = localRealm.objects(CalendarData.self).filter("memoregDate == '\(pickedDate)'")
+        
+        if tasks.first != nil {
+            // 이미 날짜가 존재할 때 (수정)
+            try! localRealm.write {
+                tasks.first?.memoTitle = memoTitle.text
+                tasks.first?.memoContent = memoContent.text
             }
-            print(tasks)
+            
+            if tasks.first?.memoTitle == "" && tasks.first?.memoContent == "" {
+                try! localRealm.write {
+                    localRealm.delete(tasks)
+                }
+            }
             
             
         } else {
-            // 칸 채우라고 토스트 알림 띄우기
+            // 날짜 존재하지 않을 때 (새로 저장)
+            let task = CalendarData(memoregDate: pickedDate, memoTitle: memoTitle.text, memoContent: memoContent.text)
+            
+            try! localRealm.write {
+                localRealm.add(task)
+            }
             
         }
+        print(tasks)
+        calendar.reloadData()
+        
     }
     
     
 }
 
-extension CalendarViewController: UITextFieldDelegate, UITextViewDelegate {
+extension CalendarViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return view.endEditing(true)
@@ -193,6 +195,19 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
             memoTitle.text = ""
             memoContent.text = ""
         }
+        
+    }
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        let tasks = localRealm.objects(CalendarData.self).filter("memoregDate == '\(date)'")
+
+        if tasks.first != nil {
+            // 데이터 존재
+            return 1
+        } else {
+            return 0
+        }
+        
         
     }
 }
