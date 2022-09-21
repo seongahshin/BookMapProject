@@ -26,9 +26,9 @@ class BookStore: Object {
 }
 
 class CalendarData: Object {
-    @Persisted var memoregDate: String // 필수
-    @Persisted var memoTitle: String? // 필수
-    @Persisted var memoContent: String? // 옵션
+    @Persisted var memoregDate: String
+    @Persisted var memoTitle: String?
+    @Persisted var memoContent: String?
     
     @Persisted(primaryKey: true) var objectId: ObjectId
     

@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController {
     var events: [Date] = []
     let localRealm = try! Realm()
     var tasks: Results<CalendarData>!
+    let placeholderText = "독립서점을 방문한 오늘의 이야기를 기록해볼까요?"
     
     var calendar = FSCalendar()
     
@@ -31,25 +32,40 @@ class CalendarViewController: UIViewController {
     var contentView: UIView = {
         let view = UIView()
         view.isHidden = true
-        view.backgroundColor = .brown
         return view
     }()
     
     var memoTitle: UITextField = {
         let view = UITextField()
-        view.backgroundColor = .darkGray
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: view.frame.height))
+        view.layer.backgroundColor = (Color.memoColor.cgColor).copy(alpha: 0.5)
+        view.font = UIFont(name: FontManager.GangWonLight, size: 15)
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 8
+        view.leftView = paddingView
+        view.leftViewMode = .always
+        view.placeholder = "방문한 서점의 이름이 궁금해요!"
         return view
     }()
     
     var memoContent: UITextView = {
         let view = UITextView()
-        view.backgroundColor = .darkGray
+        view.layer.backgroundColor = (Color.memoColor.cgColor).copy(alpha: 0.5)
+        view.font = UIFont(name: FontManager.GangWonLight, size: 14)
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
+        view.textContainerInset = UIEdgeInsets(top: 13, left: 13, bottom: 13, right: 13)
         return view
     }()
     
     var saveButton: UIButton = {
         let view = UIButton()
-        view.backgroundColor = .yellow
+        view.backgroundColor = Color.saveButtonColor
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 8
+        view.setTitle("저장하기", for: .normal)
+        view.titleLabel?.font = UIFont(name: FontManager.GangWonBold, size: 14)
+        view.setTitleColor(.lightGray, for: .normal)
         return view
     }()
     
@@ -61,7 +77,6 @@ class CalendarViewController: UIViewController {
         calendar.dataSource = self
         
         memoTitle.delegate = self
-//        memoContent.delegate = self
         
         saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
     }
@@ -109,7 +124,7 @@ class CalendarViewController: UIViewController {
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(memoContent.snp.bottom).offset(10)
             make.left.right.equalTo(contentView).inset(15)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
         }
         
     }
@@ -150,7 +165,7 @@ class CalendarViewController: UIViewController {
     
 }
 
-extension CalendarViewController: UITextFieldDelegate {
+extension CalendarViewController: UITextFieldDelegate, UITextViewDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return view.endEditing(true)
@@ -176,6 +191,11 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         calendar.appearance.titleFont = UIFont(name: FontManager.GangWonBold, size: 14)
         
         calendar.appearance.headerMinimumDissolvedAlpha = 0.0
+        
+        calendar.appearance.todayColor = Color.todaydateColor
+        calendar.appearance.selectionColor = Color.selectdateColor
+        calendar.appearance.eventDefaultColor = Color.eventColor
+        calendar.appearance.eventSelectionColor = Color.eventColor
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {

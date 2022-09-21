@@ -32,4 +32,23 @@ class Color {
         return UIColor(r: 204, g: 204, b: 051)
     }
     
+    static var memoColor: UIColor {
+        return UIColor(r: 204, g: 204, b: 102)
+    }
+    
+    static var saveButtonColor: UIColor {
+        return UIColor(r: 251, g: 242, b: 207)
+    }
+    
+    static var todaydateColor: UIColor {
+        return UIColor(r: 257, g: 217, b: 161)
+    }
+    
+    static var selectdateColor: UIColor {
+        return UIColor(r: 207, g: 210, b: 207)
+    }
+    
+    static var eventColor: UIColor {
+        return UIColor(r: 250, g: 148, b: 148)
+    }
 }
