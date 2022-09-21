@@ -24,3 +24,19 @@ class BookStore: Object {
     }
     
 }
+
+class CalendarData: Object {
+    @Persisted var memoregDate: String // 필수
+    @Persisted var memoTitle: String? // 필수
+    @Persisted var memoContent: String? // 옵션
+    
+    @Persisted(primaryKey: true) var objectId: ObjectId
+    
+    convenience init(memoregDate: String, memoTitle: String?, memoContent: String?) {
+        self.init()
+        self.memoregDate = memoregDate
+        self.memoTitle = memoTitle
+        self.memoContent = memoContent
+    }
+    
+}
