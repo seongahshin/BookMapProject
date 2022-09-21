@@ -18,18 +18,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let firstVC = UINavigationController(rootViewController: ViewController())
-        let secondVC = UINavigationController(rootViewController: SettingViewController())
+        let secondVC = UINavigationController(rootViewController: CalendarViewController())
+        let thirdVC = UINavigationController(rootViewController: SettingViewController())
         
         let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([firstVC, secondVC], animated: true)
+        tabBarController.setViewControllers([firstVC, secondVC, thirdVC], animated: true)
         tabBarController.tabBar.tintColor = Color.pointColor
         
         if let items = tabBarController.tabBar.items {
             items[0].image = UIImage(systemName: "map")
             items[0].title = "지도"
             
-            items[1].image = UIImage(systemName: "gear.circle")
-            items[1].title = "설정"
+            items[1].image = UIImage(systemName: "calendar.badge.plus")
+            items[1].title = "기록"
+            
+            items[2].image = UIImage(systemName: "gear.circle")
+            items[2].title = "설정"
         }
         
         window?.rootViewController = tabBarController

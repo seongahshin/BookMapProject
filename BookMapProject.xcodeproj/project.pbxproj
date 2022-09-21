@@ -15,6 +15,8 @@
 		8C6DA6DB28D98D230070E171 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA6DA28D98D230070E171 /* SettingViewController.swift */; };
 		8C6DA6DD28D996770070E171 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA6DC28D996770070E171 /* ColorExtension.swift */; };
 		8C6DA6DF28D99BAC0070E171 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA6DE28D99BAC0070E171 /* SettingTableViewCell.swift */; };
+		8C6DA6ED28DAAD7B0070E171 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 8C6DA6EC28DAAD7B0070E171 /* FSCalendar */; };
+		8C6DA6EF28DAAE980070E171 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA6EE28DAAE980070E171 /* CalendarViewController.swift */; };
 		8C9BDE5728D0497000A0FB00 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5628D0497000A0FB00 /* BookData.swift */; };
 		8C9BDE5E28D04F8900A0FB00 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5D28D04F8900A0FB00 /* .gitignore */; };
 		8C9BDE6028D04FA500A0FB00 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */; };
@@ -51,6 +53,7 @@
 		8C6DA6DA28D98D230070E171 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		8C6DA6DC28D996770070E171 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		8C6DA6DE28D99BAC0070E171 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		8C6DA6EE28DAAE980070E171 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		8C9BDE5628D0497000A0FB00 /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		8C9BDE5D28D04F8900A0FB00 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -80,6 +83,7 @@
 				8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */,
 				8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */,
 				8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */,
+				8C6DA6ED28DAAD7B0070E171 /* FSCalendar in Frameworks */,
 				8CEA436328D8775400BDEAEE /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +137,7 @@
 				8CC4BCCC28D453360005035C /* WebViewController.swift */,
 				8CC4BCCE28D46B010005035C /* SearchViewController.swift */,
 				8C6DA6DA28D98D230070E171 /* SettingViewController.swift */,
+				8C6DA6EE28DAAE980070E171 /* CalendarViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -223,6 +228,7 @@
 				8CC4BCC028D361E20005035C /* Kingfisher */,
 				8CEA436228D8775400BDEAEE /* Realm */,
 				8CEA436428D8775400BDEAEE /* RealmSwift */,
+				8C6DA6EC28DAAD7B0070E171 /* FSCalendar */,
 			);
 			productName = BookMapProject;
 			productReference = 8C6604BE28D01DD20092D79D /* BookMapProject.app */;
@@ -258,6 +264,7 @@
 				8C9BDE6A28D1A41C00A0FB00 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				8CC4BCBF28D361E20005035C /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8CEA436128D8775400BDEAEE /* XCRemoteSwiftPackageReference "realm-swift" */,
+				8C6DA6EB28DAAD7A0070E171 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 			);
 			productRefGroup = 8C6604BF28D01DD20092D79D /* Products */;
 			projectDirPath = "";
@@ -289,6 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C6DA6EF28DAAE980070E171 /* CalendarViewController.swift in Sources */,
 				8C6604C628D01DD20092D79D /* ViewController.swift in Sources */,
 				8CC4BCCD28D453360005035C /* WebViewController.swift in Sources */,
 				8CC4BCD528D4B3300005035C /* StringExtension.swift in Sources */,
@@ -527,6 +535,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8C6DA6EB28DAAD7A0070E171 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		8C9BDE6128D059E300A0FB00 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -570,6 +586,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8C6DA6EC28DAAD7B0070E171 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C6DA6EB28DAAD7A0070E171 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
 		8C9BDE6228D059E300A0FB00 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8C9BDE6128D059E300A0FB00 /* XCRemoteSwiftPackageReference "Alamofire" */;
