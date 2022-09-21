@@ -183,8 +183,16 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         tutorialLabel.isHidden = true
         contentView.isHidden = false
         
-        memoTitle.text = ""
-        memoContent.text = ""
+        guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
+        let tasks = localRealm.objects(CalendarData.self).filter("memoregDate == '\(pickedDate)'")
+        
+        if tasks.first != nil {
+            memoTitle.text = tasks.first?.memoTitle
+            memoContent.text = tasks.first?.memoContent
+        } else {
+            memoTitle.text = ""
+            memoContent.text = ""
+        }
         
     }
 }
