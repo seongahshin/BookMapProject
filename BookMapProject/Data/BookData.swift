@@ -120,7 +120,64 @@ class dummyData {
             "mapX": 37.562296,
             "mapY": 126.926571,
             "time": "수-월 15:00-21:00 (휴무: 화)"
-            }
+            },
+            {
+            "storeName": "관객의 취향",
+            "address": "서울 관악구 관악로 204 3층 301호",
+            "link": "http://smartstore.naver.com/yourtastebook",
+            "mapX": 37.483833,
+            "mapY": 126.946431,
+            "time": "월-금 15:00-21:00 토-일 13:00-19:00 (휴무: 설날, 추석)"
+            },
+            {
+            "storeName": "살롱드북",
+            "address": "서울 관악구 남부순환로231길 11 태주빌라 1층",
+            "link": "https://blog.naver.com/salon_book",
+            "mapX": 37.480378,
+            "mapY": 126.956973,
+            "time": "월-토 14:00-22:00 (휴무: 일)"
+            },
+            {
+            "storeName": "대오서점",
+            "address": "서울 종로구 자하문로7길 55",
+            "link": "https://blog.naver.com/salon_book",
+            "mapX": 37.579711,
+            "mapY": 126.969317,
+            "time": "매일 12:00-21:00"
+            },
+            {
+            "storeName": "생각의 주인",
+            "address": "서울 관악구 솔밭로7길 17",
+            "link": "https://www.instagram.com/master_of_thought20/",
+            "mapX": 37.480223,
+            "mapY": 126.963402,
+            "time": "매일 09:00-21:00 (휴무: 매달 1,3번째 화요일)"
+            },
+            {
+            "storeName": "다정한 책방",
+            "address": "서울 동작구 동작대로9가길 32 1층 다정한 책방",
+            "link": "https://blog.naver.com/freereader1",
+            "mapX": 37.479673,
+            "mapY": 126.977918,
+            "time": "수-일 13:00-21:00 (휴무: 월,화)"
+            },
+            {
+            "storeName": "픽셀 퍼 인치",
+            "address": "서울 용산구 한강대로54길 7 301호",
+            "link": "https://www.instagram.com/pixel.per.inch",
+            "mapX": 37.532840,
+            "mapY": 126.972056,
+            "time": "화-금 13:00-19:30 토-일 13:20:00 (휴무: 월)"
+            },
+            {
+            "storeName": "믿음문고",
+            "address": "서울 서초구 양재천로 95-4 1F",
+            "link": "http://www.faithforlove.com",
+            "mapX": 37.476168,
+            "mapY": 127.039590,
+            "time": "화-토 11:00-19:00 (휴무: 일,월)"
+            },
+        
         ]
         """
 
