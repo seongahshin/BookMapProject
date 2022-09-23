@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
         view.layer.borderWidth = 1.3
-        view.layer.borderColor = Color.pointColor.cgColor
+        view.layer.borderColor = Color.memoColor.cgColor
         return view
     }()
     
@@ -97,7 +97,6 @@ class ViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(systemName: "line.3.horizontal"), primaryAction: nil, menu: menu)
             self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
         }
-        
     }
     
     var menu: UIMenu {
@@ -230,13 +229,14 @@ class ViewController: UIViewController {
       requestLocationServiceAlert.addAction(goSetting)
       present(requestLocationServiceAlert, animated: true, completion: nil)
     }
+
     
     func setRegion(center: CLLocationCoordinate2D) {
-        
+
         // 지도 중심 기반으로 보여질 범위 설정
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 1000, longitudinalMeters: 1000)
         mapView.setRegion(region, animated: true)
-        
+
         for num in 0...bookData.decode().count - 1 {
             let center = CLLocationCoordinate2D(latitude: bookData.decode()[num].latitude, longitude: bookData.decode()[num].longitude)
             let annotation = MKPointAnnotation()
@@ -245,9 +245,8 @@ class ViewController: UIViewController {
             mapView.addAnnotation(annotation)
         }
         print(bookData.decode())
-        
+
     }
-    
     
 
 }
@@ -403,5 +402,7 @@ extension ViewController: MKMapViewDelegate {
         blogList.removeAll()
         
     }
+    
+    
 }
 

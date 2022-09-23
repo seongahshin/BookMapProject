@@ -279,7 +279,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.contentLabel.textColor = .gray
         
         cell.blogerLabel.text = "\(getBlogList[indexPath.row].blogName) | \(getBlogList[indexPath.row].blogDate)"
-        cell.blogerLabel.font = UIFont(name: FontManager.GangWonLight, size: 8)
+        cell.blogerLabel.font = UIFont(name: FontManager.GangWonLight, size: 10)
         cell.blogerLabel.textColor = .lightGray
         
         cell.selectionStyle = .none

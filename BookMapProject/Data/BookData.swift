@@ -72,6 +72,54 @@ class dummyData {
             "mapX": 37.568435,
             "mapY": 126.930321,
             "time": "수-월 13:00-20:00 (휴무:화)"
+            },
+            {
+            "storeName": "프루스트의 서재",
+            "address": "서울 성동구 무수막길 56 1F",
+            "link": "https://blog.naver.com/proust_book",
+            "mapX": 37.551243,
+            "mapY": 127.021952,
+            "time": "화-토 13:00-20:00 (정보없음: 일,월)"
+            },
+            {
+            "storeName": "고요서사",
+            "address": "서울 용산구 신흥로15길 18-4",
+            "link": "https://blog.naver.com/proust_book",
+            "mapX": 37.544354,
+            "mapY": 126.985844,
+            "time": "목-일 12:00-19:00 (휴무: 월-수)"
+            },
+            {
+            "storeName": "공간과 몰입",
+            "address": "서울 종로구 낙산길 19 1층",
+            "link": "https://www.instagram.com/gggmolip",
+            "mapX": 37.580551,
+            "mapY": 127.005597,
+            "time": "수,금 19:00-22:00 토,일 13:00-19:00 (휴무: 월,화)"
+            },
+            {
+            "storeName": "이라선",
+            "address": "서울 종로구 효자로7길 5 1F",
+            "link": "http://www.irasun.co.kr/",
+            "mapX": 37.578878,
+            "mapY": 126.973456,
+            "time": "화-일 12:00-20:00 (휴무: 월)"
+            },
+            {
+            "storeName": "책방오늘",
+            "address": "서울 서초구 바우뫼로 154 103호",
+            "link": "http://onulbooks.com",
+            "mapX": 37.477112,
+            "mapY": 127.037312,
+            "time": "화-토 13:00-21:00 일 12:00-18:00 (휴무: 월)"
+            },
+            {
+            "storeName": "헬로 인디북스",
+            "address": "서울 마포구 동교로46길 33",
+            "link": "https://blog.naver.com/indiebooks",
+            "mapX": 37.562296,
+            "mapY": 126.926571,
+            "time": "수-월 15:00-21:00 (휴무: 화)"
             }
         ]
         """

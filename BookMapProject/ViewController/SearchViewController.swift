@@ -43,6 +43,7 @@ class SearchViewController: UIViewController {
         }
         
         setupSearchController()
+        self.navigationController?.navigationBar.tintColor = Color.pointColor
         
     }
     
@@ -88,7 +89,9 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
+        
         nameSearchListFilter = nameSearchList.filter { $0.contains(text) }
+        
         tableView.reloadData()
     }
     
@@ -160,7 +163,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
        } else {
            let vc = DetailViewController()
            
-           infoList = [nameSearchListFilter[indexPath.row], data[indexPath.row].address, data[indexPath.row].time, data[indexPath.row].link]
+           for num in 0...data.count - 1 {
+               if data[num].location == nameSearchListFilter[indexPath.row] {
+                   infoList = [nameSearchListFilter[indexPath.row], data[num].address, data[num].time, data[num].link]
+                   dump(infoList)
+               }
+           }
+           
+           
            vc.storeInfoList = infoList
            
            DispatchQueue.global().sync {

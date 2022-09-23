@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C24E42328DC9F7500BC846E /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C24E42228DC9F7500BC846E /* CustomAnnotationView.swift */; };
 		8C6604C228D01DD20092D79D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C128D01DD20092D79D /* AppDelegate.swift */; };
 		8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C328D01DD20092D79D /* SceneDelegate.swift */; };
 		8C6604C628D01DD20092D79D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C528D01DD20092D79D /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C24E42228DC9F7500BC846E /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		8C6604BE28D01DD20092D79D /* BookMapProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookMapProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C6604C128D01DD20092D79D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8C6604C328D01DD20092D79D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */,
 				8CC4BCD028D484B80005035C /* SearchTableViewCell.swift */,
 				8C6DA6DE28D99BAC0070E171 /* SettingTableViewCell.swift */,
+				8C24E42228DC9F7500BC846E /* CustomAnnotationView.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				8CC4BCD328D4989F0005035C /* SearchModel.swift in Sources */,
 				8C9BDE6028D04FA500A0FB00 /* APIKey.swift in Sources */,
 				8CC4BCDD28D4C0150005035C /* FontManager.swift in Sources */,
+				8C24E42328DC9F7500BC846E /* CustomAnnotationView.swift in Sources */,
 				8CC4BCCA28D43A090005035C /* BlogModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
