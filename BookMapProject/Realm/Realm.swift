@@ -40,3 +40,23 @@ class CalendarData: Object {
     }
     
 }
+
+class editData: Object {
+    @Persisted var editTitle: String?
+    @Persisted var editContent: String?
+    @Persisted var regDate: Date
+    @Persisted var writeDate: Date
+    
+    @Persisted(primaryKey: true) var objectID: ObjectId
+    
+    convenience init(editTitle: String?, editContent: String?, regDate: Date, writeDate: Date) {
+        
+        self.init()
+        self.editTitle = editTitle
+        self.editContent = editContent
+        self.regDate = regDate
+        self.writeDate = writeDate
+        
+    }
+    
+}
