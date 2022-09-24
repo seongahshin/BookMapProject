@@ -99,6 +99,36 @@
             </objects>
             <point key="canvasLocation" x="-1469" y="13"/>
         </scene>
+        <!--Book View Controller-->
+        <scene sceneID="jW6-W7-I3E">
+            <objects>
+                <viewController id="Xbe-vT-gRL" customClass="BookViewController" customModule="BookMapProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Oz2-G6-ckU">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fia-UB-cpF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dox-9K-hRA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3902" y="13"/>
+        </scene>
+        <!--Edit View Controller-->
+        <scene sceneID="nzf-cH-bk1">
+            <objects>
+                <viewController id="90D-2o-BMT" customClass="EditViewController" customModule="BookMapProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="geG-In-1RN">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="3IC-k9-wxB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pdj-7u-ix2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4781" y="25"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
