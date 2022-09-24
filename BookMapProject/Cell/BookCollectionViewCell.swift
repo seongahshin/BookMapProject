@@ -10,10 +10,23 @@ import SnapKit
 
 class BookCollectionViewCell: UICollectionViewCell {
     
+    var imageView: UIImageView = {
+        let view = UIImageView()
+        view.backgroundColor = .yellow
+        return view
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-      
+        self.configureUI()
+    }
+    
+    func configureUI() {
+        self.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.top.bottom.left.right.equalToSuperview()
+        }
     }
     
     required init?(coder: NSCoder) {

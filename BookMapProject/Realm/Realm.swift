@@ -46,7 +46,6 @@ class editData: Object {
     @Persisted var editContent: String?
     @Persisted var regDate: Date
     @Persisted var writeDate: Date
-    
     @Persisted(primaryKey: true) var objectID: ObjectId
     
     convenience init(editTitle: String?, editContent: String?, regDate: Date, writeDate: Date) {
@@ -56,7 +55,6 @@ class editData: Object {
         self.editContent = editContent
         self.regDate = regDate
         self.writeDate = writeDate
-        
     }
     
 }

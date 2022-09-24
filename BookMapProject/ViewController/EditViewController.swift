@@ -78,6 +78,7 @@ class EditViewController: UIViewController {
         deleteButton.setImage(UIImage(systemName: "minus"), for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
         
+        print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     func configureUI() {
@@ -133,6 +134,13 @@ class EditViewController: UIViewController {
     }
     
     @objc func endButtonClicked() {
+        print("endButtonClicked")
+        let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: Date(), writeDate: Date())
+        try! localRealm.write {
+            localRealm.add(task)
+            saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
+        }
+        print(tasks)
         self.dismiss(animated: true)
     }
     
@@ -165,6 +173,7 @@ extension EditViewController : PHPickerViewControllerDelegate {
             itemProvider.loadObject(ofClass: UIImage.self) { image, error in
                 DispatchQueue.main.async {
                     self.imageView.image = image as? UIImage
+        
                 }
             }
         }
@@ -184,7 +193,7 @@ extension EditViewController {
         let imageURL = documentDirectory.appendingPathComponent(imageName)
         
         //3. 이미지 압축(image.pngData())
-        guard let data = image.pngData() else {
+        guard let data = image.resizeImage(newWidth: 300).pngData() else {
             print("압축이 실패했습니다.")
             return
         }

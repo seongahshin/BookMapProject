@@ -8,8 +8,12 @@
 import UIKit
 
 import SnapKit
+import RealmSwift
 
 class BookViewController: UIViewController {
+    
+    let localRealm = try! Realm()
+    var tasks: Results<editData>!
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -28,6 +32,12 @@ class BookViewController: UIViewController {
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
         self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
+        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate")
+        print(tasks)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
     }
     
     @objc func plusButtonClicked() {
@@ -50,15 +60,31 @@ class BookViewController: UIViewController {
     
 }
 
+extension BookViewController {
+    func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let directoryPath = path.first {
+            let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
+            return UIImage(contentsOfFile: imageURL.path)
+        }
+        return nil
+    }
+}
+
 extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return 2
+        return tasks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
+        let task = tasks[indexPath.row]
         cell.backgroundColor = .brown
+        cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID).png")
         return cell
     }
     
