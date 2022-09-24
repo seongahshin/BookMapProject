@@ -33,7 +33,6 @@ class BookViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
         self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
         tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate")
-        print(tasks)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +85,17 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.backgroundColor = .brown
         cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID).png")
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = EditViewController()
+        let task = tasks[indexPath.row]
+        vc.editTitle = task.editTitle!
+        vc.editContent = task.editContent!
+        vc.fileName = "\(task.objectID)"
+        vc.date = task.regDate
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     

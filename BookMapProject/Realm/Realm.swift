@@ -44,11 +44,11 @@ class CalendarData: Object {
 class editData: Object {
     @Persisted var editTitle: String?
     @Persisted var editContent: String?
-    @Persisted var regDate: Date
+    @Persisted var regDate: String
     @Persisted var writeDate: Date
     @Persisted(primaryKey: true) var objectID: ObjectId
     
-    convenience init(editTitle: String?, editContent: String?, regDate: Date, writeDate: Date) {
+    convenience init(editTitle: String?, editContent: String?, regDate: String, writeDate: Date) {
         
         self.init()
         self.editTitle = editTitle

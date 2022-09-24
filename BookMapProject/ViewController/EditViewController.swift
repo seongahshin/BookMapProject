@@ -17,6 +17,13 @@ class EditViewController: UIViewController {
     let localRealm = try! Realm()
     var tasks: Results<editData>!
     
+    var editTitle = ""
+    var editContent = ""
+    var fileName = ""
+    var date = ""
+
+    
+    
     
     var closeButton: UIButton = {
         let view = UIButton()
@@ -78,6 +85,9 @@ class EditViewController: UIViewController {
         deleteButton.setImage(UIImage(systemName: "minus"), for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
         
+        textField.text = editTitle
+        textView.text = editContent
+        imageView.image = loadImageFromDocumentDirectory(imageName: "\(fileName).png")
         print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
@@ -129,17 +139,46 @@ class EditViewController: UIViewController {
         }
     }
     
+    func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let directoryPath = path.first {
+            let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
+            return UIImage(contentsOfFile: imageURL.path)
+        }
+        return nil
+    }
+    
     @objc func closeButtonClicked() {
         self.dismiss(animated: true)
     }
     
     @objc func endButtonClicked() {
         print("endButtonClicked")
-        let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: Date(), writeDate: Date())
-        try! localRealm.write {
-            localRealm.add(task)
-            saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
+        
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'")
+        
+        if tasks.first != nil {
+            // 이미 존재함
+            try! localRealm.write {
+                tasks.first?.editTitle = textField.text
+                tasks.first?.editContent = textView.text
+                
+                guard let lastImage = tasks.first?.objectID else { return }
+                print(lastImage)
+                saveImageToDocumentDirectory(imageName: "\(lastImage).png", image: imageView.image!)
+            }
+            
+        } else {
+            let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: "\(Date())", writeDate: Date())
+            try! localRealm.write {
+                localRealm.add(task)
+                saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
+            }
         }
+        
         print(tasks)
         self.dismiss(animated: true)
     }
