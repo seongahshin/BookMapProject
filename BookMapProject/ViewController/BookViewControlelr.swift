@@ -125,11 +125,11 @@ extension BookViewController: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let totalCellWidth = 80 * collectionView.numberOfItems(inSection: 0)
-        let totalSpacingWidth = 10 * (collectionView.numberOfItems(inSection: 0) - 1)
-        let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2 - 85
-        let rightInset = leftInset
-        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+//        let totalCellWidth = 80 * collectionView.numberOfItems(inSection: 0)
+//        let totalSpacingWidth = 10 * (collectionView.numberOfItems(inSection: 0) - 1)
+//        let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2 - 85
+//        let rightInset = leftInset
+        return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
     }
     
 }

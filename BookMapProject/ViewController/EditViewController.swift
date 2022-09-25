@@ -12,6 +12,7 @@ import PhotosUI
 import SnapKit
 import RealmSwift
 import Mantis
+import Zip
 
 class EditViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -205,7 +206,10 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
                 guard let lastImage = tasks.first?.objectID else { return }
                 print(lastImage)
                 saveImageToDocumentDirectory(imageName: "\(lastImage).png", image: imageView.image!)
+                
+                
             }
+            self.dismiss(animated: true)
             
         } else {
             if textField.text == "" && textView.text == "" && imageView.image == nil {
@@ -311,7 +315,7 @@ extension EditViewController {
         let imageURL = documentDirectory.appendingPathComponent(imageName)
         
         //3. 이미지 압축(image.pngData())
-        guard let data = image.resizeImage(newWidth: 320).pngData() else {
+        guard let data = image.resizeImage(newWidth: 120).pngData() else {
             print("압축이 실패했습니다.")
             return
         }
@@ -329,8 +333,18 @@ extension EditViewController {
         }
         
         // 5. 이미지를 도큐먼트에 저장
+        
         do {
             try data.write(to: imageURL)
+            print("이미지")
+        }
+        catch {
+          print("Something went wrong")
+        }
+        
+        do {
+            let zipFilePath = try Zip.quickZipFiles([imageURL], fileName: "\(imageName)")
+            try data.write(to: zipFilePath) // Zip
             print("이미지 저장 완료")
         } catch {
             print("이미지를 저장하지 못했습니다")

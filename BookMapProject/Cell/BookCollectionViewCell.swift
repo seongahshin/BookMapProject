@@ -58,7 +58,8 @@ class BookCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.leadingMargin.equalTo(imageView.snp.leadingMargin)
             make.trailingMargin.equalTo(imageView.snp.trailingMargin)
-            make.bottom.equalToSuperview().inset(18)
+            make.bottom.equalToSuperview().inset(30)
+//
         }
     }
     
