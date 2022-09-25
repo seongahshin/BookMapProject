@@ -92,14 +92,20 @@ class EditViewController: UIViewController {
     }
     
     func configureUI() {
-        [closeButton,endButton, addButton, imageView, textField, textView].forEach {
+        [closeButton, deleteButton, endButton, addButton, imageView, textField, textView].forEach {
             view.addSubview($0)
         }
         
-        
+
         closeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(30)
             make.left.equalToSuperview().inset(20)
+            make.height.width.equalTo(20)
+        }
+        
+        deleteButton.snp.makeConstraints { make in
+            make.leadingMargin.equalTo(closeButton.snp.trailingMargin).offset(10)
+            make.top.equalToSuperview().inset(30)
             make.height.width.equalTo(20)
         }
         
@@ -137,6 +143,8 @@ class EditViewController: UIViewController {
             make.width.equalTo(textField.snp.width)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(30)
         }
+        
+        
     }
     
     func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
@@ -151,10 +159,28 @@ class EditViewController: UIViewController {
         return nil
     }
     
+    func deleteImageFromDocumentDirectory(imageName: String) {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        let imageURL = documentDirectory.appendingPathComponent(imageName)
+        
+        if FileManager.default.fileExists(atPath: imageURL.path) {
+            do {
+                try FileManager.default.removeItem(at: imageURL)
+                print("이미지 삭제 완료")
+            } catch {
+                print("이미지를 삭제하지 못했습니다")
+            }
+        }
+    }
+    
+    // 화면 닫기
     @objc func closeButtonClicked() {
         self.dismiss(animated: true)
     }
     
+    
+    // 저장 완료
     @objc func endButtonClicked() {
         print("endButtonClicked")
         
@@ -183,6 +209,7 @@ class EditViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
+    // 사진 저장
     @objc func addButtonClicked() {
         print(1)
         var configuration = PHPickerConfiguration()
@@ -193,7 +220,24 @@ class EditViewController: UIViewController {
         self.present(picker, animated: true, completion: nil)
     }
     
+    // 삭제
     @objc func deleteButtonClicked() {
+        
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'")
+        
+        if tasks.first != nil {
+            // 이미 존재함
+            try! localRealm.write {
+                localRealm.delete(tasks)
+                
+                guard let lastImage = tasks.first?.objectID else { return }
+                print(lastImage)
+                deleteImageFromDocumentDirectory(imageName: "\(lastImage).png")
+            }
+            
+        }
+        
+        self.dismiss(animated: true)
         
     }
     
