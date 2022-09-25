@@ -208,15 +208,26 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             }
             
         } else {
-            let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: "\(Date())", writeDate: Date())
-            try! localRealm.write {
-                localRealm.add(task)
-                saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
+            if textField.text == "" && textView.text == "" && imageView.image == nil {
+                self.dismiss(animated: true)
+                return
+            } else {
+                try! localRealm.write {
+                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: "\(Date())", writeDate: Date())
+                    
+                    try! localRealm.write {
+                        localRealm.add(task)
+                        if imageView.image != nil {
+                            saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
+                        }
+                    }
+                    self.dismiss(animated: true)
+            }
+                
             }
         }
         
         print(tasks)
-        self.dismiss(animated: true)
     }
     
     // 사진 저장

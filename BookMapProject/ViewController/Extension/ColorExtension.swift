@@ -51,4 +51,9 @@ class Color {
     static var eventColor: UIColor {
         return UIColor(r: 250, g: 148, b: 148)
     }
+    
+    static var cardColor: UIColor {
+//        return UIColor(r: 245, g: 237, b: 220)
+        return UIColor(r: 240, g: 229, b: 207)
+    }
 }

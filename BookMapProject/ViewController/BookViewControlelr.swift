@@ -17,9 +17,10 @@ class BookViewController: UIViewController {
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 50, left: 32, bottom: 50, right: 32)
+        layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.backgroundColor = .blue
+        view.backgroundColor = Color.cardColor
         return view
     }()
     
@@ -32,7 +33,7 @@ class BookViewController: UIViewController {
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
         self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
-        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate")
+        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate", ascending: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,8 +83,12 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
         let task = tasks[indexPath.row]
-        cell.backgroundColor = .brown
+        cell.backgroundColor = .white
         cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID).png")
+        cell.titleLabel.text = task.editTitle
+        cell.contentLabel.text = task.editContent
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 20
         return cell
     }
     
@@ -104,7 +109,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
 extension BookViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
+        return 75
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
