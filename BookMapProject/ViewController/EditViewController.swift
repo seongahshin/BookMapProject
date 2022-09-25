@@ -45,9 +45,8 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         return view
     }()
     
-    var addButton: UIButton = {
-        let view = UIButton()
-        view.backgroundColor = .blue
+    var addButton: UIImageView = {
+        let view = UIImageView()
         return view
     }()
     
@@ -81,8 +80,11 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         endButton.setTitle("완료", for: .normal)
         endButton.addTarget(self, action: #selector(endButtonClicked), for: .touchUpInside)
         
-        addButton.setImage(UIImage(systemName: "plus"), for: .normal)
-        addButton.addTarget(self, action: #selector(addButtonClicked), for: .touchUpInside)
+        addButton.image = UIImage(systemName: "plus")
+        self.addButton.isUserInteractionEnabled = true
+        self.imageView.isUserInteractionEnabled = true
+        addButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addButtonClicked)))
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addButtonClicked)))
         
         deleteButton.setImage(UIImage(systemName: "minus"), for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
@@ -97,10 +99,13 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     func configureUI() {
-        [closeButton, deleteButton, endButton, addButton, imageView, textField, textView].forEach {
+        [closeButton, deleteButton, endButton, imageView, textField, textView].forEach {
             view.addSubview($0)
         }
         
+        [addButton].forEach {
+            imageView.addSubview($0)
+        }
 
         closeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(30)
@@ -108,45 +113,45 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             make.height.width.equalTo(20)
         }
         
-        deleteButton.snp.makeConstraints { make in
-            make.leadingMargin.equalTo(closeButton.snp.trailingMargin).offset(10)
-            make.top.equalToSuperview().inset(30)
-            make.height.width.equalTo(20)
+        imageView.snp.makeConstraints { make in
+            make.centerX.equalTo(view)
+            make.top.equalTo(closeButton.snp.bottom).offset(8)
+            make.height.equalTo(300)
+            make.width.equalTo(300)
         }
         
         addButton.snp.makeConstraints { make in
-            make.top.equalTo(closeButton.snp.bottom).offset(20)
-            make.trailingMargin.equalToSuperview().inset(10)
-            make.height.width.equalTo(20)
-        }
-        
-        endButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
-            make.trailingMargin.equalToSuperview().inset(10)
-            make.height.equalTo(20)
-            make.width.equalTo(40)
-        }
-        
-        imageView.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.top.equalTo(80)
-            make.height.equalTo(350)
-            make.width.equalTo(300)
+            make.centerX.centerY.equalToSuperview()
+            make.height.width.equalTo(40)
         }
         
         
         textField.snp.makeConstraints { make in
             make.centerX.equalTo(view)
-            make.top.equalTo(imageView.snp.bottom).offset(20)
+            make.top.equalTo(imageView.snp.bottom).offset(8)
             make.width.equalTo(imageView.snp.width)
             make.height.equalTo(40)
         }
         
         textView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
-            make.top.equalTo(textField.snp.bottom).offset(20)
+            make.top.equalTo(textField.snp.bottom).offset(8)
             make.width.equalTo(textField.snp.width)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.height.equalTo(250)
+        }
+        
+        deleteButton.snp.makeConstraints { make in
+            make.top.equalTo(textView.snp.bottom).offset(8)
+            make.leadingMargin.equalTo(textView.snp.leadingMargin)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
+            make.width.equalTo(deleteButton.snp.height)
+        }
+        
+        endButton.snp.makeConstraints { make in
+            make.top.equalTo(textView.snp.bottom).offset(8)
+            make.trailingMargin.equalTo(textView.snp.trailingMargin)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
+            make.width.equalTo(endButton.snp.height)
         }
         
         
@@ -217,12 +222,6 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     // 사진 저장
     @objc func addButtonClicked() {
         print(1)
-//        var configuration = PHPickerConfiguration()
-//        configuration.selectionLimit = 1
-//        configuration.filter = .images
-//        let picker = PHPickerViewController(configuration: configuration)
-//        picker.delegate = self
-//        self.present(picker, animated: true, completion: nil)
         self.present(self.imagePicker, animated: true)
         
     }
