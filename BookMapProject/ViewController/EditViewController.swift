@@ -213,13 +213,12 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
                 return
             } else {
                 try! localRealm.write {
-                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: "\(Date())", writeDate: Date())
                     
-                    try! localRealm.write {
-                        localRealm.add(task)
-                        if imageView.image != nil {
-                            saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
-                        }
+                    print("dmdkfjsdljfklsjklsfjklsfdj")
+                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: "\(Date())", writeDate: Date())
+                    localRealm.add(task)
+                    if imageView.image != nil {
+                        saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
                     }
                     self.dismiss(animated: true)
             }
