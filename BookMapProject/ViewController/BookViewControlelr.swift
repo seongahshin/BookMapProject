@@ -115,7 +115,7 @@ extension BookViewController: UICollectionViewDelegateFlowLayout {
 //        let width = collectionView.frame.width
 //        let size = CGSize(width: width, height: 20)
 //        return size
-        return CGSize(width: 300, height: 400)
+        return CGSize(width: 350, height: 500)
     }
     
     

@@ -161,7 +161,7 @@ class EditViewController: UIViewController {
     
     func deleteImageFromDocumentDirectory(imageName: String) {
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        
+        print("이미지 삭제")
         let imageURL = documentDirectory.appendingPathComponent(imageName)
         
         if FileManager.default.fileExists(atPath: imageURL.path) {
@@ -227,13 +227,16 @@ class EditViewController: UIViewController {
         
         if tasks.first != nil {
             // 이미 존재함
+            
+            guard let lastImage = tasks.first?.objectID else { return }
+            print(lastImage)
+            deleteImageFromDocumentDirectory(imageName: "\(lastImage).png")
+            
             try! localRealm.write {
                 localRealm.delete(tasks)
-                
-                guard let lastImage = tasks.first?.objectID else { return }
-                print(lastImage)
-                deleteImageFromDocumentDirectory(imageName: "\(lastImage).png")
+                print(tasks.first?.objectID)
             }
+        
             
         }
         
@@ -276,7 +279,7 @@ extension EditViewController {
         let imageURL = documentDirectory.appendingPathComponent(imageName)
         
         //3. 이미지 압축(image.pngData())
-        guard let data = image.resizeImage(newWidth: 300).pngData() else {
+        guard let data = image.resizeImage(newWidth: 280).pngData() else {
             print("압축이 실패했습니다.")
             return
         }
