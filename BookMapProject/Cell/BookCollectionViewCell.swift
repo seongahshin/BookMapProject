@@ -25,8 +25,8 @@ class BookCollectionViewCell: UICollectionViewCell {
     func configureUI() {
         self.addSubview(imageView)
         imageView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview().inset(10)
-            make.height.equalTo(392)
+            make.top.left.right.equalToSuperview().inset(15)
+            make.height.equalTo(self.snp.width)
         }
     }
     

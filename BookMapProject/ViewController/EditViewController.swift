@@ -11,11 +11,13 @@ import PhotosUI
 
 import SnapKit
 import RealmSwift
+import Mantis
 
-class EditViewController: UIViewController {
+class EditViewController: UIViewController, UINavigationControllerDelegate {
     
     let localRealm = try! Realm()
     var tasks: Results<editData>!
+    let imagePicker = UIImagePickerController()
     
     var editTitle = ""
     var editContent = ""
@@ -89,6 +91,9 @@ class EditViewController: UIViewController {
         textView.text = editContent
         imageView.image = loadImageFromDocumentDirectory(imageName: "\(fileName).png")
         print("realm 위치: ", Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        self.imagePicker.sourceType = .photoLibrary // 앨범에서 가져옴
+        self.imagePicker.delegate = self // picker delegate
     }
     
     func configureUI() {
@@ -212,12 +217,14 @@ class EditViewController: UIViewController {
     // 사진 저장
     @objc func addButtonClicked() {
         print(1)
-        var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 1
-        configuration.filter = .images
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
-        self.present(picker, animated: true, completion: nil)
+//        var configuration = PHPickerConfiguration()
+//        configuration.selectionLimit = 1
+//        configuration.filter = .images
+//        let picker = PHPickerViewController(configuration: configuration)
+//        picker.delegate = self
+//        self.present(picker, animated: true, completion: nil)
+        self.present(self.imagePicker, animated: true)
+        
     }
     
     // 삭제
@@ -234,7 +241,6 @@ class EditViewController: UIViewController {
             
             try! localRealm.write {
                 localRealm.delete(tasks)
-                print(tasks.first?.objectID)
             }
         
             
@@ -247,23 +253,40 @@ class EditViewController: UIViewController {
     
 }
 
-extension EditViewController : PHPickerViewControllerDelegate {
+extension EditViewController : UIImagePickerControllerDelegate {
     
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        picker.dismiss(animated: true)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let itemProvider = results.first?.itemProvider
-        
-        if let itemProvider = itemProvider,
-           itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                DispatchQueue.main.async {
-                    self.imageView.image = image as? UIImage
-        
-                }
+        if let image = info[.originalImage] as? UIImage {
+            //            imgView.image = image // <- 삭제하고 cropViewControllerDidCrop에서 실행
+            
+            dismiss(animated: true) {
+                self.openCropVC(image: image)
             }
+            
         }
-        
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension EditViewController: CropViewControllerDelegate {
+    
+    func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
+        imageView.image = cropped
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func cropViewControllerDidCancel(_ cropViewController: CropViewController, original: UIImage) {
+        cropViewController.dismiss(animated: true, completion: nil)
+    }
+            
+    private func openCropVC(image: UIImage) {
+            
+        let cropViewController = Mantis.cropViewController(image: image)
+        cropViewController.delegate = self
+        cropViewController.modalPresentationStyle = .fullScreen
+        cropViewController.config.presetFixedRatioType = .alwaysUsingOnePresetFixedRatio(ratio: 1.0)
+        self.present(cropViewController, animated: true)
     }
 }
 
@@ -279,7 +302,7 @@ extension EditViewController {
         let imageURL = documentDirectory.appendingPathComponent(imageName)
         
         //3. 이미지 압축(image.pngData())
-        guard let data = image.resizeImage(newWidth: 280).pngData() else {
+        guard let data = image.resizeImage(newWidth: 320).pngData() else {
             print("압축이 실패했습니다.")
             return
         }
