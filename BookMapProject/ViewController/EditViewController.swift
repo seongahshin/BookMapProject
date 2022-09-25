@@ -23,9 +23,6 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     var editContent = ""
     var fileName = ""
     var date = ""
-
-    
-    
     
     var closeButton: UIButton = {
         let view = UIButton()
@@ -35,36 +32,40 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     
     var endButton: UIButton = {
         let view = UIButton()
-        view.backgroundColor = .brown
+        view.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        view.tintColor = Color.eventColor
         return view
     }()
     
     var imageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .brown
+        view.layer.borderWidth = 0.8
+        view.layer.borderColor = Color.selectdateColor.cgColor
         return view
     }()
     
     var addButton: UIImageView = {
         let view = UIImageView()
+        view.tintColor = Color.selectdateColor
         return view
     }()
     
     var deleteButton: UIButton = {
         let view = UIButton()
-        view.backgroundColor = .blue
+        view.setImage(UIImage(systemName: "trash"), for: .normal)
+        view.tintColor = Color.memoColor
         return view
     }()
     
     var textField: UITextField = {
-        let view = UITextField()
-        view.backgroundColor = .darkGray
+        let view = UITextField().textFieldDesign()
+        view.backgroundColor = Color.saveButtonColor
         return view
     }()
     
     var textView: UITextView = {
-        let view = UITextView()
-        view.backgroundColor = .darkGray
+        let view = UITextView().textViewDesign()
+        view.backgroundColor = Color.saveButtonColor
         return view
     }()
     
@@ -77,16 +78,15 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         closeButton.setImage(UIImage(systemName: "xmark"), for: .normal)
         closeButton.addTarget(self, action: #selector(closeButtonClicked), for: .touchUpInside)
         
-        endButton.setTitle("완료", for: .normal)
         endButton.addTarget(self, action: #selector(endButtonClicked), for: .touchUpInside)
         
         addButton.image = UIImage(systemName: "plus")
+        
         self.addButton.isUserInteractionEnabled = true
         self.imageView.isUserInteractionEnabled = true
         addButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addButtonClicked)))
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addButtonClicked)))
         
-        deleteButton.setImage(UIImage(systemName: "minus"), for: .normal)
         deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
         
         textField.text = editTitle
