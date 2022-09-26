@@ -30,11 +30,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let items = tabBarController.tabBar.items {
             items[0].image = UIImage(systemName: "map")
+            items[0].title = "지도"
             
             items[1].image = UIImage(systemName: "calendar.badge.plus")
-            items[2].image = UIImage(systemName: "photo.fill.on.rectangle.fill")
-            items[3].image = UIImage(systemName: "gear.circle")
+            items[1].title = "캘린더"
             
+            items[2].image = UIImage(systemName: "photo.fill.on.rectangle.fill")
+            items[2].title = "포토"
+            
+            items[3].image = UIImage(systemName: "gear.circle")
+            items[3].title = "설정"
             
         }
         
