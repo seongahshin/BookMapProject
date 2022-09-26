@@ -109,14 +109,14 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         }
 
         closeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(30)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.left.equalToSuperview().inset(20)
             make.height.width.equalTo(20)
         }
         
         imageView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
-            make.top.equalTo(closeButton.snp.bottom).offset(8)
+            make.top.equalTo(closeButton.snp.bottom).offset(20)
             make.height.equalTo(300)
             make.width.equalTo(300)
         }
@@ -133,28 +133,28 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             make.width.equalTo(imageView.snp.width)
             make.height.equalTo(40)
         }
-        
+
         textView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.top.equalTo(textField.snp.bottom).offset(8)
             make.width.equalTo(textField.snp.width)
             make.height.equalTo(250)
         }
-        
+
         deleteButton.snp.makeConstraints { make in
             make.top.equalTo(textView.snp.bottom).offset(8)
             make.leadingMargin.equalTo(textView.snp.leadingMargin)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
             make.width.equalTo(deleteButton.snp.height)
         }
-        
+
         endButton.snp.makeConstraints { make in
             make.top.equalTo(textView.snp.bottom).offset(8)
             make.trailingMargin.equalTo(textView.snp.trailingMargin)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
             make.width.equalTo(endButton.snp.height)
         }
-        
+
         
     }
     
@@ -222,7 +222,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
                     let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: "\(Date())", writeDate: Date())
                     localRealm.add(task)
                     if imageView.image != nil {
-                        saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
+                        saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
                     }
                     self.dismiss(animated: true)
             }
@@ -250,7 +250,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             
             guard let lastImage = tasks.first?.objectID else { return }
             print(lastImage)
-            deleteImageFromDocumentDirectory(imageName: "\(lastImage).png")
+            deleteImageFromDocumentDirectory(imageName: "\(lastImage)")
             
             try! localRealm.write {
                 localRealm.delete(tasks)
@@ -336,18 +336,20 @@ extension EditViewController {
         
         do {
             try data.write(to: imageURL)
-            print("이미지")
+            print("이미지 저장")
         }
         catch {
           print("Something went wrong")
         }
         
+        // 6. 이미지 Zip
         do {
             let zipFilePath = try Zip.quickZipFiles([imageURL], fileName: "\(imageName)")
             try data.write(to: zipFilePath) // Zip
-            print("이미지 저장 완료")
+            print("이미지 압축 완료")
         } catch {
-            print("이미지를 저장하지 못했습니다")
+            print(error)
+            print("이미지를 압축하지 못했습니다")
         }
         
     }

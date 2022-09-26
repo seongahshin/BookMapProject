@@ -9,6 +9,7 @@ import UIKit
 
 import SnapKit
 import RealmSwift
+import Zip
 
 class BookViewController: UIViewController {
     
@@ -62,13 +63,25 @@ class BookViewController: UIViewController {
 
 extension BookViewController {
     func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+        // 1. 도큐먼트 폴더 경로 구성
         let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
-        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory,userDomainMask, true)
         
         if let directoryPath = path.first {
+            // 2. 이미지 URL 찾기
             let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
-            return UIImage(contentsOfFile: imageURL.path)
+            print("bookVC에서 저장되는 경로 \(imageURL)")
+            do {
+                let unzipFilePath = try Zip.quickUnzipFile(imageURL)
+                print(unzipFilePath)
+                // 3. UIImage 로 불러오기
+                return UIImage(contentsOfFile: unzipFilePath.path)
+            } catch {
+                print(error)
+                print("오류")
+            }
+            
         }
         return nil
     }
@@ -84,7 +97,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
         let task = tasks[indexPath.row]
         cell.backgroundColor = .white
-        cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID).png")
+        cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID).zip")
         cell.titleLabel.text = task.editTitle
         cell.contentLabel.text = task.editContent
         cell.clipsToBounds = true
