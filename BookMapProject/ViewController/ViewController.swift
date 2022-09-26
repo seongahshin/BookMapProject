@@ -158,6 +158,7 @@ class ViewController: UIViewController {
     
     @objc func locationUpdatedButton() {
 //        locationManager.requestWhenInUseAuthorization()
+        checkUserDeviceLocationServiceAuthorization()
         locationManager.startUpdatingLocation()
     }
     
