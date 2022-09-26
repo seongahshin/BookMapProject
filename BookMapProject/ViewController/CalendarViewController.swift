@@ -140,9 +140,12 @@ class CalendarViewController: UIViewController {
             // 날짜 존재하지 않을 때 (새로 저장)
             let task = CalendarData(memoregDate: pickedDate, memoTitle: memoTitle.text, memoContent: memoContent.text)
             
-            try! localRealm.write {
-                localRealm.add(task)
+            if memoTitle.text != "" || memoContent.text != "" {
+                try! localRealm.write {
+                    localRealm.add(task)
+                }
             }
+            
             
         }
         print(tasks)
