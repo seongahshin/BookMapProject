@@ -24,13 +24,14 @@
 		8C7A1C3D28DF1ADB00309EF0 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A1C3C28DF1ADA00309EF0 /* ImageExtension.swift */; };
 		8C7A1C4228E07A8500309EF0 /* Mantis in Frameworks */ = {isa = PBXBuildFile; productRef = 8C7A1C4128E07A8500309EF0 /* Mantis */; };
 		8C7A1C4428E0916900309EF0 /* TextExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A1C4328E0916900309EF0 /* TextExtension.swift */; };
-		8C7A1C4728E0CE2800309EF0 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 8C7A1C4628E0CE2800309EF0 /* Zip */; };
+		8C7A1C6928E1D56A00309EF0 /* ZipExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7A1C6828E1D56A00309EF0 /* ZipExtension.swift */; };
 		8C9BDE5728D0497000A0FB00 /* BookData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5628D0497000A0FB00 /* BookData.swift */; };
 		8C9BDE5E28D04F8900A0FB00 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5D28D04F8900A0FB00 /* .gitignore */; };
 		8C9BDE6028D04FA500A0FB00 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */; };
 		8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6228D059E300A0FB00 /* Alamofire */; };
 		8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6828D061A300A0FB00 /* SwiftyJSON */; };
 		8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6B28D1A41C00A0FB00 /* SnapKit */; };
+		8CA91BAF28E1E6D800EE7B83 /* RemoveTMPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */; };
 		8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBB28D317050005035C /* DetailViewController.swift */; };
 		8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */; };
 		8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8CC4BCC028D361E20005035C /* Kingfisher */; };
@@ -67,9 +68,11 @@
 		8C7A1C3728DED7CB00309EF0 /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		8C7A1C3C28DF1ADA00309EF0 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		8C7A1C4328E0916900309EF0 /* TextExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextExtension.swift; sourceTree = "<group>"; };
+		8C7A1C6828E1D56A00309EF0 /* ZipExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipExtension.swift; sourceTree = "<group>"; };
 		8C9BDE5628D0497000A0FB00 /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		8C9BDE5D28D04F8900A0FB00 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveTMPExtension.swift; sourceTree = "<group>"; };
 		8CC4BCBB28D317050005035C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogTableViewCell.swift; sourceTree = "<group>"; };
@@ -95,7 +98,6 @@
 				8C6DA6F428DAD1550070E171 /* IQKeyboardManagerSwift in Frameworks */,
 				8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */,
 				8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */,
-				8C7A1C4728E0CE2800309EF0 /* Zip in Frameworks */,
 				8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */,
 				8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */,
 				8C7A1C4228E07A8500309EF0 /* Mantis in Frameworks */,
@@ -196,6 +198,8 @@
 				8C6DA6DC28D996770070E171 /* ColorExtension.swift */,
 				8C7A1C3C28DF1ADA00309EF0 /* ImageExtension.swift */,
 				8C7A1C4328E0916900309EF0 /* TextExtension.swift */,
+				8C7A1C6828E1D56A00309EF0 /* ZipExtension.swift */,
+				8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -252,7 +256,6 @@
 				8C6DA6EC28DAAD7B0070E171 /* FSCalendar */,
 				8C6DA6F328DAD1550070E171 /* IQKeyboardManagerSwift */,
 				8C7A1C4128E07A8500309EF0 /* Mantis */,
-				8C7A1C4628E0CE2800309EF0 /* Zip */,
 			);
 			productName = BookMapProject;
 			productReference = 8C6604BE28D01DD20092D79D /* BookMapProject.app */;
@@ -291,7 +294,6 @@
 				8C6DA6EB28DAAD7A0070E171 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				8C6DA6F228DAD1540070E171 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				8C7A1C4028E07A8400309EF0 /* XCRemoteSwiftPackageReference "Mantis" */,
-				8C7A1C4528E0CE2800309EF0 /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = 8C6604BF28D01DD20092D79D /* Products */;
 			projectDirPath = "";
@@ -338,6 +340,7 @@
 				8CC4BCD128D484B80005035C /* SearchTableViewCell.swift in Sources */,
 				8C7A1C3D28DF1ADB00309EF0 /* ImageExtension.swift in Sources */,
 				8C6DA6DD28D996770070E171 /* ColorExtension.swift in Sources */,
+				8C7A1C6928E1D56A00309EF0 /* ZipExtension.swift in Sources */,
 				8C6DA6DF28D99BAC0070E171 /* SettingTableViewCell.swift in Sources */,
 				8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */,
 				8C7A1C3628DEB4D500309EF0 /* BookCollectionViewCell.swift in Sources */,
@@ -346,6 +349,7 @@
 				8C7A1C3428DDDCF600309EF0 /* BookViewControlelr.swift in Sources */,
 				8C9BDE6028D04FA500A0FB00 /* APIKey.swift in Sources */,
 				8CC4BCDD28D4C0150005035C /* FontManager.swift in Sources */,
+				8CA91BAF28E1E6D800EE7B83 /* RemoveTMPExtension.swift in Sources */,
 				8C7A1C4428E0916900309EF0 /* TextExtension.swift in Sources */,
 				8CC4BCCA28D43A090005035C /* BlogModel.swift in Sources */,
 			);
@@ -591,14 +595,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		8C7A1C4528E0CE2800309EF0 /* XCRemoteSwiftPackageReference "Zip" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/marmelroy/Zip.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 		8C9BDE6128D059E300A0FB00 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -656,11 +652,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8C7A1C4028E07A8400309EF0 /* XCRemoteSwiftPackageReference "Mantis" */;
 			productName = Mantis;
-		};
-		8C7A1C4628E0CE2800309EF0 /* Zip */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8C7A1C4528E0CE2800309EF0 /* XCRemoteSwiftPackageReference "Zip" */;
-			productName = Zip;
 		};
 		8C9BDE6228D059E300A0FB00 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
-        
-        
+        FileManager.default.clearTmpDirectory()
         // Override point for customization after application launch.
         return true
     }

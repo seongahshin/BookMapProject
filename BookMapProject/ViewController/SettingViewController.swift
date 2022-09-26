@@ -56,6 +56,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         print(settingcellTitle)
         cell.titleLabel.text = settingcellTitle[indexPath.row]
         cell.titleLabel.font = UIFont(name: FontManager.GangWonBold, size: 14)
+        cell.selectionStyle = .none
         return cell
         
     }

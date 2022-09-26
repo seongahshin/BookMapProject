@@ -374,9 +374,9 @@ extension ViewController: MKMapViewDelegate {
 //    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+
         let ann = view.annotation as! MKPointAnnotation
-        print(ann.title!)
-        
+            
         for num in 0...data.count - 1 {
             let data = bookData.decode()[num]
             if ann.title == data.location {
@@ -388,21 +388,21 @@ extension ViewController: MKMapViewDelegate {
                 APIManager.shared.searchImage(query: infoList[0]) { value in
                     self.imageList = value
                 }
-                
                 print("-----blog-----")
 
                 APIManager.shared.searchBlog(query: infoList[0]) { value in
                     self.blogList = value
                 }
-                
+                    
                 infoButton.isHidden = false
                 infoButton.backgroundColor = .white
             }
         }
-        imageList.removeAll()
-        blogList.removeAll()
-        
+            imageList.removeAll()
+            blogList.removeAll()
+            
     }
+        
     
     
 }
