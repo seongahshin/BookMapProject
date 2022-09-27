@@ -80,7 +80,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         
         
-        
+        self.navigationController?.navigationBar.tintColor = Color.pointColor
         configureUI()
         print("데이터 전달 완료 \(storeInfoList)")
         print("데이터 전달 완료 \(storImageList)")

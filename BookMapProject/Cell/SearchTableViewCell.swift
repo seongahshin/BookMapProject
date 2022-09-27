@@ -16,11 +16,6 @@ class SearchTableViewCell: UITableViewCell {
         return view
     }()
     
-    var addressLabel: UILabel = {
-        let view = UILabel()
-        return view
-    }()
-    
     static var identifier: String {
         return "SearchTableViewCell"
     }
@@ -28,23 +23,15 @@ class SearchTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        [titleLabel,addressLabel].forEach {
+        [titleLabel].forEach {
             contentView.addSubview($0)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.leadingMargin.equalTo(5)
-            make.trailingMargin.equalTo(-5)
-            make.top.equalTo(5)
-            make.height.equalTo(20)
+            make.top.bottom.equalToSuperview().inset(15)
+            make.left.right.equalToSuperview().inset(20)
         }
         
-        addressLabel.snp.makeConstraints { make in
-            make.leadingMargin.equalTo(5)
-            make.trailingMargin.equalTo(-5)
-            make.top.equalTo(titleLabel.snp.bottom).offset(5)
-            make.height.equalTo(20)
-        }
     }
     
     required init?(coder: NSCoder) {
