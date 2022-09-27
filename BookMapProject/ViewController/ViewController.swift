@@ -73,6 +73,19 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if NetworkMonitor.shared.isConnected {
+            
+        } else {
+            let alert = UIAlertController(title: "실패", message: "데이터 연결이 되어있지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+            let badAction = UIAlertAction(title: "설정창으로 이동", style: .default) { (action) in
+                if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(appSetting)
+                }
+            }
+            alert.addAction(badAction)
+            present(alert, animated: false, completion: nil)
+        }
+        
         view.backgroundColor = backgroundColor
         
         // Location3. 프로토콜 연결

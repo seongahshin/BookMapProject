@@ -34,6 +34,7 @@
 		8CA91BAF28E1E6D800EE7B83 /* RemoveTMPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */; };
 		8CA91BBF28E2E8EC00EE7B83 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BBE28E2E8EC00EE7B83 /* CalendarTableViewCell.swift */; };
 		8CA91BC128E32BB200EE7B83 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BC028E32BB200EE7B83 /* DateFormatter.swift */; };
+		8CA91BC428E358F100EE7B83 /* NWNetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BC328E358F100EE7B83 /* NWNetworkMonitor.swift */; };
 		8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBB28D317050005035C /* DetailViewController.swift */; };
 		8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */; };
 		8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8CC4BCC028D361E20005035C /* Kingfisher */; };
@@ -77,6 +78,7 @@
 		8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveTMPExtension.swift; sourceTree = "<group>"; };
 		8CA91BBE28E2E8EC00EE7B83 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		8CA91BC028E32BB200EE7B83 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		8CA91BC328E358F100EE7B83 /* NWNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWNetworkMonitor.swift; sourceTree = "<group>"; };
 		8CC4BCBB28D317050005035C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,9 +152,18 @@
 			path = BookMapProject;
 			sourceTree = "<group>";
 		};
+		8CA91BC228E358C000EE7B83 /* Network Connection */ = {
+			isa = PBXGroup;
+			children = (
+				8CA91BC328E358F100EE7B83 /* NWNetworkMonitor.swift */,
+			);
+			path = "Network Connection";
+			sourceTree = "<group>";
+		};
 		8CC4BCC428D41C2C0005035C /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8CA91BC228E358C000EE7B83 /* Network Connection */,
 				8CC4BCD628D4B3360005035C /* Extension */,
 				8C6604C528D01DD20092D79D /* ViewController.swift */,
 				8CC4BCBB28D317050005035C /* DetailViewController.swift */,
@@ -333,6 +344,7 @@
 			files = (
 				8C6DA6EF28DAAE980070E171 /* CalendarViewController.swift in Sources */,
 				8C6604C628D01DD20092D79D /* ViewController.swift in Sources */,
+				8CA91BC428E358F100EE7B83 /* NWNetworkMonitor.swift in Sources */,
 				8CC4BCCD28D453360005035C /* WebViewController.swift in Sources */,
 				8CA91BBF28E2E8EC00EE7B83 /* CalendarTableViewCell.swift in Sources */,
 				8CC4BCD528D4B3300005035C /* StringExtension.swift in Sources */,
