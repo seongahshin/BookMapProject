@@ -267,21 +267,23 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     // 삭제
     @objc func deleteButtonClicked() {
         
-        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'")
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'").sorted(byKeyPath: "regTime", ascending: true)
         
-        if tasks.first != nil {
-            // 이미 존재함
-            
-            guard let lastImage = tasks.first?.objectID else { return }
-            print(lastImage)
-            deleteImageFromDocumentDirectory(imageName: "\(lastImage)")
-            
-            try! localRealm.write {
-                localRealm.delete(tasks)
+        if tasks.count > 0 {
+            for num in 0...tasks.count - 1 {
+                if tasks[num].realDate == clickedDate {
+                    
+                    try! localRealm.write {
+                        
+                        let lastImage = "\(tasks[num].objectID)"
+                        print(lastImage)
+                        deleteImageFromDocumentDirectory(imageName: lastImage)
+                        localRealm.delete(tasks[num])
+                    }
+                }
             }
-        
-            
         }
+        
         
         self.dismiss(animated: true)
         

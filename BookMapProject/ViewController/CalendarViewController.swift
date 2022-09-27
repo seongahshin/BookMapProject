@@ -32,7 +32,6 @@ class CalendarViewController: UIViewController {
     
     var tableView: UITableView = {
         let view = UITableView()
-        view.backgroundColor = .brown
         return view
     }()
     
@@ -184,4 +183,5 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
 

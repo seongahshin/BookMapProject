@@ -18,9 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let firstVC = UINavigationController(rootViewController: ViewController())
-//        let secondVC = UINavigationController(rootViewController: CalendarViewController())
-        let secondVC = CalendarViewController()
-        let thirdVC = UINavigationController(rootViewController: BookViewController())
+        let secondVC = UINavigationController(rootViewController: BookViewController())
+        let thirdVC = CalendarViewController()
+        
         let fourthVC = UINavigationController(rootViewController: SettingViewController())
         
         
@@ -32,11 +32,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             items[0].image = UIImage(systemName: "map")
             items[0].title = "지도"
             
-            items[1].image = UIImage(systemName: "calendar.badge.plus")
-            items[1].title = "캘린더"
+            items[1].image = UIImage(systemName: "photo.fill.on.rectangle.fill")
+            items[1].title = "포토"
             
-            items[2].image = UIImage(systemName: "photo.fill.on.rectangle.fill")
-            items[2].title = "포토"
+            items[2].image = UIImage(systemName: "calendar.badge.plus")
+            items[2].title = "캘린더"
             
             items[3].image = UIImage(systemName: "gear.circle")
             items[3].title = "설정"
