@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>포토</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>강원교육모두 Bold.otf</string>
@@ -15,7 +15,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>사용자의 현재 위치를 기반으로 가장 가까운 영화관 위치를 확인하기 위해서 권한이 필요합니다.</string>
+	<string>사용자의 현재 위치를 기반으로 가장 가까운 독립서점 위치를 확인하기 위해서 권한이 필요합니다.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

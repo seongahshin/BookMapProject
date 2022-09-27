@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     
     var searchBar: UISearchBar = {
         let view = UISearchBar()
+        view.placeholder = "찾고 싶은 독립서점명을 입력해주세요"
         return view
     }()
     
