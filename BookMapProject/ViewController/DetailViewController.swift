@@ -79,6 +79,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        
         configureUI()
         print("데이터 전달 완료 \(storeInfoList)")
         print("데이터 전달 완료 \(storImageList)")
@@ -97,6 +98,7 @@ class DetailViewController: UIViewController {
         saveButtonDesign()
         
     }
+    
     
     func saveButtonDesign() {
         let deleteTasks = localRealm.objects(BookStore.self).filter("name == '\(storeName.text!)'").first?.saved
@@ -231,7 +233,9 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
 
         if let imageURL = URL(string: storImageList[indexPath.item]) {
-            cell.imageView.kf.setImage(with: imageURL)
+//            cell.imageView.kf.setImage(with: imageURL)
+            cell.imageView.kf.indicatorType = .activity
+            cell.imageView.kf.setImage(with: imageURL, placeholder: nil, options: [.transition(.fade(1.2)), .forceTransition], completionHandler: nil)
         }
         
         return cell

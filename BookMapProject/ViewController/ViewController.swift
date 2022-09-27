@@ -118,6 +118,15 @@ class ViewController: UIViewController {
         ]
     }
     
+    @objc func transitionButton() {
+        let vc = DetailViewController()
+        vc.storeInfoList = infoList
+        vc.storImageList = imageList
+        vc.getBlogList = blogList
+        print(blogList)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func allbookstoreAnnotation() {
         
         for num in 0...data.count - 1 {
@@ -144,16 +153,6 @@ class ViewController: UIViewController {
         }
         
         
-    }
-
-    
-    @objc func transitionButton() {
-        let vc = DetailViewController()
-        vc.storeInfoList = infoList
-        vc.storImageList = imageList
-        vc.getBlogList = blogList
-        print(blogList)
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func locationUpdatedButton() {
