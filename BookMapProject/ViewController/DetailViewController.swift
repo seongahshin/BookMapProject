@@ -57,9 +57,11 @@ class DetailViewController: UIViewController {
         return view
     }()
     
-    var storeLink: UILabel = {
-        let view = UILabel()
+    var storeLink: UITextView = {
+        let view = UITextView()
         view.font = UIFont(name: FontManager.GangWonLight, size: 18)
+        view.dataDetectorTypes = .link
+        view.isEditable = false
         return view
     }()
 
@@ -85,6 +87,7 @@ class DetailViewController: UIViewController {
         print("데이터 전달 완료 \(storeInfoList)")
         print("데이터 전달 완료 \(storImageList)")
         labelDesign()
+        storeLink.text = storeInfoList.last
         view.backgroundColor = backgroundColor
         
         collectionView.delegate = self
@@ -112,11 +115,12 @@ class DetailViewController: UIViewController {
     }
     
     func labelDesign() {
-        let labelList: [UILabel] = [storeName, storeAddress, storeTime, storeLink]
+        let labelList: [UILabel] = [storeName, storeAddress, storeTime]
         
         for num in 0...labelList.count - 1 {
             labelList[num].text = storeInfoList[num]
         }
+        
     }
     
     func configureUI() {

@@ -225,32 +225,6 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             
         }
         
-        
-//        if tasks.first != nil {
-//            // 이미 존재함
-//
-//        } else {
-//            if textField.text == "" && textView.text == "" && imageView.image == nil {
-//                self.dismiss(animated: true)
-//                return
-//            } else {
-//                try! localRealm.write {
-//
-//                    let currentDate = Date().resultDate(date: Date())
-//
-//                    let currentTime = Date().resultTime(date: Date())
-//
-//                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: currentDate, regTime: currentTime, realDate: "\(Date())")
-//                    localRealm.add(task)
-//                    if imageView.image != nil {
-//                        saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
-//                    }
-//                    self.dismiss(animated: true)
-//            }
-//
-//            }
-//        }
-        
         print(tasks)
     }
     

@@ -131,41 +131,54 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        print(#function)
-        
-        if isEditMode {
-           let vc = DetailViewController()
-           
-           for num in 0...data.count - 1 {
-               if data[num].location == nameSearchListFilter[indexPath.row] {
-                   infoList = [nameSearchListFilter[indexPath.row], data[num].address, data[num].time, data[num].link]
-                   dump(infoList)
+       
+       if !NetworkMonitor.shared.isConnected {
+           let alert = UIAlertController(title: "실패", message: "데이터 연결이 되어있지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+           let badAction = UIAlertAction(title: "설정창으로 이동", style: .default) { (action) in
+               if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                   UIApplication.shared.open(appSetting)
                }
            }
-           
-           vc.storeInfoList = infoList
-           
-           DispatchQueue.global().sync {
+           alert.addAction(badAction)
+           present(alert, animated: false, completion: nil)
+       } else {
+           if isEditMode {
+               let vc = DetailViewController()
                
-               APIManager.shared.searchImage(query: infoList[0]) { value in
-                   self.imageList = value
-                   vc.storImageList = value
+               for num in 0...data.count - 1 {
+                   if data[num].location == nameSearchListFilter[indexPath.row] {
+                       infoList = [nameSearchListFilter[indexPath.row], data[num].address, data[num].time, data[num].link]
+                       dump(infoList)
+                   }
                }
-           }
-           
-           DispatchQueue.global().sync {
                
-               APIManager.shared.searchBlog(query: infoList[0]) { value in
-                   self.blogList = value
-                   vc.getBlogList = value
-                   self.navigationController?.pushViewController(vc, animated: true)
+               vc.storeInfoList = infoList
+               
+               DispatchQueue.global().sync {
+                   
+                   APIManager.shared.searchImage(query: infoList[0]) { value in
+                       self.imageList = value
+                       vc.storImageList = value
+                   }
                }
-           }
-           
-            print("데이터 전달")
-            
-            tableView.deselectRow(at: indexPath, animated: true)
+               
+               DispatchQueue.global().sync {
+                   
+                   APIManager.shared.searchBlog(query: infoList[0]) { value in
+                       self.blogList = value
+                       vc.getBlogList = value
+                       self.navigationController?.pushViewController(vc, animated: true)
+                   }
+               }
+               
+                print("데이터 전달")
+                
+                tableView.deselectRow(at: indexPath, animated: true)
 
+           }
        }
+        
+         
        
        
         
