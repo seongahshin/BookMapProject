@@ -86,6 +86,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
         vc.editContent = task.editContent!
         vc.fileName = "\(task.objectID)"
         vc.date = task.regDate
+        vc.clickedDate = task.realDate
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }

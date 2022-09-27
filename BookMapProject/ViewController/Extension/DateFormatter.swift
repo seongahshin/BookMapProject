@@ -12,6 +12,7 @@ extension Date {
     
     func resultDate(date: Date) -> String {
         let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR")
         formatter.dateFormat = "yyyy년 MM월 dd일"
         let currentDate = formatter.string(from: date)
         return currentDate
@@ -19,6 +20,7 @@ extension Date {
     
     func resultTime(date: Date) -> String {
         let timeformatter = DateFormatter()
+        timeformatter.locale = Locale(identifier: "ko_KR")
         timeformatter.dateFormat = "HH:mm"
         let currentTime = timeformatter.string(from: date)
         return currentTime

@@ -24,6 +24,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     var editContent = ""
     var fileName = ""
     var date = ""
+    var clickedDate = ""
     
     var closeButton: UIButton = {
         let view = UIButton()
@@ -183,23 +184,10 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     @objc func endButtonClicked() {
         print("endButtonClicked")
         
-        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'")
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'").sorted(byKeyPath: "regTime", ascending: true)
         
-        if tasks.first != nil {
-            // 이미 존재함
-            try! localRealm.write {
-                tasks.first?.editTitle = textField.text
-                tasks.first?.editContent = textView.text
-                
-                guard let lastImage = tasks.first?.objectID else { return }
-                print(lastImage)
-                saveImageToDocumentDirectory(imageName: "\(lastImage).png", image: imageView.image!)
-                
-                
-            }
-            self.dismiss(animated: true)
-            
-        } else {
+        if tasks.count == 0 {
+            // 새로 입력
             if textField.text == "" && textView.text == "" && imageView.image == nil {
                 self.dismiss(animated: true)
                 return
@@ -208,7 +196,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
                     
                     let currentDate = Date().resultDate(date: Date())
                     
-                    let currentTime = Date().resultDate(date: Date())
+                    let currentTime = Date().resultTime(date: Date())
                     
                     let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: currentDate, regTime: currentTime, realDate: "\(Date())")
                     localRealm.add(task)
@@ -216,10 +204,55 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
                         saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
                     }
                     self.dismiss(animated: true)
-            }
+                }
                 
             }
+        } else {
+            // 기존에 있는 거 수정
+            for num in 0...tasks.count - 1 {
+                if tasks[num].realDate == clickedDate {
+                    try! localRealm.write {
+                        tasks.first?.editTitle = textField.text
+                        tasks.first?.editContent = textView.text
+                        
+                        guard let lastImage = tasks.first?.objectID else { return }
+                        print(lastImage)
+                        saveImageToDocumentDirectory(imageName: "\(lastImage).png", image: imageView.image!)
+                        
+                        
+                    }
+                    self.dismiss(animated: true)
+                } 
+                
+            }
+            
         }
+        
+        
+//        if tasks.first != nil {
+//            // 이미 존재함
+//
+//        } else {
+//            if textField.text == "" && textView.text == "" && imageView.image == nil {
+//                self.dismiss(animated: true)
+//                return
+//            } else {
+//                try! localRealm.write {
+//
+//                    let currentDate = Date().resultDate(date: Date())
+//
+//                    let currentTime = Date().resultTime(date: Date())
+//
+//                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: currentDate, regTime: currentTime, realDate: "\(Date())")
+//                    localRealm.add(task)
+//                    if imageView.image != nil {
+//                        saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
+//                    }
+//                    self.dismiss(animated: true)
+//            }
+//
+//            }
+//        }
         
         print(tasks)
     }

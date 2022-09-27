@@ -156,11 +156,33 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTableViewCell.identifier, for: indexPath) as! CalendarTableViewCell
+        guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return cell }
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(pickedDate)'").sorted(byKeyPath: "regTime", ascending: true)
         cell.backgroundColor = .gray
+        cell.CalendarImageView.image = loadImageFromDocumentDirectory(imageName: "\(tasks[indexPath.row].objectID)")
+        cell.CalendartitleLabel.text = tasks[indexPath.row].editTitle
+        cell.CalendarcontentLabel.text = tasks[indexPath.row].editContent
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = EditViewController()
+        guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(pickedDate)'").sorted(byKeyPath: "regTime", ascending: true)
+        let task = tasks[indexPath.row]
+        vc.editTitle = task.editTitle!
+        vc.editContent = task.editContent!
+        vc.fileName = "\(task.objectID)"
+        vc.date = task.regDate
+        vc.clickedDate = task.realDate
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+        
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
 }
 
