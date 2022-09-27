@@ -134,6 +134,19 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         
        if !isEditMode {
            
+           if NetworkMonitor.shared.isConnected {
+               
+           } else {
+               let alert = UIAlertController(title: "실패", message: "데이터 연결이 되어있지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+               let badAction = UIAlertAction(title: "설정창으로 이동", style: .default) { (action) in
+                   if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                       UIApplication.shared.open(appSetting)
+                   }
+               }
+               alert.addAction(badAction)
+               present(alert, animated: false, completion: nil)
+           }
+           
            let vc = DetailViewController()
            infoList = [nameSearchList[indexPath.row], data[indexPath.row].address, data[indexPath.row].time, data[indexPath.row].link]
 
@@ -161,6 +174,20 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.deselectRow(at: indexPath, animated: true)
 
        } else {
+           
+           if NetworkMonitor.shared.isConnected {
+               
+           } else {
+               let alert = UIAlertController(title: "실패", message: "데이터 연결이 되어있지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+               let badAction = UIAlertAction(title: "설정창으로 이동", style: .default) { (action) in
+                   if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                       UIApplication.shared.open(appSetting)
+                   }
+               }
+               alert.addAction(badAction)
+               present(alert, animated: false, completion: nil)
+           }
+           
            let vc = DetailViewController()
            
            for num in 0...data.count - 1 {

@@ -80,6 +80,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         
         
+        
         configureUI()
         print("데이터 전달 완료 \(storeInfoList)")
         print("데이터 전달 완료 \(storImageList)")

@@ -73,25 +73,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if NetworkMonitor.shared.isConnected {
-            
-        } else {
-            let alert = UIAlertController(title: "실패", message: "데이터 연결이 되어있지 않습니다.", preferredStyle: UIAlertController.Style.alert)
-            let badAction = UIAlertAction(title: "설정창으로 이동", style: .default) { (action) in
-                if let appSetting = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(appSetting)
-                }
-            }
-            alert.addAction(badAction)
-            present(alert, animated: false, completion: nil)
-        }
-        
         view.backgroundColor = backgroundColor
         
         // Location3. 프로토콜 연결
         locationManager.delegate = self
         mapView.delegate = self
-        
         mapView.showsUserLocation = true
         mapView.setUserTrackingMode(.follow, animated: true)
         
@@ -133,11 +119,23 @@ class ViewController: UIViewController {
     
     @objc func transitionButton() {
         let vc = DetailViewController()
-        vc.storeInfoList = infoList
-        vc.storImageList = imageList
-        vc.getBlogList = blogList
-        print(blogList)
-        self.navigationController?.pushViewController(vc, animated: true)
+        
+        if !NetworkMonitor.shared.isConnected {
+            let alert = UIAlertController(title: "실패", message: "데이터 연결이 되어있지 않습니다.", preferredStyle: UIAlertController.Style.alert)
+            let badAction = UIAlertAction(title: "설정창으로 이동", style: .default) { (action) in
+                if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(appSetting)
+                }
+            }
+            alert.addAction(badAction)
+            present(alert, animated: false, completion: nil)
+        } else {
+            vc.storeInfoList = infoList
+            vc.storImageList = imageList
+            vc.getBlogList = blogList
+            print(blogList)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func allbookstoreAnnotation() {
