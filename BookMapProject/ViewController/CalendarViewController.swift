@@ -21,15 +21,6 @@ class CalendarViewController: UIViewController {
     
     var calendar = FSCalendar()
     
-    var tutorialLabel: UILabel = {
-        let view = UILabel()
-        view.textAlignment = .center
-        view.text = "날짜를 클릭해서 독립서점 방문기록을 남겨보세요 :)"
-        view.font = UIFont(name: FontManager.GangWonLight, size: 13)
-        view.textColor = .lightGray
-        return view
-    }()
-    
     var tableView: UITableView = {
         let view = UITableView()
         return view
@@ -54,7 +45,7 @@ class CalendarViewController: UIViewController {
     
     func configureUI() {
         
-        [calendar,tutorialLabel, tableView].forEach {
+        [calendar, tableView].forEach {
             view.addSubview($0)
         }
         
@@ -63,12 +54,6 @@ class CalendarViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.height / 2 - 20)
-        }
-        
-        tutorialLabel.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.left.right.equalToSuperview()
         }
 
         
@@ -121,7 +106,6 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         let currentDate = Date().resultDate(date: date)
         print(currentDate)
         UserDefaults.standard.set(currentDate, forKey: "SelectedDate")
-        tutorialLabel.isHidden = true
         tableView.reloadData()
         
         

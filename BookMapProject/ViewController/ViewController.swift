@@ -384,8 +384,8 @@ extension ViewController: MKMapViewDelegate {
 //    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-
-        let ann = view.annotation as! MKPointAnnotation
+        
+        guard let ann = view.annotation as? MKPointAnnotation else { return }
             
         for num in 0...data.count - 1 {
             let data = bookData.decode()[num]

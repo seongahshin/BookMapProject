@@ -181,7 +181,7 @@ class DetailViewController: UIViewController {
         
         tableView.snp.makeConstraints { make in
             make.left.right.equalTo(contentView)
-            make.top.equalTo(collectionView.snp.bottom).offset(15)
+            make.top.equalTo(collectionView.snp.bottom)
             make.height.equalTo(650)
             make.bottom.equalTo(contentView).offset(-20)
         }

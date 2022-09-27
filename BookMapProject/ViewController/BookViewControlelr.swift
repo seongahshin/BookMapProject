@@ -108,12 +108,14 @@ extension BookViewController: UICollectionViewDelegateFlowLayout {
 //        let width = collectionView.frame.width
 //        let size = CGSize(width: width, height: 20)
 //        return size
-        return CGSize(width: 350, height: 500)
+//        return CGSize(width: 266, height: 380)
+//        return CGSize(width: 280, height: 400)
+        return CGSize(width: 294, height: 420)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets { 
-        return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        return UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 50)
     }
     
 }

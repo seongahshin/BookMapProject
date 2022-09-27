@@ -116,44 +116,41 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         imageView.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.top.equalTo(closeButton.snp.bottom).offset(20)
-            make.height.equalTo(300)
-            make.width.equalTo(300)
+            make.top.equalTo(closeButton.snp.bottom).offset(40)
+            make.left.right.equalToSuperview().inset(40)
+            make.height.equalTo(imageView.snp.width)
         }
         
         addButton.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
             make.height.width.equalTo(40)
         }
-        
-        
+//
+//
         textField.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.top.equalTo(imageView.snp.bottom).offset(8)
             make.width.equalTo(imageView.snp.width)
             make.height.equalTo(40)
         }
-
+//
         textView.snp.makeConstraints { make in
             make.centerX.equalTo(view)
             make.top.equalTo(textField.snp.bottom).offset(8)
             make.width.equalTo(textField.snp.width)
-            make.height.equalTo(250)
+            make.height.equalTo(135)
         }
-
+//
         deleteButton.snp.makeConstraints { make in
             make.top.equalTo(textView.snp.bottom).offset(8)
             make.leadingMargin.equalTo(textView.snp.leadingMargin)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
-            make.width.equalTo(deleteButton.snp.height)
+            make.width.height.equalTo(40)
         }
 
         endButton.snp.makeConstraints { make in
             make.top.equalTo(textView.snp.bottom).offset(8)
             make.trailingMargin.equalTo(textView.snp.trailingMargin)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
-            make.width.equalTo(endButton.snp.height)
+            make.width.height.equalTo(40)
         }
 
         

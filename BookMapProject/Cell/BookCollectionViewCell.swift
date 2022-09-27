@@ -17,13 +17,13 @@ class BookCollectionViewCell: UICollectionViewCell {
     
     var titleLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name: FontManager.GangWonBold, size: 20)
+        view.font = UIFont(name: FontManager.GangWonBold, size: 15)
         return view
     }()
     
     var contentLabel: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name: FontManager.GangWonLight, size: 15)
+        view.font = UIFont(name: FontManager.GangWonLight, size: 12)
         view.numberOfLines = 0
         view.sizeToFit()
         return view
@@ -42,9 +42,9 @@ class BookCollectionViewCell: UICollectionViewCell {
         
         imageView.snp.makeConstraints { make in
             
-            make.top.equalToSuperview().inset(20)
-            make.centerX.equalToSuperview()
-            make.height.width.equalTo(320)
+            make.top.equalToSuperview().inset(10)
+            make.left.right.equalToSuperview().inset(10)
+            make.height.equalTo(imageView.snp.width)
         }
         
         titleLabel.snp.makeConstraints { make in
