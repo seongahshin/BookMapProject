@@ -158,7 +158,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTableViewCell.identifier, for: indexPath) as! CalendarTableViewCell
         guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return cell }
         let tasks = localRealm.objects(editData.self).filter("regDate == '\(pickedDate)'").sorted(byKeyPath: "regTime", ascending: true)
-        cell.backgroundColor = .gray
         cell.CalendarImageView.image = loadImageFromDocumentDirectory(imageName: "\(tasks[indexPath.row].objectID)")
         cell.CalendartitleLabel.text = tasks[indexPath.row].editTitle
         cell.CalendarcontentLabel.text = tasks[indexPath.row].editContent

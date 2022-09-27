@@ -212,17 +212,17 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             for num in 0...tasks.count - 1 {
                 if tasks[num].realDate == clickedDate {
                     try! localRealm.write {
-                        tasks.first?.editTitle = textField.text
-                        tasks.first?.editContent = textView.text
+                        tasks[num].editTitle = textField.text
+                        tasks[num].editContent = textView.text
                         
-                        guard let lastImage = tasks.first?.objectID else { return }
+                        let lastImage = "\(tasks[num].objectID)"
                         print(lastImage)
                         saveImageToDocumentDirectory(imageName: "\(lastImage).png", image: imageView.image!)
                         
                         
                     }
                     self.dismiss(animated: true)
-                } 
+                }
                 
             }
             

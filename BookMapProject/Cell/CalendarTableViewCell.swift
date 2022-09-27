@@ -14,18 +14,20 @@ class CalendarTableViewCell: UITableViewCell {
     var CalendarImageView: UIImageView = {
         let view = UIImageView()
         view.backgroundColor = .black
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 10
         return view
     }()
     
     var CalendartitleLabel: UILabel = {
         let view = UILabel()
-        view.backgroundColor = .green
+        view.font = UIFont(name: FontManager.GangWonBold, size: 14)
         return view
     }()
     
     var CalendarcontentLabel: UILabel = {
         let view = UILabel()
-        view.backgroundColor = .green
+        view.font = UIFont(name: FontManager.GangWonLight, size: 12)
         return view
     }()
     
@@ -55,7 +57,7 @@ class CalendarTableViewCell: UITableViewCell {
         CalendarcontentLabel.snp.makeConstraints { make in
             make.left.equalTo(CalendarImageView.snp.right).offset(10)
             make.right.equalToSuperview().inset(10)
-            make.top.equalTo(CalendartitleLabel.snp.bottom).offset(10)
+            make.top.equalTo(CalendartitleLabel.snp.bottom)
             make.height.equalTo(25)
         }
         
