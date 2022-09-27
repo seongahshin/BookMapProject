@@ -206,8 +206,11 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             } else {
                 try! localRealm.write {
                     
-                    print("dmdkfjsdljfklsjklsfjklsfdj")
-                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: "\(Date())", writeDate: Date())
+                    let currentDate = Date().resultDate(date: Date())
+                    
+                    let currentTime = Date().resultDate(date: Date())
+                    
+                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: currentDate, regTime: currentTime, realDate: "\(Date())")
                     localRealm.add(task)
                     if imageView.image != nil {
                         saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)

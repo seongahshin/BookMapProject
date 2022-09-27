@@ -33,7 +33,8 @@ class BookViewController: UIViewController {
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
         self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
-        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate", ascending: false)
+        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
+        print(tasks)
     }
     
     override func viewWillAppear(_ animated: Bool) {

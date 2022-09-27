@@ -15,7 +15,8 @@ class CalendarViewController: UIViewController {
     
     var events: [Date] = []
     let localRealm = try! Realm()
-    var tasks: Results<CalendarData>!
+    var tasks: Results<editData>!
+    
     let placeholderText = "독립서점을 방문한 오늘의 이야기를 기록해볼까요?"
     
     var calendar = FSCalendar()
@@ -29,31 +30,9 @@ class CalendarViewController: UIViewController {
         return view
     }()
     
-    var contentView: UIView = {
-        let view = UIView()
-        view.isHidden = true
-        return view
-    }()
-    
-    var memoTitle: UITextField = {
-        let view = UITextField().textFieldDesign()
-        view.placeholder = "방문한 서점의 이름이 궁금해요!"
-        return view
-    }()
-    
-    var memoContent: UITextView = {
-        let view = UITextView().textViewDesign()
-        return view
-    }()
-    
-    var saveButton: UIButton = {
-        let view = UIButton()
-        view.backgroundColor = Color.saveButtonColor
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 8
-        view.setTitle("저장하기", for: .normal)
-        view.titleLabel?.font = UIFont(name: FontManager.GangWonBold, size: 14)
-        view.setTitleColor(.lightGray, for: .normal)
+    var tableView: UITableView = {
+        let view = UITableView()
+        view.backgroundColor = .brown
         return view
     }()
     
@@ -64,19 +43,20 @@ class CalendarViewController: UIViewController {
         calendar.delegate = self
         calendar.dataSource = self
         
-        memoTitle.delegate = self
-        
-        saveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
+        tableView.register(CalendarTableViewCell.self, forCellReuseIdentifier: CalendarTableViewCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        calendar.reloadData()
+        tableView.reloadData()
     }
     
     func configureUI() {
         
-        [calendar,tutorialLabel, contentView].forEach {
+        [calendar,tutorialLabel, tableView].forEach {
             view.addSubview($0)
-        }
-        
-        [memoTitle, memoContent, saveButton].forEach {
-            contentView.addSubview($0)
         }
         
         
@@ -91,65 +71,13 @@ class CalendarViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
         }
+
         
-        contentView.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(calendar.snp.bottom).offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
         }
-        
-        memoTitle.snp.makeConstraints { make in
-            make.top.left.right.equalTo(contentView).inset(15)
-            make.height.equalTo(40)
-        }
-        
-        memoContent.snp.makeConstraints { make in
-            make.left.right.equalTo(contentView).inset(15)
-            make.top.equalTo(memoTitle.snp.bottom).offset(10)
-            make.height.equalTo(180)
-        }
-        
-        saveButton.snp.makeConstraints { make in
-            make.top.equalTo(memoContent.snp.bottom).offset(10)
-            make.left.right.equalTo(contentView).inset(15)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
-        }
-        
-    }
-    
-    @objc func saveButtonClicked()  {
-        
-        guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
-        let tasks = localRealm.objects(CalendarData.self).filter("memoregDate == '\(pickedDate)'")
-        
-        if tasks.first != nil {
-            // 이미 날짜가 존재할 때 (수정)
-            try! localRealm.write {
-                tasks.first?.memoTitle = memoTitle.text
-                tasks.first?.memoContent = memoContent.text
-            }
-            
-            if tasks.first?.memoTitle == "" && tasks.first?.memoContent == "" {
-                try! localRealm.write {
-                    localRealm.delete(tasks)
-                }
-            }
-            
-            
-        } else {
-            // 날짜 존재하지 않을 때 (새로 저장)
-            let task = CalendarData(memoregDate: pickedDate, memoTitle: memoTitle.text, memoContent: memoContent.text)
-            
-            if memoTitle.text != "" || memoContent.text != "" {
-                try! localRealm.write {
-                    localRealm.add(task)
-                }
-            }
-            
-            
-        }
-        print(tasks)
-        calendar.reloadData()
         
     }
     
@@ -191,35 +119,48 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-        UserDefaults.standard.set("\(date)", forKey: "SelectedDate")
-        
+        let currentDate = Date().resultDate(date: date)
+        print(currentDate)
+        UserDefaults.standard.set(currentDate, forKey: "SelectedDate")
         tutorialLabel.isHidden = true
-        contentView.isHidden = false
+        tableView.reloadData()
         
-        guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
-        let tasks = localRealm.objects(CalendarData.self).filter("memoregDate == '\(pickedDate)'")
         
-        if tasks.first != nil {
-            memoTitle.text = tasks.first?.memoTitle
-            memoContent.text = tasks.first?.memoContent
-        } else {
-            memoTitle.text = ""
-            memoContent.text = ""
-        }
         
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        let tasks = localRealm.objects(CalendarData.self).filter("memoregDate == '\(date)'")
 
-        if tasks.first != nil {
-            // 데이터 존재
-            return 1
+        let currentDate = Date().resultDate(date: date)
+        
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(currentDate)'")
+        
+        if tasks.count > 0 {
+            return tasks.count
         } else {
             return 0
         }
-        
-        
     }
+}
+
+extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return 0 }
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(pickedDate)'")
+        print(tasks)
+        return tasks.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CalendarTableViewCell.identifier, for: indexPath) as! CalendarTableViewCell
+        cell.backgroundColor = .gray
+        return cell
+    }
+    
+    
+    
 }
 

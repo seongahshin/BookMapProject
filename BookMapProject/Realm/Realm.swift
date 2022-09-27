@@ -25,36 +25,22 @@ class BookStore: Object {
     
 }
 
-class CalendarData: Object {
-    @Persisted var memoregDate: String
-    @Persisted var memoTitle: String?
-    @Persisted var memoContent: String?
-    
-    @Persisted(primaryKey: true) var objectId: ObjectId
-    
-    convenience init(memoregDate: String, memoTitle: String?, memoContent: String?) {
-        self.init()
-        self.memoregDate = memoregDate
-        self.memoTitle = memoTitle
-        self.memoContent = memoContent
-    }
-    
-}
-
 class editData: Object {
     @Persisted var editTitle: String?
     @Persisted var editContent: String?
     @Persisted var regDate: String
-    @Persisted var writeDate: Date
+    @Persisted var regTime: String
+    @Persisted var realDate: String
     @Persisted(primaryKey: true) var objectID: ObjectId
     
-    convenience init(editTitle: String?, editContent: String?, regDate: String, writeDate: Date) {
+    convenience init(editTitle: String?, editContent: String?, regDate: String, regTime: String, realDate: String) {
         
         self.init()
         self.editTitle = editTitle
         self.editContent = editContent
         self.regDate = regDate
-        self.writeDate = writeDate
+        self.regTime = regTime
+        self.realDate = realDate
     }
     
 }
