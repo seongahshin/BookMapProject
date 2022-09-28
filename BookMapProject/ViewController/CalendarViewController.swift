@@ -41,7 +41,7 @@ class CalendarViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.isHidden = true
+//        tableView.isHidden = true
         calendar.reloadData()
         tableView.reloadData()
     }

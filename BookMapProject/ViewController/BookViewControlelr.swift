@@ -84,14 +84,16 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = EditViewController()
-//        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
-//        let task = tasks[indexPath.row]
-//        vc.editTitle = task.editTitle!
-//        vc.editContent = task.editContent!
-//        vc.fileName = "\(task.objectID)"
-//        vc.date = task.regDate
-//        vc.clickedDate = task.realDate
-//        vc.modalPresentationStyle = .fullScreen
+        let tasks = localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
+        let task = tasks[indexPath.row]
+        vc.index = indexPath.item
+        vc.editTitle = task.editTitle!
+        vc.editContent = task.editContent!
+        vc.fileName = "\(task.objectID)"
+        vc.date = task.regDate
+        UserDefaults.standard.set(task.regDate, forKey: "SelectedDate")
+        vc.clickedDate = task.realDate
+        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
     

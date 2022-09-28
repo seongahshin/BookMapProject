@@ -74,7 +74,6 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     
     override func viewDidLoad() {
         
-        
         view.backgroundColor = .white
         configureUI()
         
@@ -99,6 +98,15 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         
         self.imagePicker.sourceType = .photoLibrary // 앨범에서 가져옴
         self.imagePicker.delegate = self // picker delegate
+        
+        print(index)
+        print(editTitle)
+        print(editContent)
+        print(fileName)
+        print(date)
+        print(clickedDate)
+        guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
+        print(click)
     }
     
     func configureUI() {
@@ -243,18 +251,22 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     // 삭제
     @objc func deleteButtonClicked() {
         
-        guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
-        let tasks = localRealm.objects(editData.self).filter("regDate == '\(click)'").sorted(byKeyPath: "regTime", ascending: false)
+        if let click = UserDefaults.standard.string(forKey: "SelectedDate") {
+            let tasks = localRealm.objects(editData.self).filter("regDate == '\(click)'").sorted(byKeyPath: "regTime", ascending: false)
+            
+            try! localRealm.write {
+                print("locarRealm 시작 \(tasks[index])")
+                let lastImage = "\(tasks[index].objectID)"
+                deleteImageFromDocumentDirectory(imageName: lastImage)
+                localRealm.delete(tasks[index])
+                print("최종 \(tasks)")
+            }
+            print("not else")
+            print(tasks)
+        }
+        
 //        print("처음 들어갈 때 \(tasks)")
 //        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
-        
-        try! localRealm.write {
-            print("locarRealm 시작 \(tasks[index])")
-            let lastImage = "\(tasks[index].objectID)"
-            deleteImageFromDocumentDirectory(imageName: lastImage)
-            localRealm.delete(tasks[index])
-            print("최종 \(tasks)")
-        }
         
         self.dismiss(animated: true)
         
