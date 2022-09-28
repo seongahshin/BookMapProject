@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let tabBarController = UITabBarController()
         tabBarController.setViewControllers([firstVC, secondVC, thirdVC, fourthVC], animated: true)
-        tabBarController.tabBar.tintColor = Color.pointColor
+        tabBarController.tabBar.tintColor = Color.memoColor
         
         if let items = tabBarController.tabBar.items {
             items[0].image = UIImage(systemName: "map")

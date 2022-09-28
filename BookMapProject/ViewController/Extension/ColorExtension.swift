@@ -23,10 +23,6 @@ extension UIColor {
 }
 
 class Color {
-
-    static var pointColor: UIColor {
-        return .yellow
-    }
     
     static var calendarDateColor: UIColor {
         return UIColor(r: 204, g: 204, b: 051)

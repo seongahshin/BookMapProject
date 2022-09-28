@@ -32,7 +32,7 @@ class BookViewController: UIViewController {
         configureUI()
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
-        self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
+        self.navigationItem.rightBarButtonItem?.tintColor = Color.memoColor
         tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         print(tasks)
     }

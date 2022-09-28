@@ -41,7 +41,7 @@ class DetailViewController: UIViewController {
     
     var saveButton: UIButton = {
         let view = UIButton()
-        view.tintColor = Color.pointColor
+        view.tintColor = Color.memoColor
         return view
     }()
     
@@ -82,7 +82,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         
         
-        self.navigationController?.navigationBar.tintColor = Color.pointColor
+        self.navigationController?.navigationBar.tintColor = Color.memoColor
         configureUI()
         print("데이터 전달 완료 \(storeInfoList)")
         print("데이터 전달 완료 \(storImageList)")

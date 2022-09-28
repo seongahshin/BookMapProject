@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         let view = UIButton()
         view.backgroundColor = .white
         view.setImage(UIImage(systemName: "scope"), for: .normal)
-        view.tintColor = Color.pointColor
+        view.tintColor = Color.memoColor
         view.clipsToBounds = true
         view.layer.cornerRadius = 30
         return view
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         
         if #available(iOS 14.0, *) {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(systemName: "line.3.horizontal"), primaryAction: nil, menu: menu)
-            self.navigationItem.rightBarButtonItem?.tintColor = Color.pointColor
+            self.navigationItem.rightBarButtonItem?.tintColor = Color.memoColor
         }
     }
     

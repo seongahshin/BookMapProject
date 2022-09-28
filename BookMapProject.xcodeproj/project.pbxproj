@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0655BC28E3DC3C008CE913 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8C0655BB28E3DC3C008CE913 /* Realm */; };
+		8C0655BE28E3DC3C008CE913 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8C0655BD28E3DC3C008CE913 /* RealmSwift */; };
 		8C6604C228D01DD20092D79D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C128D01DD20092D79D /* AppDelegate.swift */; };
 		8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C328D01DD20092D79D /* SceneDelegate.swift */; };
 		8C6604C628D01DD20092D79D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C528D01DD20092D79D /* ViewController.swift */; };
@@ -49,8 +51,6 @@
 		8CC4BCDB28D4BE1D0005035C /* 강원교육모두 Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8CC4BCD828D4BDFD0005035C /* 강원교육모두 Light.otf */; };
 		8CC4BCDD28D4C0150005035C /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCDC28D4C0150005035C /* FontManager.swift */; };
 		8CEA435F28D876FC00BDEAEE /* Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CEA435E28D876FB00BDEAEE /* Realm.swift */; };
-		8CEA436328D8775400BDEAEE /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 8CEA436228D8775400BDEAEE /* Realm */; };
-		8CEA436528D8775400BDEAEE /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 8CEA436428D8775400BDEAEE /* RealmSwift */; };
 		8CEA436928D89FFC00BDEAEE /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CEA436828D89FFC00BDEAEE /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -100,15 +100,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CEA436528D8775400BDEAEE /* RealmSwift in Frameworks */,
 				8C6DA6F428DAD1550070E171 /* IQKeyboardManagerSwift in Frameworks */,
 				8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */,
 				8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */,
+				8C0655BE28E3DC3C008CE913 /* RealmSwift in Frameworks */,
 				8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */,
 				8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */,
 				8C7A1C4228E07A8500309EF0 /* Mantis in Frameworks */,
+				8C0655BC28E3DC3C008CE913 /* Realm in Frameworks */,
 				8C6DA6ED28DAAD7B0070E171 /* FSCalendar in Frameworks */,
-				8CEA436328D8775400BDEAEE /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,11 +268,11 @@
 				8C9BDE6828D061A300A0FB00 /* SwiftyJSON */,
 				8C9BDE6B28D1A41C00A0FB00 /* SnapKit */,
 				8CC4BCC028D361E20005035C /* Kingfisher */,
-				8CEA436228D8775400BDEAEE /* Realm */,
-				8CEA436428D8775400BDEAEE /* RealmSwift */,
 				8C6DA6EC28DAAD7B0070E171 /* FSCalendar */,
 				8C6DA6F328DAD1550070E171 /* IQKeyboardManagerSwift */,
 				8C7A1C4128E07A8500309EF0 /* Mantis */,
+				8C0655BB28E3DC3C008CE913 /* Realm */,
+				8C0655BD28E3DC3C008CE913 /* RealmSwift */,
 			);
 			productName = BookMapProject;
 			productReference = 8C6604BE28D01DD20092D79D /* BookMapProject.app */;
@@ -307,10 +307,10 @@
 				8C9BDE6728D061A300A0FB00 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				8C9BDE6A28D1A41C00A0FB00 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				8CC4BCBF28D361E20005035C /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				8CEA436128D8775400BDEAEE /* XCRemoteSwiftPackageReference "realm-swift" */,
 				8C6DA6EB28DAAD7A0070E171 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				8C6DA6F228DAD1540070E171 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				8C7A1C4028E07A8400309EF0 /* XCRemoteSwiftPackageReference "Mantis" */,
+				8C0655BA28E3DC3C008CE913 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 8C6604BF28D01DD20092D79D /* Products */;
 			projectDirPath = "";
@@ -513,7 +513,7 @@
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookMapProject/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "북맵";
+				INFOPLIST_KEY_CFBundleDisplayName = "북트립";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Storyboard;
@@ -546,7 +546,7 @@
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookMapProject/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "북맵";
+				INFOPLIST_KEY_CFBundleDisplayName = "북트립";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Storyboard;
@@ -593,6 +593,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		8C0655BA28E3DC3C008CE913 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.30.0;
+			};
+		};
 		8C6DA6EB28DAAD7A0070E171 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
@@ -649,17 +657,19 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		8CEA436128D8775400BDEAEE /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		8C0655BB28E3DC3C008CE913 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C0655BA28E3DC3C008CE913 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		8C0655BD28E3DC3C008CE913 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C0655BA28E3DC3C008CE913 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		8C6DA6EC28DAAD7B0070E171 /* FSCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8C6DA6EB28DAAD7A0070E171 /* XCRemoteSwiftPackageReference "FSCalendar" */;
@@ -694,16 +704,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CC4BCBF28D361E20005035C /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
-		};
-		8CEA436228D8775400BDEAEE /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CEA436128D8775400BDEAEE /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		8CEA436428D8775400BDEAEE /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8CEA436128D8775400BDEAEE /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

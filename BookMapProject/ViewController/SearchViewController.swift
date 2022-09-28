@@ -43,8 +43,7 @@ class SearchViewController: UIViewController {
         }
         
         setupSearchController()
-        self.navigationController?.navigationBar.tintColor = Color.pointColor
-        
+        self.navigationController?.navigationBar.tintColor = Color.memoColor
     }
     
     override func viewDidAppear(_ animated: Bool) {

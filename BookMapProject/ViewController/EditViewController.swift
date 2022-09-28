@@ -12,7 +12,6 @@ import PhotosUI
 import SnapKit
 import RealmSwift
 import Mantis
-import Zip
 
 class EditViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -28,7 +27,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     
     var closeButton: UIButton = {
         let view = UIButton()
-        view.tintColor = Color.pointColor
+        view.tintColor = Color.memoColor
         return view
     }()
     
@@ -277,7 +276,10 @@ extension EditViewController : UIImagePickerControllerDelegate {
             print("아직 결정하지 않은 상태")
             PHPhotoLibrary.requestAuthorization { state in
                 if state == .authorized {
-                    self.openPhotoLibrary()
+                    DispatchQueue.main.async {
+                        self.present(self.imagePicker, animated: true)
+                    }
+                    print("authorized")
                 } else {
                     self.dismiss(animated: true, completion: nil)
                 }
@@ -307,16 +309,6 @@ extension EditViewController : UIImagePickerControllerDelegate {
             alertVC.addAction(cancelAction)
             alertVC.addAction(confirmAction)
             self.present(alertVC, animated: true, completion: nil)
-        }
-    }
-    
-    private func openPhotoLibrary() {
-        if (UIImagePickerController.isSourceTypeAvailable(.photoLibrary)) {
-            self.imagePicker.sourceType = .photoLibrary
-            self.imagePicker.modalPresentationStyle = .currentContext
-            self.present(self.imagePicker, animated: true, completion: nil)
-        } else {
-            print("앨범에 접근할 수 없습니다.")
         }
     }
     
