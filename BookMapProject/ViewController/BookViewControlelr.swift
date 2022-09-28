@@ -69,6 +69,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
+        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         let task = tasks[indexPath.row]
         cell.backgroundColor = .white
         cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID)")

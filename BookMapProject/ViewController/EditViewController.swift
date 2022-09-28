@@ -237,23 +237,28 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     // 삭제
     @objc func deleteButtonClicked() {
         
-        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'").sorted(byKeyPath: "regTime", ascending: true)
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'").sorted(byKeyPath: "regTime", ascending: false)
+        print("처음 들어갈 때 \(tasks)")
         
         if tasks.count > 0 {
             for num in 0...tasks.count - 1 {
                 if tasks[num].realDate == clickedDate {
                     
                     try! localRealm.write {
-                        
+                        print("locarRealm 시작 \(tasks[num])")
                         let lastImage = "\(tasks[num].objectID)"
-                        print(lastImage)
                         deleteImageFromDocumentDirectory(imageName: lastImage)
                         localRealm.delete(tasks[num])
+                        print("최종 \(tasks)")
                     }
+                    print("1")
                 }
+                print("2")
             }
+            print("3")
         }
         
+        print("완료")
         
         self.dismiss(animated: true)
         
@@ -281,7 +286,9 @@ extension EditViewController : UIImagePickerControllerDelegate {
                     }
                     print("authorized")
                 } else {
-                    self.dismiss(animated: true, completion: nil)
+                    DispatchQueue.main.async {
+                        self.showAlertAuth("앨범")
+                    }
                 }
             }
         default:
