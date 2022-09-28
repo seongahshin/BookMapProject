@@ -59,7 +59,7 @@ class DetailViewController: UIViewController {
     
     var storeLink: UITextView = {
         let view = UITextView()
-        view.font = UIFont(name: FontManager.GangWonLight, size: 18)
+        view.font = UIFont(name: FontManager.GangWonLight, size: 15)
         view.dataDetectorTypes = .link
         view.isEditable = false
         return view
@@ -172,7 +172,7 @@ class DetailViewController: UIViewController {
         storeLink.snp.makeConstraints { make in
             make.top.equalTo(storeTime.snp.bottom)
             make.leadingMargin.equalTo(10)
-            make.trailingMargin.equalTo(-10)
+            make.trailingMargin.equalToSuperview()
             make.height.equalTo(40)
         }
         

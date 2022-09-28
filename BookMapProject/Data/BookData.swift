@@ -84,7 +84,7 @@ class dummyData {
             {
             "storeName": "고요서사",
             "address": "서울 용산구 신흥로15길 18-4",
-            "link": "https://blog.naver.com/proust_book",
+            "link": "https://blog.naver.com/goyo_bookshop",
             "mapX": 37.544354,
             "mapY": 126.985844,
             "time": "목-일 12:00-19:00 (휴무: 월-수)"
@@ -138,14 +138,6 @@ class dummyData {
             "time": "월-토 14:00-22:00 (휴무: 일)"
             },
             {
-            "storeName": "대오서점",
-            "address": "서울 종로구 자하문로7길 55",
-            "link": "https://blog.naver.com/salon_book",
-            "mapX": 37.579711,
-            "mapY": 126.969317,
-            "time": "매일 12:00-21:00"
-            },
-            {
             "storeName": "생각의 주인",
             "address": "서울 관악구 솔밭로7길 17",
             "link": "https://www.instagram.com/master_of_thought20/",
@@ -172,12 +164,43 @@ class dummyData {
             {
             "storeName": "믿음문고",
             "address": "서울 서초구 양재천로 95-4 1F",
-            "link": "http://www.faithforlove.com",
+            "link": "http://www.instagram.com/ffl.books",
             "mapX": 37.476168,
             "mapY": 127.039590,
             "time": "화-토 11:00-19:00 (휴무: 일,월)"
             },
-        
+            {
+            "storeName": "대륙서점",
+            "address": "서울 동작구 성대로 40 1층 대륙서점",
+            "link": "https://www.instagram.com/daerukbooks/?igshid=l12z4ktyz22s",
+            "mapX": 37.498915,
+            "mapY": 126.933293,
+            "time": "화-토 10:00-20:00 (휴무: 일)"
+            },
+            {
+            "storeName": "어나더더블유",
+            "address": "서울 동작구 사당로30길 42",
+            "link": "http://instagram.com/another_writing",
+            "mapX": 37.483819,
+            "mapY": 126.980752,
+            "time": "화-목 11:30-19:00, 금 11:30-17:00 (휴무: 토,일)"
+            },
+            {
+            "storeName": "지금의 세상",
+            "address": "서울 동작구 동작대로3길 41 1층",
+            "link": "http://www.instagram.com/the_present_world",
+            "mapX": 37.478640,
+            "mapY": 126.979178,
+            "time": "화-일 15:00-21:00 (휴무: 일,월)"
+            },
+            {
+            "storeName": "엠프티폴더스",
+            "address": "서울 관악구 행운1길 70 1호",
+            "link": "http://emptyfolders.kr",
+            "mapX": 37.481750,
+            "mapY": 126.956542,
+            "time": "화-목 14:30-21:00 금-토 13:30-20:00 (휴무: 일,월)"
+            }
         ]
         """
 
