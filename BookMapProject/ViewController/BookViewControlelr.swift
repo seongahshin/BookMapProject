@@ -17,7 +17,6 @@ class BookViewController: UIViewController {
     
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-//        layout.sectionInset = UIEdgeInsets(top: 50, left: 32, bottom: 50, right: 32)
         layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.backgroundColor = Color.cardColor
@@ -68,10 +67,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
-//        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate", ascending: false).sorted(byKeyPath: "regTime", ascending: true)
-        
         let tasks = localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
-//        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate", ascending: true).sorted(byKeyPath: "regTime", ascending: true)
         let task = tasks[indexPath.row]
         cell.backgroundColor = .white
         cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID)")
@@ -81,23 +77,6 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.layer.cornerRadius = 20
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = EditViewController()
-        let tasks = localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
-        let task = tasks[indexPath.row]
-        vc.index = indexPath.item
-        vc.editTitle = task.editTitle!
-        vc.editContent = task.editContent!
-        vc.fileName = "\(task.objectID)"
-        vc.date = task.regDate
-        UserDefaults.standard.set(task.regDate, forKey: "SelectedDate")
-        vc.clickedDate = task.realDate
-        vc.modalPresentationStyle = .fullScreen
-        self.present(vc, animated: true)
-    }
-    
-    
 }
 
 extension BookViewController: UICollectionViewDelegateFlowLayout {
@@ -111,11 +90,6 @@ extension BookViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let width = collectionView.frame.width
-//        let size = CGSize(width: width, height: 20)
-//        return size
-//        return CGSize(width: 266, height: 380)
-//        return CGSize(width: 280, height: 400)
         return CGSize(width: 294, height: 420)
     }
     

@@ -18,7 +18,7 @@ extension UIViewController {
         let imageURL = documentDirectory.appendingPathComponent(imageName)
         
         //3. 이미지 압축(image.pngData())
-        guard let data = image.resizeImage(newWidth: 200).pngData() else {
+        guard let data = image.resizeImage(newWidth: 180).pngData() else {
             print("압축이 실패했습니다.")
             return
         }

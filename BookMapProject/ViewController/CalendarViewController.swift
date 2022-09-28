@@ -27,8 +27,26 @@ class CalendarViewController: UIViewController {
         return view
     }()
     
+    var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    var tutorialLabel: UILabel = {
+        let view = UILabel()
+        view.sizeToFit()
+        view.text = "날짜를 클릭하고 우측 상단의 플러스 버튼을 눌러주세요 :)"
+        view.font = UIFont(name: FontManager.GangWonLight, size: 15)
+        if UserDefaults.standard.bool(forKey: "Bool") == false {
+            view.isHidden = false
+        }
+        view.textColor = Color.selectdateColor
+        return view
+    }()
+    
     override func viewDidLoad() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
+        self.navigationItem.rightBarButtonItem?.tintColor = Color.memoColor
         view.backgroundColor = backgroundColor
         configureUI()
         calendarDesign()
@@ -48,17 +66,30 @@ class CalendarViewController: UIViewController {
     
     func configureUI() {
         
-        [calendar, tableView].forEach {
+        [calendar, contentView, tableView].forEach {
             view.addSubview($0)
         }
         
+        [tutorialLabel].forEach {
+            contentView.addSubview($0)
+        }
         
         calendar.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.left.right.equalToSuperview()
             make.height.equalTo(UIScreen.main.bounds.height / 2 - 20)
         }
-
+        
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(calendar.snp.bottom).offset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.equalToSuperview()
+        }
+        
+        tutorialLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.height.equalTo(20)
+        }
         
         tableView.snp.makeConstraints { make in
             make.top.equalTo(calendar.snp.bottom).offset(10)
@@ -113,6 +144,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         let currentDate = Date().resultDate(date: date)
+        UserDefaults.standard.set(true, forKey: "Bool")
         print(currentDate)
         UserDefaults.standard.set(currentDate, forKey: "SelectedDate")
         tableView.isHidden = false
@@ -143,6 +175,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return 0 }
         let tasks = localRealm.objects(editData.self).filter("regDate == '\(pickedDate)'")
         print(tasks)
+        
         return tasks.count
     }
     
