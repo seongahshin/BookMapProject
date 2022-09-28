@@ -13,7 +13,7 @@ class CalendarTableViewCell: UITableViewCell {
     
     var CalendarImageView: UIImageView = {
         let view = UIImageView()
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         view.clipsToBounds = true
         view.layer.cornerRadius = 10
         return view

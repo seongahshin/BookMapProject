@@ -70,6 +70,14 @@ class ViewController: UIViewController {
         return view
     }()
     
+    var arrowLabel: UILabel = {
+        let view = UILabel()
+        view.text = ">"
+        view.textColor = Color.memoColor
+        view.textAlignment = .center
+        return view
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -182,8 +190,10 @@ class ViewController: UIViewController {
         mapView.addSubview(searchBar)
         mapView.addSubview(locationButton)
         mapView.addSubview(infoButton)
+        
         infoButton.addSubview(nameLabel)
         infoButton.addSubview(addressLabel)
+        infoButton.addSubview(arrowLabel)
         
         mapView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -207,16 +217,22 @@ class ViewController: UIViewController {
         
         nameLabel.snp.makeConstraints { make in
             make.leadingMargin.equalTo(10)
-            make.trailingMargin.equalTo(-10)
+            make.trailingMargin.equalTo(-35)
             make.height.equalTo(20)
             make.top.equalTo(5)
         }
         
         addressLabel.snp.makeConstraints { make in
             make.leadingMargin.equalTo(10)
-            make.trailingMargin.equalTo(-10)
+            make.trailingMargin.equalTo(-35)
             make.height.equalTo(20)
             make.bottom.equalTo(-5)
+        }
+        
+        arrowLabel.snp.makeConstraints { make in
+            make.leadingMargin.equalTo(nameLabel.snp.trailing).offset(5)
+            make.right.equalToSuperview().inset(5)
+            make.top.bottom.equalToSuperview().inset(15)
         }
         
     }

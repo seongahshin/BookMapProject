@@ -14,7 +14,7 @@ import RealmSwift
 import Mantis
 import Toast
 
-class EditViewController: UIViewController, UINavigationControllerDelegate {
+class EditViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     let localRealm = try! Realm()
@@ -100,6 +100,8 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         self.imagePicker.sourceType = .photoLibrary // 앨범에서 가져옴
         self.imagePicker.delegate = self // picker delegate
         
+        textField.delegate = self
+        
         print(index)
         print(editTitle)
         print(editContent)
@@ -108,6 +110,11 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         print(clickedDate)
         guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
         print(click)
+        textField.becomeFirstResponder()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
     }
     
     func configureUI() {
@@ -201,7 +208,11 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             } else {
                 try! localRealm.write {
                     
-                    guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
+                    guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else {
+                        self.view.makeToast("캘린더탭에서 날짜를 먼저 선택해주세요!", duration: 4)
+                        return
+                        
+                    }
                     
 //                    let currentDate = Date().resultDate(date: Date())
                     
@@ -214,6 +225,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
                     if imageView.image != nil {
                         saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
                     }
+                    self.view.makeToast("저장되었습니다 :)", duration: 4)
                     self.dismiss(animated: true)
                 }
                 
@@ -228,16 +240,17 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
                         
                         let lastImage = "\(tasks[num].objectID)"
                         print(lastImage)
-                        saveImageToDocumentDirectory(imageName: "\(lastImage).png", image: imageView.image!)
-                        
+                        if imageView.image != nil {
+                            saveImageToDocumentDirectory(imageName: "\(lastImage).png", image: imageView.image!)
+                        }
                     }
                     self.dismiss(animated: true)
                 }
                 
             }
-            
+            self.view.makeToast("저장되었습니다 :)", duration: 4)
         }
-        self.view.makeToast("저장되었습니다 :)", duration: 4)
+        
         print(tasks)
     }
     
@@ -282,6 +295,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
         present(alert, animated: false, completion: nil)
         
     }
+    
     
     
 }
