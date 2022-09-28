@@ -23,10 +23,12 @@ class CalendarViewController: UIViewController {
     
     var tableView: UITableView = {
         let view = UITableView()
+        view.isHidden = true
         return view
     }()
     
     override func viewDidLoad() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
         view.backgroundColor = backgroundColor
         configureUI()
         calendarDesign()
@@ -39,6 +41,7 @@ class CalendarViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tableView.isHidden = true
         calendar.reloadData()
         tableView.reloadData()
     }
@@ -63,6 +66,12 @@ class CalendarViewController: UIViewController {
             make.left.right.equalToSuperview()
         }
         
+    }
+    
+    @objc func plusButtonClicked() {
+        let vc = EditViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
     
     
@@ -106,6 +115,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         let currentDate = Date().resultDate(date: date)
         print(currentDate)
         UserDefaults.standard.set(currentDate, forKey: "SelectedDate")
+        tableView.isHidden = false
         tableView.reloadData()
         
         
@@ -113,7 +123,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
     }
     
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-
+        
         let currentDate = Date().resultDate(date: date)
         
         let tasks = localRealm.objects(editData.self).filter("regDate == '\(currentDate)'")
@@ -157,6 +167,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         vc.fileName = "\(task.objectID)"
         vc.date = task.regDate
         vc.clickedDate = task.realDate
+        vc.index = indexPath.row
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
         

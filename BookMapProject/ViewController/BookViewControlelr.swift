@@ -31,7 +31,6 @@ class BookViewController: UIViewController {
         collectionView.dataSource = self
         configureUI()
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(plusButtonClicked))
         self.navigationItem.rightBarButtonItem?.tintColor = Color.memoColor
         tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         print(tasks)
@@ -69,6 +68,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
+//        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "regDate", ascending: false).sorted(byKeyPath: "regTime", ascending: true)
         let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         let task = tasks[indexPath.row]
         cell.backgroundColor = .white
@@ -82,13 +82,14 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = EditViewController()
-        let task = tasks[indexPath.row]
-        vc.editTitle = task.editTitle!
-        vc.editContent = task.editContent!
-        vc.fileName = "\(task.objectID)"
-        vc.date = task.regDate
-        vc.clickedDate = task.realDate
-        vc.modalPresentationStyle = .fullScreen
+//        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
+//        let task = tasks[indexPath.row]
+//        vc.editTitle = task.editTitle!
+//        vc.editContent = task.editContent!
+//        vc.fileName = "\(task.objectID)"
+//        vc.date = task.regDate
+//        vc.clickedDate = task.realDate
+//        vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }
     

@@ -15,6 +15,7 @@ import Mantis
 
 class EditViewController: UIViewController, UINavigationControllerDelegate {
     
+    
     let localRealm = try! Realm()
     var tasks: Results<editData>!
     let imagePicker = UIImagePickerController()
@@ -24,6 +25,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     var fileName = ""
     var date = ""
     var clickedDate = ""
+    var index = 0
     
     var closeButton: UIButton = {
         let view = UIButton()
@@ -190,11 +192,15 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
             } else {
                 try! localRealm.write {
                     
-                    let currentDate = Date().resultDate(date: Date())
+                    guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
+                    
+//                    let currentDate = Date().resultDate(date: Date())
                     
                     let currentTime = Date().resultTime(date: Date())
                     
-                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: currentDate, regTime: currentTime, realDate: "\(Date())")
+                    let currentRealTime = Date().resultDate(date: Date())
+                    
+                    let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: click, regTime: currentTime, realDate: currentRealTime)
                     localRealm.add(task)
                     if imageView.image != nil {
                         saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
@@ -237,28 +243,18 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
     // 삭제
     @objc func deleteButtonClicked() {
         
-        let tasks = localRealm.objects(editData.self).filter("regDate == '\(date)'").sorted(byKeyPath: "regTime", ascending: false)
-        print("처음 들어갈 때 \(tasks)")
+        guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
+        let tasks = localRealm.objects(editData.self).filter("regDate == '\(click)'").sorted(byKeyPath: "regTime", ascending: false)
+//        print("처음 들어갈 때 \(tasks)")
+//        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         
-        if tasks.count > 0 {
-            for num in 0...tasks.count - 1 {
-                if tasks[num].realDate == clickedDate {
-                    
-                    try! localRealm.write {
-                        print("locarRealm 시작 \(tasks[num])")
-                        let lastImage = "\(tasks[num].objectID)"
-                        deleteImageFromDocumentDirectory(imageName: lastImage)
-                        localRealm.delete(tasks[num])
-                        print("최종 \(tasks)")
-                    }
-                    print("1")
-                }
-                print("2")
-            }
-            print("3")
+        try! localRealm.write {
+            print("locarRealm 시작 \(tasks[index])")
+            let lastImage = "\(tasks[index].objectID)"
+            deleteImageFromDocumentDirectory(imageName: lastImage)
+            localRealm.delete(tasks[index])
+            print("최종 \(tasks)")
         }
-        
-        print("완료")
         
         self.dismiss(animated: true)
         
@@ -270,12 +266,14 @@ class EditViewController: UIViewController, UINavigationControllerDelegate {
 extension EditViewController : UIImagePickerControllerDelegate {
     
     func albumAuth() {
-        switch PHPhotoLibrary.authorizationStatus() {
+        switch PHPhotoLibrary.authorizationStatus(for: .addOnly) {
         case .denied:
             print("거부")
             self.showAlertAuth("앨범")
         case .authorized:
             print("허용")
+            self.present(self.imagePicker, animated: true)
+        case .limited:
             self.present(self.imagePicker, animated: true)
         case .notDetermined, .restricted:
             print("아직 결정하지 않은 상태")
@@ -286,9 +284,7 @@ extension EditViewController : UIImagePickerControllerDelegate {
                     }
                     print("authorized")
                 } else {
-                    DispatchQueue.main.async {
-                        self.showAlertAuth("앨범")
-                    }
+                    self.dismiss(animated: true)
                 }
             }
         default:

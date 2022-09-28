@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let firstVC = UINavigationController(rootViewController: ViewController())
         let secondVC = UINavigationController(rootViewController: BookViewController())
-        let thirdVC = CalendarViewController()
+        let thirdVC = UINavigationController(rootViewController: CalendarViewController())
         
         let fourthVC = UINavigationController(rootViewController: SettingViewController())
         

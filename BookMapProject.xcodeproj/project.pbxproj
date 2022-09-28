@@ -33,6 +33,7 @@
 		8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6228D059E300A0FB00 /* Alamofire */; };
 		8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6828D061A300A0FB00 /* SwiftyJSON */; };
 		8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6B28D1A41C00A0FB00 /* SnapKit */; };
+		8CA42B3628E4033C00EFF93A /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA42B3528E4033C00EFF93A /* Toast */; };
 		8CA91BAF28E1E6D800EE7B83 /* RemoveTMPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */; };
 		8CA91BBF28E2E8EC00EE7B83 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BBE28E2E8EC00EE7B83 /* CalendarTableViewCell.swift */; };
 		8CA91BC128E32BB200EE7B83 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BC028E32BB200EE7B83 /* DateFormatter.swift */; };
@@ -108,6 +109,7 @@
 				8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */,
 				8C7A1C4228E07A8500309EF0 /* Mantis in Frameworks */,
 				8C0655BC28E3DC3C008CE913 /* Realm in Frameworks */,
+				8CA42B3628E4033C00EFF93A /* Toast in Frameworks */,
 				8C6DA6ED28DAAD7B0070E171 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +275,7 @@
 				8C7A1C4128E07A8500309EF0 /* Mantis */,
 				8C0655BB28E3DC3C008CE913 /* Realm */,
 				8C0655BD28E3DC3C008CE913 /* RealmSwift */,
+				8CA42B3528E4033C00EFF93A /* Toast */,
 			);
 			productName = BookMapProject;
 			productReference = 8C6604BE28D01DD20092D79D /* BookMapProject.app */;
@@ -311,6 +314,7 @@
 				8C6DA6F228DAD1540070E171 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				8C7A1C4028E07A8400309EF0 /* XCRemoteSwiftPackageReference "Mantis" */,
 				8C0655BA28E3DC3C008CE913 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				8CA42B3428E4033C00EFF93A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = 8C6604BF28D01DD20092D79D /* Products */;
 			projectDirPath = "";
@@ -649,6 +653,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		8CA42B3428E4033C00EFF93A /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		8CC4BCBF28D361E20005035C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -699,6 +711,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8C9BDE6A28D1A41C00A0FB00 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		8CA42B3528E4033C00EFF93A /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CA42B3428E4033C00EFF93A /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 		8CC4BCC028D361E20005035C /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
