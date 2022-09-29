@@ -13,6 +13,7 @@ class CollectionViewCell: UICollectionViewCell {
     
     var imageView: UIImageView = {
         let view = UIImageView()
+        print("여기")
         return view
     }()
     

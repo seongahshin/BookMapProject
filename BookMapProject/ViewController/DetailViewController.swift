@@ -228,18 +228,36 @@ class DetailViewController: UIViewController {
 extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return storImageList.count
+        return 6
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
-        if let imageURL = URL(string: storImageList[indexPath.item]) {
-//            cell.imageView.kf.setImage(with: imageURL)
-            cell.imageView.kf.indicatorType = .activity
-            cell.imageView.kf.setImage(with: imageURL, placeholder: nil, options: [.transition(.fade(1.2)), .forceTransition], completionHandler: nil)
-        }
         
+        if storImageList.count < 6 {
+            let leftCount = 6 - storImageList.count
+            
+            if 0 <= indexPath.item && indexPath.item < storImageList.count  {
+                if let imageURL = URL(string: storImageList[indexPath.item]) {
+                    cell.imageView.kf.indicatorType = .activity
+                    cell.imageView.kf.setImage(with: imageURL, placeholder: nil, options: [.transition(.fade(1.2)), .forceTransition], completionHandler: nil)
+                }
+            } else {
+                let width = collectionView.frame.width / 3 - 1
+                cell.imageView.image = UIImage(named: "noImage.png")?.resizeImage(newWidth: width)
+            }
+
+    
+        } else {
+            if let imageURL = URL(string: storImageList[indexPath.item]) {
+    //            cell.imageView.kf.setImage(with: imageURL)
+                cell.imageView.kf.indicatorType = .activity
+                cell.imageView.kf.setImage(with: imageURL, placeholder: nil, options: [.transition(.fade(1.2)), .forceTransition], completionHandler: nil)
+            }
+            
+        }
+    
         return cell
     }
     
