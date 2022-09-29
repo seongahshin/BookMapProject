@@ -13,7 +13,6 @@
 		8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C328D01DD20092D79D /* SceneDelegate.swift */; };
 		8C6604C628D01DD20092D79D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6604C528D01DD20092D79D /* ViewController.swift */; };
 		8C6604CB28D01DDA0092D79D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C6604CA28D01DDA0092D79D /* Assets.xcassets */; };
-		8C6604CE28D01DDA0092D79D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C6604CC28D01DDA0092D79D /* LaunchScreen.storyboard */; };
 		8C6DA6DB28D98D230070E171 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA6DA28D98D230070E171 /* SettingViewController.swift */; };
 		8C6DA6DD28D996770070E171 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA6DC28D996770070E171 /* ColorExtension.swift */; };
 		8C6DA6DF28D99BAC0070E171 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C6DA6DE28D99BAC0070E171 /* SettingTableViewCell.swift */; };
@@ -34,6 +33,7 @@
 		8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6828D061A300A0FB00 /* SwiftyJSON */; };
 		8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8C9BDE6B28D1A41C00A0FB00 /* SnapKit */; };
 		8CA42B3628E4033C00EFF93A /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 8CA42B3528E4033C00EFF93A /* Toast */; };
+		8CA42B3A28E54D8000EFF93A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CA42B3928E54D8000EFF93A /* Launch Screen.storyboard */; };
 		8CA91BAF28E1E6D800EE7B83 /* RemoveTMPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */; };
 		8CA91BBF28E2E8EC00EE7B83 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BBE28E2E8EC00EE7B83 /* CalendarTableViewCell.swift */; };
 		8CA91BC128E32BB200EE7B83 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BC028E32BB200EE7B83 /* DateFormatter.swift */; };
@@ -61,7 +61,6 @@
 		8C6604C328D01DD20092D79D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8C6604C528D01DD20092D79D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		8C6604CA28D01DDA0092D79D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8C6604CD28D01DDA0092D79D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C6604CF28D01DDA0092D79D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C6DA6DA28D98D230070E171 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		8C6DA6DC28D996770070E171 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		8C9BDE5628D0497000A0FB00 /* BookData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookData.swift; sourceTree = "<group>"; };
 		8C9BDE5D28D04F8900A0FB00 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		8C9BDE5F28D04FA500A0FB00 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		8CA42B3928E54D8000EFF93A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8CA91BAE28E1E6D800EE7B83 /* RemoveTMPExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveTMPExtension.swift; sourceTree = "<group>"; };
 		8CA91BBE28E2E8EC00EE7B83 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		8CA91BC028E32BB200EE7B83 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -147,9 +147,9 @@
 				8C6604C128D01DD20092D79D /* AppDelegate.swift */,
 				8C6604C328D01DD20092D79D /* SceneDelegate.swift */,
 				8C6604CA28D01DDA0092D79D /* Assets.xcassets */,
-				8C6604CC28D01DDA0092D79D /* LaunchScreen.storyboard */,
 				8C6604CF28D01DDA0092D79D /* Info.plist */,
 				8CEA436828D89FFC00BDEAEE /* Storyboard.storyboard */,
+				8CA42B3928E54D8000EFF93A /* Launch Screen.storyboard */,
 			);
 			path = BookMapProject;
 			sourceTree = "<group>";
@@ -330,8 +330,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA42B3A28E54D8000EFF93A /* Launch Screen.storyboard in Resources */,
 				8C9BDE5E28D04F8900A0FB00 /* .gitignore in Resources */,
-				8C6604CE28D01DDA0092D79D /* LaunchScreen.storyboard in Resources */,
 				8CC4BCDB28D4BE1D0005035C /* 강원교육모두 Light.otf in Resources */,
 				8CC4BCDA28D4BE1A0005035C /* 강원교육모두 Bold.otf in Resources */,
 				8C6604CB28D01DDA0092D79D /* Assets.xcassets in Resources */,
@@ -380,17 +380,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		8C6604CC28D01DDA0092D79D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8C6604CD28D01DDA0092D79D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		8C6604D028D01DDA0092D79D /* Debug */ = {

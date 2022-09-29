@@ -64,6 +64,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
     var textField: UITextField = {
         let view = UITextField().textFieldDesign()
         view.backgroundColor = Color.saveButtonColor
+        view.placeholder = "내용을 입력해주세요:)"
         return view
     }()
     
@@ -225,7 +226,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
                     if imageView.image != nil {
                         saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
                     }
-                    self.view.makeToast("저장되었습니다 :)", duration: 4)
+                    self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 4)
                     self.dismiss(animated: true)
                 }
                 
@@ -248,7 +249,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
                 }
                 
             }
-            self.view.makeToast("저장되었습니다 :)", duration: 4)
+            self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 4)
         }
         
         print(tasks)

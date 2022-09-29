@@ -23,6 +23,17 @@ class BookViewController: UIViewController {
         return view
     }()
     
+    var contentView: UIView = {
+        let view = UIView()
+        view.isHidden = true
+        return view
+    }()
+    
+    var tutorialLabel: UILabel = {
+        let view = UILabel()
+        view.sizeToFit()
+        return view
+    }()
     
     override func viewDidLoad() {
         view.backgroundColor = .white
@@ -50,7 +61,7 @@ class BookViewController: UIViewController {
         [collectionView].forEach {
             view.addSubview($0)
         }
-        
+    
         collectionView.snp.makeConstraints { make in
             make.top.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
         }

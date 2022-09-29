@@ -35,7 +35,10 @@ class CalendarViewController: UIViewController {
     var tutorialLabel: UILabel = {
         let view = UILabel()
         view.sizeToFit()
-        view.text = "날짜를 클릭하고 우측 상단의 플러스 버튼을 눌러주세요 :)"
+        view.numberOfLines = 0
+        view.text = """
+                    날짜를 선택하고 우측 상단의 플러스 버튼을 눌러주세요!
+                    """
         view.font = UIFont(name: FontManager.GangWonLight, size: 15)
         if UserDefaults.standard.bool(forKey: "Bool") == false {
             view.isHidden = false

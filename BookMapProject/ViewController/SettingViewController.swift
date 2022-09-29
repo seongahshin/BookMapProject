@@ -12,7 +12,7 @@ import SnapKit
 
 class SettingViewController: UIViewController {
     
-    let settingcellTitle: [String] = ["문의하기 및 피드백 보내기", "독립서점 제보하기", "북트립 인스타그램"]
+    let settingcellTitle: [String] = ["문의하기 및 피드백 보내기", "독립서점 제보하기"]
     
     var tableView: UITableView = {
         let view = UITableView()
@@ -47,7 +47,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
