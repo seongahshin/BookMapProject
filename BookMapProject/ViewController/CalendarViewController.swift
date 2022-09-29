@@ -59,6 +59,7 @@ class CalendarViewController: UIViewController {
         tableView.register(CalendarTableViewCell.self, forCellReuseIdentifier: CalendarTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+        calendar(calendar, didSelect: Date(), at: .current)
     }
     
     override func viewWillAppear(_ animated: Bool) {

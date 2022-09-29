@@ -228,6 +228,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
             for num in 0...tasks.count - 1 {
                 if tasks[num].realDate == clickedDate {
                     try! localRealm.write {
+                        
                         tasks[num].editTitle = textField.text
                         tasks[num].editContent = textView.text
                         
@@ -262,8 +263,8 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
             if UserDefaults.standard.bool(forKey: "check") == false {
                 
                 if let click = UserDefaults.standard.string(forKey: "SelectedDate") {
-                    let tasks = self.localRealm.objects(editData.self).filter("regDate == '\(click)'").sorted(byKeyPath: "regTime", ascending: false)
-                    print(tasks)
+                    let tasks = self.localRealm.objects(editData.self).filter("regDate == '\(click)'").sorted(byKeyPath: "regTime", ascending: true)
+                    print("여긴가 \(tasks)")
                     if tasks.count > 0 {
                         try! self.localRealm.write {
                             print("locarRealm 시작 \(tasks[self.index])")
