@@ -265,24 +265,52 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
     @objc func deleteButtonClicked() {
         
         let alert = UIAlertController(title: "알림", message: "정말 기록을 삭제하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-        let yesAction = UIAlertAction(title: "네", style: .default) { (action) in
+        let yesAction = UIAlertAction(title: "네", style: .default) { [self] (action) in
             
-            if let click = UserDefaults.standard.string(forKey: "SelectedDate") {
-                let tasks = self.localRealm.objects(editData.self).filter("regDate == '\(click)'").sorted(byKeyPath: "regTime", ascending: false)
-                print(tasks)
-                if tasks.count > 0 {
-                    try! self.localRealm.write {
-                        print("locarRealm 시작 \(tasks[self.index])")
-                        let lastImage = "\(tasks[self.index].objectID)"
-                        self.deleteImageFromDocumentDirectory(imageName: lastImage)
-                        self.localRealm.delete(tasks[self.index])
-                        print("최종 \(tasks)")
+            if UserDefaults.standard.bool(forKey: "check") == false {
+                
+                if let click = UserDefaults.standard.string(forKey: "SelectedDate") {
+                    let tasks = self.localRealm.objects(editData.self).filter("regDate == '\(click)'").sorted(byKeyPath: "regTime", ascending: false)
+                    print(tasks)
+                    if tasks.count > 0 {
+                        try! self.localRealm.write {
+                            print("locarRealm 시작 \(tasks[self.index])")
+                            let lastImage = "\(tasks[self.index].objectID)"
+                            self.deleteImageFromDocumentDirectory(imageName: lastImage)
+                            self.localRealm.delete(tasks[self.index])
+                            print("최종 \(tasks)")
+                        }
+                        self.dismiss(animated: true)
+                        
+                    } else {
+                        self.dismiss(animated: true)
                     }
-                    self.dismiss(animated: true)
                     
-                } else {
-                    self.dismiss(animated: true)
+                    
                 }
+                
+            } else {
+                
+            
+            let tasks = self.localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
+            print(tasks)
+            if tasks.count > 0 {
+                try! self.localRealm.write {
+                    print("locarRealm 시작 \(tasks[self.index])")
+                    let lastImage = "\(tasks[self.index].objectID)"
+                    self.deleteImageFromDocumentDirectory(imageName: lastImage)
+                    self.localRealm.delete(tasks[self.index])
+                    print("최종 \(tasks)")
+                }
+                self.dismiss(animated: true)
+                    
+            } else {
+                self.dismiss(animated: true)
+            }
+                    
+                    
+                
+                
                 
                 
             }

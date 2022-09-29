@@ -62,6 +62,7 @@ class CalendarViewController: UIViewController {
 //        tableView.isHidden = true
         calendar.reloadData()
         tableView.reloadData()
+        UserDefaults.standard.set(false, forKey: "check")
     }
     
     func configureUI() {

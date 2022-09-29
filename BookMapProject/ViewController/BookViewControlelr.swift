@@ -36,6 +36,7 @@ class BookViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        UserDefaults.standard.set(true, forKey: "check")
         collectionView.reloadData()
     }
     
@@ -76,6 +77,20 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 20
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = EditViewController()
+        let tasks = localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
+        let task = tasks[indexPath.row]
+        vc.editTitle = task.editTitle!
+        vc.editContent = task.editContent!
+        vc.fileName = "\(task.objectID)"
+        vc.date = task.regDate
+        vc.clickedDate = task.realDate
+        vc.index = indexPath.row
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
     }
 }
 

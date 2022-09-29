@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>포토</string>
+	<string>사진을 기록에 </string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>강원교육모두 Bold.otf</string>
