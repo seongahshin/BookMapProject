@@ -31,8 +31,6 @@ class SearchViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        print(#function)
-        print("완료")
         configureUI()
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,7 +45,6 @@ class SearchViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(#function)
         print(imageList)
         print(blogList)
     }
@@ -65,7 +62,6 @@ class SearchViewController: UIViewController {
     }
 
     func configureUI() {
-        print(#function)
         [tableView].forEach {
             view.addSubview($0)
         }
@@ -79,7 +75,6 @@ class SearchViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(#function)
         view.endEditing(true)
     }
     
@@ -129,7 +124,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       print(#function)
        
        if !NetworkMonitor.shared.isConnected {
            let alert = UIAlertController(title: "실패", message: "데이터 연결이 되어있지 않습니다.", preferredStyle: UIAlertController.Style.alert)
@@ -147,7 +141,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                for num in 0...data.count - 1 {
                    if data[num].location == nameSearchListFilter[indexPath.row] {
                        infoList = [nameSearchListFilter[indexPath.row], data[num].address, data[num].time, data[num].link]
-                       dump(infoList)
+//                       dump(infoList)
                    }
                }
                
@@ -170,7 +164,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                    }
                }
                
-                print("데이터 전달")
                 
                 tableView.deselectRow(at: indexPath, animated: true)
 

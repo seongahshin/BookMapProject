@@ -142,7 +142,6 @@ class ViewController: UIViewController {
             vc.storeInfoList = infoList
             vc.storImageList = imageList
             vc.getBlogList = blogList
-            print(blogList)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -272,7 +271,6 @@ class ViewController: UIViewController {
             annotation.title = bookData.decode()[num].location
             mapView.addAnnotation(annotation)
         }
-        print(bookData.decode())
 
     }
     
@@ -339,7 +337,6 @@ extension ViewController: UISearchBarDelegate {
         
         let vc = SearchViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-        print(#function)
         return false
     }
 }
@@ -349,7 +346,6 @@ extension ViewController: CLLocationManagerDelegate {
     
     // Location5. 사용자의 위치를 성공적으로 가져온 경우에 해당
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(#function, locations)
         
         // ex. 위도, 경도 기반으로 날씨 정보를 조회
         // ex. 지도를 다시 세팅
@@ -371,7 +367,6 @@ extension ViewController: CLLocationManagerDelegate {
     
     // Location6. 사용자의 위치를 가져오지 못한 경우에 해당
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(#function)
         let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.886270)
         setRegion(center: center)
     }
@@ -381,7 +376,6 @@ extension ViewController: CLLocationManagerDelegate {
     // 허용을 해서 위치를 가져오는 도중에, 설정에서 거부하고 돌아온다면?
     // iOS 14 이상:
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print(#function)
         checkUserDeviceLocationServiceAuthorization()
     }
     
@@ -407,7 +401,6 @@ extension ViewController: MKMapViewDelegate {
         for num in 0...data.count - 1 {
             let data = bookData.decode()[num]
             if ann.title == data.location {
-                print(data.address)
                 nameLabel.text = ann.title!
                 addressLabel.text = data.address
                 infoList = [ann.title!, data.address, data.time, data.link]
@@ -415,7 +408,6 @@ extension ViewController: MKMapViewDelegate {
                 APIManager.shared.searchImage(query: infoList[0]) { value in
                     self.imageList = value
                 }
-                print("-----blog-----")
 
                 APIManager.shared.searchBlog(query: infoList[0]) { value in
                     self.blogList = value

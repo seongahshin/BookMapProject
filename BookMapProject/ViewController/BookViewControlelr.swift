@@ -42,11 +42,13 @@ class BookViewController: UIViewController {
         configureUI()
         collectionView.register(BookCollectionViewCell.self, forCellWithReuseIdentifier: BookCollectionViewCell.identifier)
         self.navigationItem.rightBarButtonItem?.tintColor = Color.memoColor
-        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
+//        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
+        tasks = localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
         print(tasks)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+//        tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         UserDefaults.standard.set(true, forKey: "check")
         collectionView.reloadData()
     }
@@ -80,6 +82,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BookCollectionViewCell.identifier, for: indexPath) as! BookCollectionViewCell
         let tasks = localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
+//        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         let task = tasks[indexPath.row]
         cell.backgroundColor = .white
         cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID)")

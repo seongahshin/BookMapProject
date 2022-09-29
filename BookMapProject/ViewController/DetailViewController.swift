@@ -35,7 +35,7 @@ class DetailViewController: UIViewController {
     
     var storeName: UILabel = {
         let view = UILabel()
-        view.font = UIFont(name: FontManager.GangWonBold, size: 30)
+        view.font = UIFont(name: FontManager.GangWonBold, size: 25)
         return view
     }()
     
@@ -84,8 +84,6 @@ class DetailViewController: UIViewController {
         
         self.navigationController?.navigationBar.tintColor = Color.memoColor
         configureUI()
-        print("데이터 전달 완료 \(storeInfoList)")
-        print("데이터 전달 완료 \(storImageList)")
         labelDesign()
         storeLink.text = storeInfoList.last
         view.backgroundColor = backgroundColor
@@ -236,7 +234,6 @@ extension DetailViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.identifier, for: indexPath) as! CollectionViewCell
-
         if let imageURL = URL(string: storImageList[indexPath.item]) {
 //            cell.imageView.kf.setImage(with: imageURL)
             cell.imageView.kf.indicatorType = .activity
@@ -294,7 +291,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         
         print("----확인 -----")
-        dump(getBlogList)
+//        dump(getBlogList)
         
         
                 

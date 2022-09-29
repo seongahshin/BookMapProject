@@ -200,6 +200,38 @@ class dummyData {
             "mapX": 37.481750,
             "mapY": 126.956542,
             "time": "화-목 14:30-21:00 금-토 13:30-20:00 (휴무: 일,월)"
+            },
+            {
+            "storeName": "쎄임더스트",
+            "address": "서울 성동구 성수일로 44-1 2층",
+            "link": "http://www.samedust.org",
+            "mapX": 37.544144,
+            "mapY": 127.053564,
+            "time": "화-일 12:00-20:00 (휴무: 월)"
+            },
+            {
+            "storeName": "아니마 아니무스",
+            "address": "서울 광진구 아차산로39길 8 1층",
+            "link": "http://instagram.com/_anima.animus",
+            "mapX": 37.538661,
+            "mapY": 127.077225,
+            "time": "월-금 09:30-20:00 토 10:00-20:00 (휴무: 일)"
+            },
+            {
+            "storeName": "책방 책읽는 정원",
+            "address": "서울 서초구 논현로7길 24",
+            "link": "https://www.instagram.com/bookshop_garden/",
+            "mapX": 37.472752,
+            "mapY": 127.047894,
+            "time": "금,주말 12:00-18:00 수,목 12:00-20:00"
+            },
+            {
+            "storeName": "하우스북스 채널씨",
+            "address": "서울 송파구 백제고분로9길 5",
+            "link": "https://blog.naver.com/hows_seoul",
+            "mapX": 37.509387,
+            "mapY": 127.079669,
+            "time": "매일 11:00 - 07:00"
             }
         ]
         """

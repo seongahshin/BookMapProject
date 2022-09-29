@@ -149,7 +149,6 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource, FSCa
         
         let currentDate = Date().resultDate(date: date)
         UserDefaults.standard.set(true, forKey: "Bool")
-        print(currentDate)
         UserDefaults.standard.set(currentDate, forKey: "SelectedDate")
         tableView.isHidden = false
         tableView.reloadData()
@@ -178,7 +177,6 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let pickedDate = UserDefaults.standard.string(forKey: "SelectedDate") else { return 0 }
         let tasks = localRealm.objects(editData.self).filter("regDate == '\(pickedDate)'")
-        print(tasks)
         
         return tasks.count
     }

@@ -53,7 +53,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
-        print(settingcellTitle)
         cell.titleLabel.text = settingcellTitle[indexPath.row]
         cell.titleLabel.font = UIFont(name: FontManager.GangWonBold, size: 14)
         cell.selectionStyle = .none

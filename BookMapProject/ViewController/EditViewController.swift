@@ -102,15 +102,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
         self.imagePicker.delegate = self // picker delegate
         
         textField.delegate = self
-        
-        print(index)
-        print(editTitle)
-        print(editContent)
-        print(fileName)
-        print(date)
-        print(clickedDate)
         guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else { return }
-        print(click)
         textField.becomeFirstResponder()
     }
     
@@ -210,7 +202,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
                 try! localRealm.write {
                     
                     guard let click = UserDefaults.standard.string(forKey: "SelectedDate") else {
-                        self.view.makeToast("캘린더탭에서 날짜를 먼저 선택해주세요!", duration: 4)
+                        self.view.makeToast("캘린더탭에서 날짜를 먼저 선택해주세요!", duration: 6)
                         return
                         
                     }
@@ -219,14 +211,14 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
                     
                     let currentTime = Date().resultTime(date: Date())
                     
-                    let currentRealTime = Date().resultDate(date: Date())
+                    let currentRealTime = Date().realDate(date: Date())
                     
                     let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: click, regTime: currentTime, realDate: currentRealTime)
                     localRealm.add(task)
                     if imageView.image != nil {
                         saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
                     }
-                    self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 4)
+                    self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 6)
                     self.dismiss(animated: true)
                 }
                 
@@ -249,10 +241,9 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
                 }
                 
             }
-            self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 4)
+            self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 6)
         }
         
-        print(tasks)
     }
     
     // 사진 저장
@@ -266,7 +257,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
     @objc func deleteButtonClicked() {
         
         let alert = UIAlertController(title: "알림", message: "정말 기록을 삭제하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-        let yesAction = UIAlertAction(title: "네", style: .default) { [self] (action) in
+        let yesAction = UIAlertAction(title: "네", style: .cancel) { [self] (action) in
             
             if UserDefaults.standard.bool(forKey: "check") == false {
                 
@@ -317,10 +308,10 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
             }
             
         }
-        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+        let noAction = UIAlertAction(title: "아니오", style: .default)
         
-        alert.addAction(yesAction)
         alert.addAction(noAction)
+        alert.addAction(yesAction)
         present(alert, animated: false, completion: nil)
         
     }
@@ -350,7 +341,9 @@ extension EditViewController : UIImagePickerControllerDelegate {
                     }
                     print("authorized")
                 } else {
-                    self.dismiss(animated: true)
+                    DispatchQueue.main.async {
+                        self.showAlertAuth("앨범")
+                    }
                 }
             }
         default:

@@ -5,7 +5,7 @@
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>사진을 기록에 </string>
+	<string>사진을 첨부하기 위해서는 권한이 필요합니다.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>강원교육모두 Bold.otf</string>
