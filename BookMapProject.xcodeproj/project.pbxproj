@@ -38,6 +38,10 @@
 		8CA91BBF28E2E8EC00EE7B83 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BBE28E2E8EC00EE7B83 /* CalendarTableViewCell.swift */; };
 		8CA91BC128E32BB200EE7B83 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BC028E32BB200EE7B83 /* DateFormatter.swift */; };
 		8CA91BC428E358F100EE7B83 /* NWNetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA91BC328E358F100EE7B83 /* NWNetworkMonitor.swift */; };
+		8CBBE65328F6A0D300EED07D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8CBBE65228F6A0D300EED07D /* GoogleService-Info.plist */; };
+		8CBBE65628F6A16E00EED07D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBBE65528F6A16E00EED07D /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		8CBBE65828F6A16E00EED07D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBBE65728F6A16E00EED07D /* FirebaseCrashlytics */; };
+		8CBBE65A28F6A16E00EED07D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBBE65928F6A16E00EED07D /* FirebaseMessaging */; };
 		8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBB28D317050005035C /* DetailViewController.swift */; };
 		8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */; };
 		8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8CC4BCC028D361E20005035C /* Kingfisher */; };
@@ -80,6 +84,8 @@
 		8CA91BBE28E2E8EC00EE7B83 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		8CA91BC028E32BB200EE7B83 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		8CA91BC328E358F100EE7B83 /* NWNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWNetworkMonitor.swift; sourceTree = "<group>"; };
+		8CBBE65228F6A0D300EED07D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8CBBE65B28F6A2CB00EED07D /* BookMapProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookMapProject.entitlements; sourceTree = "<group>"; };
 		8CC4BCBB28D317050005035C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogTableViewCell.swift; sourceTree = "<group>"; };
@@ -105,10 +111,13 @@
 				8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */,
 				8C9BDE6C28D1A41C00A0FB00 /* SnapKit in Frameworks */,
 				8C0655BE28E3DC3C008CE913 /* RealmSwift in Frameworks */,
+				8CBBE65628F6A16E00EED07D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				8C9BDE6928D061A300A0FB00 /* SwiftyJSON in Frameworks */,
 				8C9BDE6328D059E300A0FB00 /* Alamofire in Frameworks */,
 				8C7A1C4228E07A8500309EF0 /* Mantis in Frameworks */,
+				8CBBE65A28F6A16E00EED07D /* FirebaseMessaging in Frameworks */,
 				8C0655BC28E3DC3C008CE913 /* Realm in Frameworks */,
+				8CBBE65828F6A16E00EED07D /* FirebaseCrashlytics in Frameworks */,
 				8CA42B3628E4033C00EFF93A /* Toast in Frameworks */,
 				8C6DA6ED28DAAD7B0070E171 /* FSCalendar in Frameworks */,
 			);
@@ -137,6 +146,7 @@
 		8C6604C028D01DD20092D79D /* BookMapProject */ = {
 			isa = PBXGroup;
 			children = (
+				8CBBE65B28F6A2CB00EED07D /* BookMapProject.entitlements */,
 				8CEA436028D8770200BDEAEE /* Realm */,
 				8CC4BCDE28D6F1BD0005035C /* APIKey */,
 				8CC4BCD728D4BDAB0005035C /* Font */,
@@ -148,6 +158,7 @@
 				8C6604C328D01DD20092D79D /* SceneDelegate.swift */,
 				8C6604CA28D01DDA0092D79D /* Assets.xcassets */,
 				8C6604CF28D01DDA0092D79D /* Info.plist */,
+				8CBBE65228F6A0D300EED07D /* GoogleService-Info.plist */,
 				8CEA436828D89FFC00BDEAEE /* Storyboard.storyboard */,
 				8CA42B3928E54D8000EFF93A /* Launch Screen.storyboard */,
 			);
@@ -276,6 +287,9 @@
 				8C0655BB28E3DC3C008CE913 /* Realm */,
 				8C0655BD28E3DC3C008CE913 /* RealmSwift */,
 				8CA42B3528E4033C00EFF93A /* Toast */,
+				8CBBE65528F6A16E00EED07D /* FirebaseAnalyticsWithoutAdIdSupport */,
+				8CBBE65728F6A16E00EED07D /* FirebaseCrashlytics */,
+				8CBBE65928F6A16E00EED07D /* FirebaseMessaging */,
 			);
 			productName = BookMapProject;
 			productReference = 8C6604BE28D01DD20092D79D /* BookMapProject.app */;
@@ -315,6 +329,7 @@
 				8C7A1C4028E07A8400309EF0 /* XCRemoteSwiftPackageReference "Mantis" */,
 				8C0655BA28E3DC3C008CE913 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				8CA42B3428E4033C00EFF93A /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				8CBBE65428F6A16E00EED07D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 8C6604BF28D01DD20092D79D /* Products */;
 			projectDirPath = "";
@@ -336,6 +351,7 @@
 				8CC4BCDA28D4BE1A0005035C /* 강원교육모두 Bold.otf in Resources */,
 				8C6604CB28D01DDA0092D79D /* Assets.xcassets in Resources */,
 				8CEA436928D89FFC00BDEAEE /* Storyboard.storyboard in Resources */,
+				8CBBE65328F6A0D300EED07D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,19 +515,23 @@
 		8C6604D328D01DDA0092D79D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon 1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookMapProject/BookMapProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookMapProject/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "북트립";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치를 기반으로 가장 가까운 독립서점 위치를 확인하기 위해서 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "캘린더에 사진을 포함한 기록을 저장하고 포토탭에서 만들어지는 포토카드에 사진을 첨부하기 위해서는 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -522,7 +542,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -532,19 +552,23 @@
 		8C6604D428D01DDA0092D79D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon 1";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BookMapProject/BookMapProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookMapProject/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "북트립";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "사용자의 현재 위치를 기반으로 가장 가까운 독립서점 위치를 확인하기 위해서 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "캘린더에 사진을 포함한 기록을 저장하고 포토탭에서 만들어지는 포토카드에 사진을 첨부하기 위해서는 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -555,7 +579,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -650,6 +674,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		8CBBE65428F6A16E00EED07D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		8CC4BCBF28D361E20005035C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -705,6 +737,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8CA42B3428E4033C00EFF93A /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		8CBBE65528F6A16E00EED07D /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CBBE65428F6A16E00EED07D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		8CBBE65728F6A16E00EED07D /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CBBE65428F6A16E00EED07D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		8CBBE65928F6A16E00EED07D /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8CBBE65428F6A16E00EED07D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		8CC4BCC028D361E20005035C /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

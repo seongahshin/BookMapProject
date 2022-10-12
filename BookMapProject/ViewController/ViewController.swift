@@ -13,6 +13,7 @@ import Alamofire
 import SwiftyJSON
 import SnapKit
 import RealmSwift
+import FirebaseAnalytics
 
 class ViewController: UIViewController {
 
@@ -142,6 +143,11 @@ class ViewController: UIViewController {
             vc.storeInfoList = infoList
             vc.storImageList = imageList
             vc.getBlogList = blogList
+            
+            Analytics.logEvent("click_detail", parameters: [
+            "name": infoList[0]
+            ])
+            
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -401,9 +407,14 @@ extension ViewController: MKMapViewDelegate {
         for num in 0...data.count - 1 {
             let data = bookData.decode()[num]
             if ann.title == data.location {
+                
                 nameLabel.text = ann.title!
                 addressLabel.text = data.address
                 infoList = [ann.title!, data.address, data.time, data.link]
+                
+                Analytics.logEvent("click_ann", parameters: [
+                "name": infoList[0]
+                ])
                 
                 APIManager.shared.searchImage(query: infoList[0]) { value in
                     self.imageList = value

@@ -13,6 +13,7 @@ import SnapKit
 import RealmSwift
 import Mantis
 import Toast
+import FirebaseAnalytics
 
 class EditViewController: UIViewController, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -216,7 +217,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
                     let task = editData(editTitle: textField.text!, editContent: textView.text!, regDate: click, regTime: currentTime, realDate: currentRealTime)
                     localRealm.add(task)
                     if imageView.image != nil {
-                        saveImageToDocumentDirectory(imageName: "\(task.objectID)", image: imageView.image!)
+                        saveImageToDocumentDirectory(imageName: "\(task.objectID).png", image: imageView.image!)
                     }
                     self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 6)
                     self.dismiss(animated: true)
@@ -242,6 +243,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
                 }
                 
             }
+            
             self.view.makeToast("포토카드가 만들어졌어요 :)", duration: 6)
         }
         

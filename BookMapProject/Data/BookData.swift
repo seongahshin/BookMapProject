@@ -258,7 +258,6 @@ class dummyData {
                 BookStoreList.append(BookStore(location: value[num].storeName, latitude: value[num].mapX, longitude: value[num].mapY, address: value[num].address, time: value[num].time, link: value[num].link))
             }
             
-//            dump(value)
             
         } catch {
             print(error)
