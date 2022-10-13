@@ -52,4 +52,8 @@ class Color {
 //        return UIColor(r: 245, g: 237, b: 220)
         return UIColor(r: 240, g: 229, b: 207)
     }
+    
+    static var instagramColor: UIColor {
+        return UIColor(r: 242, g: 242, b: 242)
+    }
 }

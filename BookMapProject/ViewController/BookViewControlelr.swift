@@ -19,7 +19,7 @@ class BookViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.backgroundColor = Color.cardColor
+        view.backgroundColor = .white
         return view
     }()
     
@@ -84,7 +84,7 @@ extension BookViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let tasks = localRealm.objects(editData.self).sorted(by: [SortDescriptor(keyPath: "regDate", ascending: false), SortDescriptor(keyPath: "regTime", ascending: false)])
 //        let tasks = localRealm.objects(editData.self).sorted(byKeyPath: "realDate", ascending: false)
         let task = tasks[indexPath.row]
-        cell.backgroundColor = .white
+        cell.backgroundColor = Color.instagramColor
         cell.imageView.image = loadImageFromDocumentDirectory(imageName: "\(task.objectID)")
         cell.titleLabel.text = task.editTitle
         cell.contentLabel.text = task.editContent

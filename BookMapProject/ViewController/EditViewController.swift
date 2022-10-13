@@ -75,6 +75,13 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
         return view
     }()
     
+    var shareButton: UIButton = {
+        let view = UIButton()
+        view.setImage(UIImage(systemName: "square.and.arrow.up"), for: .normal)
+        view.tintColor = Color.memoColor
+        return view
+    }()
+    
     override func viewDidLoad() {
         
         view.backgroundColor = .white
@@ -93,6 +100,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(addButtonClicked)))
         
         deleteButton.addTarget(self, action: #selector(deleteButtonClicked), for: .touchUpInside)
+        shareButton.addTarget(self, action: #selector(shareButtonClicked), for: .touchUpInside)
         
         textField.text = editTitle
         textView.text = editContent
@@ -112,7 +120,7 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
     }
     
     func configureUI() {
-        [closeButton, deleteButton, endButton, imageView, textField, textView].forEach {
+        [closeButton,shareButton, deleteButton, endButton, imageView, textField, textView].forEach {
             view.addSubview($0)
         }
         
@@ -123,6 +131,12 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
         closeButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
             make.left.equalToSuperview().inset(20)
+            make.height.width.equalTo(20)
+        }
+        
+        shareButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.right.equalToSuperview().inset(20)
             make.height.width.equalTo(20)
         }
         
@@ -185,6 +199,14 @@ class EditViewController: UIViewController, UINavigationControllerDelegate, UITe
     // 화면 닫기
     @objc func closeButtonClicked() {
         self.dismiss(animated: true)
+    }
+    
+    @objc func shareButtonClicked() {
+        let vc = ShareViewController()
+        vc.sendedTitle = textField.text ?? ""
+        vc.sendedText = textView.text ?? ""
+        vc.sendedImage = imageView.image
+        self.present(vc, animated: true)
     }
     
     
@@ -395,6 +417,8 @@ extension EditViewController: CropViewControllerDelegate {
     
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation, cropInfo: CropInfo) {
         imageView.image = cropped
+        
+        
         cropViewController.dismiss(animated: true, completion: nil)
     }
     

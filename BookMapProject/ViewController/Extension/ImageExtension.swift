@@ -25,5 +25,4 @@ extension UIImage {
         return rendrImage
     }
     
-    
 }

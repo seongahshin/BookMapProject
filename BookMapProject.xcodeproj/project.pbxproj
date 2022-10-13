@@ -42,6 +42,7 @@
 		8CBBE65628F6A16E00EED07D /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBBE65528F6A16E00EED07D /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		8CBBE65828F6A16E00EED07D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBBE65728F6A16E00EED07D /* FirebaseCrashlytics */; };
 		8CBBE65A28F6A16E00EED07D /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBBE65928F6A16E00EED07D /* FirebaseMessaging */; };
+		8CBBE65D28F6FA4000EED07D /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBBE65C28F6FA4000EED07D /* ShareViewController.swift */; };
 		8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBB28D317050005035C /* DetailViewController.swift */; };
 		8CC4BCBE28D353CF0005035C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */; };
 		8CC4BCC128D361E20005035C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 8CC4BCC028D361E20005035C /* Kingfisher */; };
@@ -86,6 +87,7 @@
 		8CA91BC328E358F100EE7B83 /* NWNetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWNetworkMonitor.swift; sourceTree = "<group>"; };
 		8CBBE65228F6A0D300EED07D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8CBBE65B28F6A2CB00EED07D /* BookMapProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BookMapProject.entitlements; sourceTree = "<group>"; };
+		8CBBE65C28F6FA4000EED07D /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		8CC4BCBB28D317050005035C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8CC4BCBD28D353CF0005035C /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		8CC4BCC728D41D410005035C /* BlogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogTableViewCell.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				8C6DA6EE28DAAE980070E171 /* CalendarViewController.swift */,
 				8C7A1C3328DDDCF600309EF0 /* BookViewControlelr.swift */,
 				8C7A1C3728DED7CB00309EF0 /* EditViewController.swift */,
+				8CBBE65C28F6FA4000EED07D /* ShareViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				8C6DA6DD28D996770070E171 /* ColorExtension.swift in Sources */,
 				8C7A1C6928E1D56A00309EF0 /* ZipExtension.swift in Sources */,
 				8C6DA6DF28D99BAC0070E171 /* SettingTableViewCell.swift in Sources */,
+				8CBBE65D28F6FA4000EED07D /* ShareViewController.swift in Sources */,
 				8CC4BCBC28D317050005035C /* DetailViewController.swift in Sources */,
 				8C7A1C3628DEB4D500309EF0 /* BookCollectionViewCell.swift in Sources */,
 				8C6604C428D01DD20092D79D /* SceneDelegate.swift in Sources */,
@@ -519,7 +523,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BookMapProject/BookMapProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookMapProject/Info.plist;
@@ -537,7 +541,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kate.BookMapProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -556,7 +560,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = BookMapProject/BookMapProject.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BookMapProject/Info.plist;
@@ -574,7 +578,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kate.BookMapProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

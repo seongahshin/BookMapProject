@@ -106,6 +106,7 @@ class CalendarViewController: UIViewController {
     
     @objc func plusButtonClicked() {
         let vc = EditViewController()
+        UserDefaults.standard.set(2, forKey: "KEY")
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }

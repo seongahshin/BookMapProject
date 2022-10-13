@@ -99,6 +99,21 @@
             </objects>
             <point key="canvasLocation" x="-1469" y="13"/>
         </scene>
+        <!--Share View Controller-->
+        <scene sceneID="Ds4-ND-Mv3">
+            <objects>
+                <viewController id="bsI-vR-hBE" customClass="ShareViewController" customModule="BookMapProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T3k-ZQ-4Fx">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="beb-Kk-iNf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wnI-cD-zbW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1441" y="824"/>
+        </scene>
         <!--Book View Controller-->
         <scene sceneID="jW6-W7-I3E">
             <objects>
