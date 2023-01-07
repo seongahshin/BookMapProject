@@ -9,7 +9,7 @@
 ##### 7. 서버: Firebase Analytics
 ##### 8. 라이브러리: Alamofire, FSCalendar, IQKeyboardManager, KingFisher, Mantis, SwiftyJSON, Toast, Mapkit
 
-### *🎯기술 명세* 
+### *🎯 기술 명세* 
 *  `SnapKit` 을 활용하여 코드 베이스로  `Auto Layout` 구현
 *  `Decodable` 을 이용해 독립서점  `JSON` 데이터 설계 및 처리
 *  `MapKit` 과  `CLLocation` 을 이용해 현재 위치와 독립서점 Annotation 표시 기능 구현
@@ -20,3 +20,9 @@
 *  `UIGraphicsImageRenderer` 를 통해  `FileManager` 의  `Document` 에 저장되는 이미지 용량 처리
 *  `Firebase Cloud Messaging` 을 통해 푸쉬 알림 기능 구현
 *  `Firebase Analytics` 을 통해 사용자 Event 분석 기능 구현
+
+### *👩🏻‍💻 트러블 슈팅* 
+##### 1. API를 사용하지 않고 JSON 데이터 설계
+##### 2. 저장되는 이미지 용량 처리 이슈 
+##### 3. 실시간 위치 Annotation 클릭 시 앱 꺼지는 이슈 
+##### 4. 1번의 리젝 
