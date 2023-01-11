@@ -11,9 +11,11 @@
 | 서버 | Firebase Analytics |
 | 라이브러리 | Alamofire, FSCalendar, IQKeyboardManager, KingFisher, Mantis, SwiftyJSON, Toast, Mapkit |
 
+
 ### *⚒ 앱 스크린샷*
 
 <img width="1078" alt="스크린샷 2022-12-16 오후 7 04 29" src="https://user-images.githubusercontent.com/90595710/211734105-d12c1657-cccb-432d-b357-34d1be108607.png">
+
 
 ### *🎯 기술 명세*
 
@@ -29,17 +31,24 @@
 - `Firebase Cloud Messaging` 을 전송하여 앱의 유입률을 높임
 - `Firebase Analytics` 을 통해 사용자가 오래 머무는 Event 분석
 
+
 ### *👩🏻‍💻 트러블 슈팅*
+
 
 1. 외부 API를 사용하지 않고 독립서점 정보를 담은 데이터를 직접 설계해야 하는 이슈
 
+
  🧷  문제
+
 
 JSON 데이터에 담아야 하는 독립서점 정보가 담긴 외부 API 가 존재하지 않아 직접 데이터를 설계할 필요성을 느꼈다. 
 
+
 🎨 해결 
 
+
 JSON 형태의 데이터를 BookData 구조체에 파싱을 하는 Decoding을 실행한 후, return 된 value 값을 BookStoreList에 추가하여 각 독립서점의 정보에 접근할 수 있도록 하였다.  
+
 
 ```swift
 class Data {
@@ -118,15 +127,20 @@ class Data {
 }
 ```
 
+
 2. 카메라 및 앨범의 사진을 DB에 저장할 때의 파일 크기 이슈 
 
+
 🧷  문제
+
 
 DB에 이미지를 직접 저장하게 되면 파일 용량이 점점 늘어나 앱이 무거워진다.
 
 🎨 해결
 
+
 DB에는 이미지 파일명만 String 타입으로 저장하고 실제 이미지는 FileManager의 DocumentDirectory에 저장하여 이슈를 해결하였다. 
+
 
 ```swift
 func saveImageToDocumentDirectory(imageName: String, image: UIImage) {
@@ -160,27 +174,38 @@ func saveImageToDocumentDirectory(imageName: String, image: UIImage) {
     }
 ```
 
+
 3. 실시간 위치를 클릭했을 때 앱이 꺼지는 이슈 
+
 
 🧷  문제
 
+
 실시간 위치를 나타내는 Annotation을 클릭했을 때 앱이 꺼지는 현상이 나타났다. 
+
 
 🎨 해결
 
+
 as? 는 "런타임 시점"에 다운 캐스팅을 하고 실패할 경우 nil을 return 하지만, as!는 "런타임 시점"에 다운 캐스팅을 하고 실패할 경우 에러가 발생하기 때문에 앱이 꺼지는 것이었다. 그래서 이 부분은 안전하게 guard let 으로 옵셔널 바인딩 처리를 해주고 as! 가 아닌 as?를 사용함으로써, 오류가 해결되었다.
+
 
 ```swift
 guard let ann = view.annotation as? MKPointAnnotation else { return }
 ```
 
+
 4. 효율적인 API 관리
+
 
 🧷  문제
 
+
 API 가 여러번 호출되기 때문에 이를 효율적으로 관리할 수 있는 방법을 고민해야 했다. 
 
+
 🎨 해결
+
 
 싱클톤 패턴은 다른 클래스들과 자원공유가 쉽고 한 번에 한 인스턴스만 생성하므로 메모리 낭비를 방지할 수 있기 때문에 효율적인 API 관리를 위해 싱클톤 패턴을 선택했다. 
 
@@ -238,14 +263,20 @@ class APIManager {
 }
 ```
 
+
 5. 1번의 리젝 이슈 
+
 
 🧷  문제 
 
+
 권한 허용 문구가 구체적이지 않아 리젝을 당했다. 
+
 
 <img width="671" alt="스크린샷 2023-01-11 오전 11 55 45" src="https://user-images.githubusercontent.com/90595710/211734853-bbf29871-f458-4495-9d76-f5a03d0a62fc.png">
 
+
 🎨 해결
+
 
 그래서 좀 더 구체적이고 상세하게 권한 허용 문구를 작성하여 심사에 통과할 수 있었다.
